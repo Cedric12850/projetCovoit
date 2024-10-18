@@ -1,0 +1,30 @@
+Projet 3 : Application de co-voiturage
+
+Rendu:ls
+
+```
+Maquette wireframe
+Schéma de la bdd
+Code
+```
+
+Fonctionnalités à implémenter:
+
+```
+Recherche de trajets : Les utilisateurs doivent pouvoir rechercher des trajets disponibles en fonction de critères tels que le lieu de départ, la destination, la date et l'heure.
+Proposition de trajets : Les utilisateurs doivent pouvoir proposer des trajets, en indiquant les détails tels que l'itinéraire, la date, l'heure, le nombre de places disponibles et le prix par passager.
+Réservation de trajets : Les utilisateurs doivent pouvoir réserver une place sur un trajet proposé, et le conducteur doit être averti et confirmer la réservation.
+Système de notation et de commentaires : Les utilisateurs doivent pouvoir noter et commenter les trajets effectués, afin de créer un système de réputation et d'amélioration continue de la plateforme.
+Gestion des profils : Les utilisateurs doivent pouvoir créer et gérer leur profil, avec des informations telles que leur photo, leur biographie, leurs préférences de voyage et leurs historiques de trajets.
+```
+
+Fonctionnalités avancées:
+
+```
+Intégration de services de cartographie : Intégrer des services de cartographie tels que Google Maps ou OpenStreetMap pour afficher les trajets sur une carte et calculer les itinéraires.
+```
+
+Exemple:
+
+```
+BlaBlaCar
