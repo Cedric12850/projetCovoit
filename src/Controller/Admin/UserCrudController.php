@@ -29,7 +29,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('pseudo'),
             TextField::new('password'),
             IntegerField::new('type_user'),
-            AssociationField::new('town_id', 'Town'),
+            AssociationField::new('town', 'Town'),
             ImageField::new('photo')
                 ->setBasePath('uploads/')
                 ->setUploadDir('assets/uploads/')
