@@ -39,6 +39,12 @@ class Town
     #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'town_step')]
     private Collection $steps;
 
+    #[ORM\Column(length: 50)]
+    private ?string $department = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $INSEE = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -168,5 +174,29 @@ class Town
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getDepartment(): ?string
+    {
+        return $this->department;
+    }
+
+    public function setDepartment(string $department): static
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    public function getINSEE(): ?string
+    {
+        return $this->INSEE;
+    }
+
+    public function setINSEE(string $INSEE): static
+    {
+        $this->INSEE = $INSEE;
+
+        return $this;
     }
 }
