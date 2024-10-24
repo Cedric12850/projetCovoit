@@ -173,7 +173,9 @@ class Town
 
     public function __toString()
     {
-        return $this->name;
+        return 
+            $this->name;
+            $this->zip_code;
     }
 
     public function getDepartment(): ?string
