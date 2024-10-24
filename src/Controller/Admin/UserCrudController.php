@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
@@ -23,24 +24,36 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            EmailField::new('email'),
-            TextField::new('FirstName'),
-            TextField::new('LastName'),
             TextField::new('pseudo'),
-            TextField::new('password'),
-            IntegerField::new('type_user'),
-            AssociationField::new('town', 'Town'),
+            TextField::new('LastName')
+                ->setLabel('Nom'),
+            TextField::new('FirstName')
+                ->setLabel('Prenom'),
+            EmailField::new('email')
+                ->setLabel('Mail'),
+            TextField::new('password')
+                ->setLabel('MdP'),
+            AssociationField::new('town', 'Town')
+                ->setLabel('Ville'),
             ImageField::new('photo')
                 ->setBasePath('uploads/')
                 ->setUploadDir('assets/uploads/')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false)
-            ,
-            TextField::new('address'),
-            IntegerField::new('zip_code'),
-            BooleanField::new('driving_license'),
-            BooleanField::new('auto_accept'),
+                ->setLabel('Photo'),
+            TextField::new('address')
+                ->setLabel('Adresse'),
+            BooleanField::new('driving_license')
+                ->setLabel('Permis valide'),
+            BooleanField::new('auto_accept')
+                ->setLabel('Accept Autom résa'),
             BooleanField::new('active')
+                ->setLabel('Actif'),
+            ArrayField::new('roles')
+                ->setLabel('Rôles'),
+            IntegerField::new('type_user')
+                ->setLabel('Type'),
+            IntegerField::new('zip_code'),
         ];
     }
     

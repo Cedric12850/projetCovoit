@@ -14,7 +14,7 @@ class CarUser
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?bool $active = null;
+    private ?bool $active = true;
 
     #[ORM\ManyToOne(inversedBy: 'carUsers')]
     #[ORM\JoinColumn(nullable: false)]

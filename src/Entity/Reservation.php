@@ -38,6 +38,11 @@ class Reservation
         return $this->id;
     }
 
+    public function __toString()
+    {
+        return $this->user . " - " . $this->step ;
+    }
+    
     public function getNbPlace(): ?int
     {
         return $this->nb_place;

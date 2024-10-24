@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}covoit{% endblock %}
+
+{% block body %}
+
+
+    <section>
+        <div>
+            <p>
+                <span > Nb Users :        {{nbUsers}} </span>
+                <span >  -  Actifs :      {{nbActiveUsers}} </span>
+            </p>
+            <p>
+                <span > Nb Trips :        {{nbCreesTrips}} </span>
+                <span > -  Non Annulés :  {{nbDispoTrips}} </span>
+                <span > -  Dispos :       {{nbDispoTrips}} </span>
+            </p>
+        </div>
+    </section>
+
+
+    <main>
+        
+        <h1> Partager autrement</h1>
+
+        <section id = "homeChifMess" >
+        
+            <div id= "homeChiffres">
+                <p class="cercle">  {{nbActiveUsers}} </p>
+                <span class="cercle">  {{nbDispoTrips}} </span>
+            </div>
+        
+        
+            <div id= "homeMessage">
+                <span > Ensemble depuis {{nbDispoTrips}} </span>
+                <span >  </span>
+            </div>
+        
+        </section>
+        <section id="homeRechResa">
+            <h2> Trouvez votre bonheur</h2>
+            <form action="">
+        
+            </form>
+        
+        </section>
+        <section id="homeCarousel">
+        
+        </section>
+    </main>
+
+{% endblock %}

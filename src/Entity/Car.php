@@ -55,6 +55,12 @@ class Car
         $this->carUsers = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->owner . " - " . $this->brand ;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
