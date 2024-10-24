@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation enregistrement{% endblock %}
+
+{% block body %}
+<main class="confirmRegisterWrapClass">
+    <h1 class="confirmRegisterTitleClass">Veuillez confirmer votre adresse e-mail.</h1>
+
+    <p>
+        Veuillez confirmer votre adresse courriel en cliquant sur le lien suivant: <br><br>
+        <a href="{{ signedUrl|raw }}">Confirmez votre adresse courriel</a>.
+        Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+    </p>
+
+    <p>
+        Bienvenue!
+    </p>
+{% endblock %}
