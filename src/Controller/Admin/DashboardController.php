@@ -51,14 +51,18 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('User', 'fas fa-user', User::class);
-        yield MenuItem::linkToCrud('Trip', 'fas fa-suitcase', Trip::class);
-        yield MenuItem::linkToCrud('Step', 'fas fa-list', Step::class);
-        yield MenuItem::linkToCrud('Town', 'fas fa-map', Town::class);
+        yield MenuItem::section('User - Voitures');
+        yield MenuItem::linkToCrud('Utilisateur', 'fas fa-user', User::class);
+        yield MenuItem::linkToCrud('Voiture', 'fas fa-car', Car::class);
+        yield MenuItem::linkToCrud('Conducteurs', 'fas fa-id-card', CarUser::class);
+        yield MenuItem::section('Trajet - Etape');
+        yield MenuItem::linkToCrud('Trajet', 'fas fa-suitcase', Trip::class);
+        yield MenuItem::linkToCrud('Etape', 'fas fa-list', Step::class);
         yield MenuItem::linkToCrud('Reservation', 'fas fa-list', Reservation::class);
-        yield MenuItem::linkToCrud('Car', 'fas fa-car', Car::class);
-        yield MenuItem::linkToCrud('CarUser', 'fas fa-id-card', CarUser::class);
-        yield MenuItem::linkToCrud('Specificity', 'fas fa-list', Specificity::class);
+        yield MenuItem::section('Comment & Notation');
         yield MenuItem::linkToCrud('Comment', 'fas fa-comment', Comment::class);
+        yield MenuItem::section('tables source');
+        yield MenuItem::linkToCrud('Villes', 'fas fa-map', Town::class);
+        yield MenuItem::linkToCrud('Specificités voiture', 'fas fa-list', Specificity::class);
     }
 }

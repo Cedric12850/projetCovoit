@@ -15,14 +15,18 @@ class TownCrudController extends AbstractCrudController
         return Town::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
+            TextField::new('name')
+                ->setLabel('Ville'),
+                TextField::new('zip_code')
+                    ->setLabel('CP'),
+                TextField::new('department')
+                    ->setLabel('department'),
+                TextField::new('INSEE')
+                    ->setLabel('INSEE'),
+    ];
     }
-    */
 }

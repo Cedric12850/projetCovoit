@@ -4,9 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Comment;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class CommentCrudController extends AbstractCrudController
 {
@@ -15,14 +15,21 @@ class CommentCrudController extends AbstractCrudController
         return Comment::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            AssociationField::new('creator','User')
+                ->setLabel('Créé par'),
+            AssociationField::new('trip','Trip')
+                ->setLabel('trajet'),
+            AssociationField::new('concern','User')
+                ->setLabel('Concerne'),
+            TextEditorField::new('comment')
+                ->setLabel('Commentaire'),
+            TextEditorField::new('response')
+                ->setLabel('Réponse'),
+            IntegerField::new('notation')
+                ->setLabel('Note')
         ];
     }
-    */
 }

@@ -4,9 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Reservation;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 
 class ReservationCrudController extends AbstractCrudController
 {
@@ -15,14 +15,22 @@ class ReservationCrudController extends AbstractCrudController
         return Reservation::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            AssociationField::new('user','User')
+                ->setLabel('Par'),
+            AssociationField::new('step','Step')
+                ->setLabel('Etape'),
+            IntegerField::new('nb_place')
+                ->setLabel('Nb places'),
+            BooleanField::new('notify')
+                ->setLabel('Notif Conduct'),
+            BooleanField::new('Accept')
+                ->setLabel('Accpetée'),
+            BooleanField::new('notify')
+                ->setLabel('Annulation'),
         ];
     }
-    */
 }

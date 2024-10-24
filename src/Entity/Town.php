@@ -52,6 +52,12 @@ class Town
         $this->steps = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name . " - " . $this->zip_code ;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -169,13 +175,6 @@ class Town
         }
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return 
-            $this->name;
-            $this->zip_code;
     }
 
     public function getDepartment(): ?string

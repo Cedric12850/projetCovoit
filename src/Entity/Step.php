@@ -48,6 +48,11 @@ class Step
         $this->reservations = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->trip . " - " . $this->town_step  ;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

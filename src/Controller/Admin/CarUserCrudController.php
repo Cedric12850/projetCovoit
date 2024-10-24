@@ -4,9 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\CarUser;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 
 class CarUserCrudController extends AbstractCrudController
 {
@@ -15,14 +14,17 @@ class CarUserCrudController extends AbstractCrudController
         return CarUser::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            AssociationField::new('car', 'Car')
+                ->setLabel('Voiture'),
+            AssociationField::new('driver', 'User')
+                ->setLabel('Conducteur'),
+            BooleanField::new('active')
+                ->setLabel('Actif')
         ];
     }
-    */
+    
 }

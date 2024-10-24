@@ -64,6 +64,11 @@ class Trip
         $this->comments = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->driver . " - " . $this->town_start . " - " . $this->date_start->format('d/m/Y H:i');
+    }
+
     public function getId(): ?int
     {
         return $this->id;

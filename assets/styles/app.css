@@ -16,83 +16,12 @@ html {
 }
 
 /* ------------------- Font -------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+/*    Font :   font-family: "Nunito Sans", sans-serif;   */
+
+/* ------------------- Font -------------------- */
 body {
-    font-family: "Nunito Sans", sans-serif;
-}
-/* -- Color --- */
-/*  bleu foncé : #093262 rgb(9, 50, 98)
-/*  mauve clair : #e4b7e5 rgb(228, 183, 229)
-/* mauve foncé : #b288c0 rgb(178, 136, 192)
-
-/* ------------------ Commun item ---------------- */
-.buttonClass{
-    color:#ddd;
-    background-color:rgb(178, 136, 192);
-    width: 100%;
-    border-radius: 5px;
-    padding: .6em 1em;
-    font-size: 2rem;
-    font-weight: 800;
-    border: 0;
-    transition: all .4s ease-in-out;
-    cursor: pointer;
-}
-.buttonClass:hover,
-.buttonClass:focus{
-    color:#fff;
-    background-color:rgb(142, 110, 153);
-    transition: all .4s ease-in-out;
-}
-
-/* -------------------- Header -------------------- */
-
-
-/* -------------------- Navbar -------------------- */
-
-
-/* --------------------- Home --------------------- */
-
-
-/* ------------------- Register ------------------- */
-.registerFormClass{
-    background-color: rgb(9, 50, 98);
-    color:#fff;
-    padding: 1em;
-    border-radius: 5px;
-    box-shadow: 5px 5px 10px #aaa;
-}
-
-.registerFormMainClass{
-    width:94%;
-    margin: auto;
-}
-.registerFormWrapClass{
-    display: flex;
-    flex-direction: column;
-    margin-top: 2em;
-}
-.registerFormTitleClass{
-    padding: .4em 0;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 800;
-    border-radius: 50px;
-    background-color:rgb(178, 136, 192);
-    color:#fff;
-    border: 2px solid (178, 136, 192);
-    box-shadow: 5px 5px 10px #aaa;
-}
-.formItemClass>div{
-    display: flex;
-    flex-direction: row;
-}
-.formItemClass{
-    padding: .5em;
-    width: 100%;
-}
-.formItemClass input{
-    width: 100%;
-    font-size: 2rem;
+    background-color: skyblue;
 }
 .formItemClass label{
     padding: .25em 0;

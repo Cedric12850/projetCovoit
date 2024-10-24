@@ -35,6 +35,12 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?Trip $trip = null;
 
+    public function __toString()
+    {
+        return $this->creator . " : " . $this->trip . " - " . $this->concern ;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

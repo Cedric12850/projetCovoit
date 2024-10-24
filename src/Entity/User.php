@@ -122,6 +122,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->car_drivers = new ArrayCollection();
     }
 
+    public function __toString(){
+        return $this->pseudo;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
