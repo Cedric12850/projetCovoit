@@ -3,18 +3,18 @@
 {% block title %}Hello ProfileController!{% endblock %}
 
 {% block body %}
-
+<main>
     <section class="container">
-        <article class="row">
+        <article class="profileUserClass">
 
             {# left column #}
-            <div class="col" >
-                <img src="{{ asset("uploads/" ~ user.photo) }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
+            <div class="" >
+                <img src="{{ asset("uploads/" ~ user.photo) }}" class="imgProfileClass" alt="{{user.photo}}">
                 <p>note: </p>
             </div>
 
             {# rigth column#}
-            <div class="col" >
+            <div class="" >
                 {# part name town #}
                 <div>
                     <h2>{{user.pseudo}}</h2>
@@ -23,6 +23,16 @@
 
                 {# part pref numberOfTrip #}
                 <div>
+                    <div class="profileCarContainerClass">
+                    <h4>Véhicule(s):</h4>
+                        <p>
+                        marque <br>
+                        modele <br>
+                        </p>
+                        {% if app.user %}
+                        <button>Modifier</button>
+                        {% endif %}
+                    </div>
                     <div class="userpref">
                         <h4>Préférences:</h4>
                     </div>
@@ -36,5 +46,5 @@
             </div>   
         </article>
     </section>
-
+</main>
 {% endblock %}
