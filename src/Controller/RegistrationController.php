@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
+use App\Form\RegistrationFormType;
+use App\Repository\TownRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,10 +32,12 @@ class RegistrationController extends AbstractController
     UserPasswordHasherInterface $userPasswordHasher, 
     EntityManagerInterface $entityManager, 
     SluggerInterface $slugify,
-    #[Autowire('%kernel.project_dir%/public/uploads/images')] string $uploadImageDir
+    #[Autowire('%kernel.project_dir%/assets/uploads/images')] string $uploadImageDir,
+    TownRepository $townRepository
     ): Response
     {
         $user = new User();
+        $towns = $townRepository->findAll();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
     
@@ -83,6 +86,7 @@ class RegistrationController extends AbstractController
     
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'towns' => $towns
         ]);
     }
     
