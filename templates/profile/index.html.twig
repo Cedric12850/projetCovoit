@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <article class="row">
+
+            {# left column #}
+            <div class="col" >
+                <img src="{{ asset("uploads/" ~ user.photo) }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
+                <p>note: </p>
+            </div>
+
+            {# rigth column#}
+            <div class="col" >
+                {# part name town #}
+                <div>
+                    <h2>{{user.pseudo}}</h2>
+                    <p>ville de {{user.town.name}} ({{user.town.zipcode}})</p>
+                </div>
+
+                {# part pref numberOfTrip #}
+                <div>
+                    <div class="userpref">
+                        <h4>Préférences:</h4>
+                    </div>
+                    <div class="numberOfTrip">
+                        <p>nombre de trajet: <br>
+                        quelques exemples:
+                        </p>
+                    </div>
+                </div>
+
+            </div>   
+        </article>
+    </section>
+
+{% endblock %}
