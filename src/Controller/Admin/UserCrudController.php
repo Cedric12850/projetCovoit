@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -54,6 +55,8 @@ class UserCrudController extends AbstractCrudController
             IntegerField::new('type_user')
                 ->setLabel('Type'),
             IntegerField::new('zip_code'),
+            TelephoneField::new('phone')
+                ->setLabel('Téléphone'),
         ];
     }
     
