@@ -10,8 +10,8 @@
     <div class="registerFormWrapClass">
         <h1 class="registerFormTitleClass">Créer un compte</h1>
         
-        <form action="" method="post" class="registerFormClass">
-            
+        {# <form action="" method="post" class="registerFormClass"> #}
+        <div class="registerFormClass"> 
             {{ form_errors(registrationForm) }}
 
             {{ form_start(registrationForm) }}
@@ -58,10 +58,7 @@
                 {{ form_row(registrationForm.plainPassword, 
                 {'attr': {'required': 'required'}}) }}
             </span>
-            <span class="formItemClass">
-                {{ form_row(registrationForm.confirmPassword, 
-                {'attr': {'required': 'required'}}) }}
-            </span>
+            
             <span class="formItemClass">
                 {{ form_row(registrationForm.agreeTerms, 
                 {'attr': {'required': 'required'}}) }}
@@ -69,7 +66,7 @@
 
             {# <button type="submit" class="btn buttonClass">S'enregister</button> #}
             {{ form_end(registrationForm) }}
-
-        </form>
+</div>  
+        {# </form> #}
     </div>    
 {% endblock %}

@@ -5,23 +5,23 @@
 {% block body %}
 
     <section class="container">
-        <article class="">
+        <article class="row">
             {# bouton voir/modifier #}
             {# {% if app.user %} #}
             <div>
-            <button>voir</button>
-            <button>modifier</button>
+                <button>voir</button>
+                <a href="/profile/{{user.id}}"><button>annuler</button></a>
             </div>
             {# {% endif %} #}
             
             {# left column #}
-            <div class="" >
+            <div class="col" >
                 <img src="{{ asset("uploads/images/" ~ user.photo) }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
                 <p>note: </p>
             </div>
 
             {# rigth column#}
-            <div class="" >
+            <div class="col" >
                 {# part name town #}
                 <div>
                     <h2>{{user.pseudo}}</h2>
@@ -39,13 +39,21 @@
                         </p>
                     </div>
                 </div>
-
-                <div>
-                {{form(editform)}}
-                </div>
-
-            </div>   
+            </div> 
         </article>
+
+        {# article contenant le formulaire de modification #}
+        <article class="registerFormMainClass">
+            <div class="registerFormWrapClass">              
+                <div class="registerFormClass" >
+                    <span class="formItemClass">
+                        {{form(editform)}}
+                    </span>
+                </div>
+            </div>
+        </article>
+             
+        
     </section>
 
 {% endblock %}

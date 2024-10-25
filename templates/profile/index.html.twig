@@ -5,7 +5,7 @@
 {% block body %}
 <main>
     <section class="container">
-        <article class="">
+        <article class="row">
             {# bouton voir/modifier #}
             {# {% if app.user %} #}
             <div>
@@ -14,36 +14,38 @@
             </div>
             {# {% endif %} #}
             
-            {# left column #}
-            <div class="" >
-                <img src="{{ asset("uploads/images/" ~ user.photo) }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
+            {# left column for screen>1200px #}
+            <div class="col-xl" >
+                <img src="{{ asset("uploads/images/" ~ user.photo) }}" class="imgProfileClass img-fluid img-thumbnail" alt="{{user.photo}}">
                 <p>note: </p>
             </div>
 
-            {# rigth column#}
-            <div class="" >
+            {# rigth column for screen>1200px#}
+            <div class="col-xl row" >
                 {# part name town #}
-                <div>
+                <div class="col-xl">
                     <h2>{{user.pseudo}}</h2>
                     <p>ville de {{user.town.name}} ({{user.town.zipcode}})</p>
                 </div>
 
                 {# part pref numberOfTrip #}
-                <div>
+                <div class="col-xl">
                     <div class="profileCarContainerClass">
-                    <h4>Véhicule(s):</h4>
-                        <p>
-                        marque <br>
-                        modele <br>
-                        </p>
-                        {% if app.user %}
-                        <button>Modifier</button>
-                        {% endif %}
+                        <h4>Véhicule(s):</h4>
+                            <p>
+                            marque <br>
+                            modele <br>
+                            </p>
+                            {% if app.user %}
+                            <button>Modifier</button>
+                            {% endif %}
                     </div>
-                    <div class="userpref">
+                </div>
+                <div class="col-xl">
+                    <div class="col userpref">
                         <h4>Préférences:</h4>
-                    </div>
-                    <div class="numberOfTrip">
+                    </div> 
+                    <div class="col numberOfTrip">
                         <p>nombre de trajet: <br>
                         quelques exemples:
                         </p>
