@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur non authentifié{% endblock %}
+
+{% block body %}
+
+<div class='container'>
+    <div class="errorMessageWrapClass text-bg-warning p-4">
+        <h1>Accès refusé</h1>
+        <p>Vous devez vous connecter à votre compte ou ouvrir un compte pour accéder à cette page.</p>
+    </div>
+
+    <div class="errorServerMessageWrapClass text-bg-light p-4">
+        <h2>Message d'erreur</h2>
+        <p>Code de l'erreur : {{ status_code }}</p>
+        <p>Message de l'erreur : {{ status_text }}</p>
+    <div>
+
+</div>
+
+{% endblock %}

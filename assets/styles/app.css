@@ -54,14 +54,6 @@ body {
 
 
 /* ------------------- Register ------------------- */
-.registerFormClass{
-    background-color: rgb(9, 50, 98);
-    color:#fff;
-    padding: 1em;
-    border-radius: 5px;
-    box-shadow: 5px 5px 10px #aaa;
-}
-
 .registerFormMainClass{
     width:94%;
     margin: auto;
@@ -70,6 +62,13 @@ body {
     display: flex;
     flex-direction: column;
     margin-top: 2em;
+}
+.registerFormClass{
+    background-color: rgb(9, 50, 98);
+    color:#fff;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #aaa;
 }
 .registerFormTitleClass{
     padding: .4em 0;
@@ -93,15 +92,13 @@ body {
 .formItemClass input{
     width: 100%;
     font-size: 2rem;
+    line-height: 1.5;
+    border-radius: 8px;
 }
 .formItemClass label{
     padding: .25em 0;
     min-width: 50%;
     font-size: 2rem;
-}
-.formItemClass input{
-    line-height: 1.5;
-    border-radius: 8px;
 }
 #registration_form_driving_license,
 #registration_form_agreeTerms,
@@ -109,8 +106,42 @@ body {
     cursor: pointer;
 }
 /* --------------------- Login -------------------- */
+.loginFormMainClass{
+    width:94%;
+    margin: auto;
+}
+.loginFormWrapClass{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+}
+.loginFormClass{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(9, 50, 98);
+    color:#fff;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #aaa;
+}
 
-
+.loginFormTitleClass{
+    padding: .4em 0;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    border-radius: 50px;
+    background-color:rgb(178, 136, 192);
+    color:#fff;
+    border: 2px solid (178, 136, 192);
+    box-shadow: 5px 5px 10px #aaa;
+}
+.loginFormClass input{
+    width: 100%;
+    font-size: 2rem;
+    line-height: 1.5;
+    border-radius: 8px;
+}
 /* -------------------- Profil -------------------- */
 
 
@@ -127,7 +158,7 @@ body {
 /* ------------------ Commun item ---------------- */
 @media screen and  (min-width : 930px){
     .buttonClass{
-        font-size: 1.2rem;
+        font-size: 1.6rem;
     }
 
 

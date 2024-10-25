@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Town;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -39,7 +41,9 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Adresse : '])
             ->add('zip_code', TextType::class,[
                 'label' => 'Code postal : '])
-            ->add('town', TextType::class,[
+            ->add('town', EntityType::class,[
+                'class' => Town::class,
+                'choice_label' => 'name',
                 'label' => 'Ville : '])
             ->add('driving_license', CheckboxType::class,[
                 'label' => 'Permis de conduire : '])
@@ -79,11 +83,11 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez confirmer votre mot de passe',
                     ]),
                     new EqualTo([
-                        'propertyPath' => 'plainPassword',
+                        'value' => '',
                         'message' => 'Les mots de passe doivent correspondre.',
                     ]),
                 ],
-            ]);
+            ])
         ;
     }
 
