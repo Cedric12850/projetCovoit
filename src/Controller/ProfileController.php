@@ -37,7 +37,7 @@ class ProfileController extends AbstractController
         EntityManagerInterface $entityManager,
         UserPasswordHasherInterface $userPasswordHasher,
         SluggerInterface $slugger,
-        #[Autowire('%kernel.project_dir%/assets/uploads/images')] string $uploadDirectory,
+        #[Autowire('%kernel.project_dir%/public/uploads/images')] string $uploadDirectory,
         int $id
     ):Response
     {

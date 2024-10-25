@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}Profil {{user.pseudo}} {% endblock %}
 
 {% block body %}
 
@@ -16,7 +16,7 @@
             
             {# left column #}
             <div class="" >
-                <img src="{{ user.photo }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
+                <img src="{{ asset("uploads/images/" ~ user.photo) }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
                 <p>note: </p>
             </div>
 
