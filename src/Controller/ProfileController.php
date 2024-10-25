@@ -62,7 +62,7 @@ class ProfileController extends AbstractController
                 }
                 // updates the 'uploadFilename' property to store the PDF file name
                 // instead of its contents
-                $user->setThumbnail($newFileName);
+                $user->setPhoto($newFileName);
             }
 
             $plainPassword = $form->get('plainPassword')->getData();

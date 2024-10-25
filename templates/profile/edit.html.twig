@@ -16,7 +16,7 @@
             
             {# left column #}
             <div class="" >
-                <img src="{{ asset("uploads/" ~ user.photo) }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
+                <img src="{{ user.photo }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
                 <p>note: </p>
             </div>
 
@@ -41,7 +41,7 @@
                 </div>
 
                 <div>
-                {{form(edit)}}
+                {{form(editform)}}
                 </div>
 
             </div>   

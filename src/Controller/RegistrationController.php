@@ -32,7 +32,7 @@ class RegistrationController extends AbstractController
     UserPasswordHasherInterface $userPasswordHasher, 
     EntityManagerInterface $entityManager, 
     SluggerInterface $slugify,
-    #[Autowire('%kernel.project_dir%/assets/uploads/images')] string $uploadImageDir,
+    #[Autowire('%kernel.project_dir%/public/uploads/images')] string $uploadImageDir,
     TownRepository $townRepository
     ): Response
     {
