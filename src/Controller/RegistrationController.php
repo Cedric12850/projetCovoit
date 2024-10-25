@@ -36,6 +36,12 @@ class RegistrationController extends AbstractController
     TownRepository $townRepository
     ): Response
     {
+
+        // Redirection si l'utilisateur est déjà authentifié
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_profile');
+        }
+
         $user = new User();
         $towns = $townRepository->findAll();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -69,6 +75,8 @@ class RegistrationController extends AbstractController
             // Encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
     
+            $user->setRoles(['ROLE_USER']);
+
             $entityManager->persist($user);
             $entityManager->flush();
             }
