@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pas de réponse du serveur{% endblock %}
+
+{% block body %}
+
+<div class='container'>
+    <div class="errorMessageWrapClass text-bg-warning p-4">
+        <h1>Pas de réponse du serveur</h1>
+        <p>Le serveur ne répond pas, veuillez réessayer ultérieurement.</p>
+    </div>
+
+    <div class="errorServerMessageWrapClass text-bg-light p-4">
+        <h2>Message d'erreur</h2>
+        <p>Code de l'erreur : {{ status_code }}</p>
+        <p>Message de l'erreur : {{ status_text }}</p>
+    <div>
+
+</div>
+
+{% endblock %}

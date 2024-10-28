@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil {{user.pseudo}} {% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <article class="row">
+            {# bouton voir/modifier #}
+            {# {% if app.user %} #}
+            <div>
+                <button>voir</button>
+                <a href="/profile/{{user.id}}"><button>annuler</button></a>
+            </div>
+            {# {% endif %} #}
+            
+            {# left column #}
+            <div class="col" >
+                <img src="{{ asset("uploads/images/" ~ user.photo) }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
+                <p>note: </p>
+            </div>
+
+            {# rigth column#}
+            <div class="col" >
+                {# part name town #}
+                <div>
+                    <h2>{{user.pseudo}}</h2>
+                    <p>ville de {{user.town.name}} ({{user.town.zipcode}})</p>
+                </div>
+
+                {# part pref numberOfTrip #}
+                <div>
+                    <div class="userpref">
+                        <h4>Préférences:</h4>
+                    </div>
+                    <div class="numberOfTrip">
+                        <p>nombre de trajet: <br>
+                        quelques exemples:
+                        </p>
+                    </div>
+                </div>
+            </div> 
+        </article>
+
+        {# article contenant le formulaire de modification #}
+        <article class="registerFormMainClass">
+            <div class="registerFormWrapClass">              
+                <div class="registerFormClass" >
+                    <span class="formItemClass">
+                        {{form(editform)}}
+                    </span>
+                </div>
+            </div>
+        </article>
+             
+        
+    </section>
+
+{% endblock %}
