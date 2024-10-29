@@ -3,9 +3,38 @@
 {% block title %}New Car{% endblock %}
 
 {% block body %}
-    <h1>Ajouter un véhicule</h1>
+ <main class="registerFormMainClass">
+    <div class="registerFormWrapClass">
+        <h1 class="registerFormTitleClass">Ajouter un véhicule</h1>
 
-    {{ include('car/_form.html.twig') }}
+        <div class="registerFormClass"> 
+            {{ form_errors(form) }}
+            {{ form_start(form) }}
+                <span class="formItemClass">
+                    {{ form_row(form.brand)}}
+                </span>
 
-    <a href="{{ path('app_car_index') }}">back to list</a>
+                <span class="formItemClass">
+                    {{ form_row(form.type_car)}}
+                </span>
+                
+                <span class="formItemClass">
+                    {{ form_row(form.active)}}
+                </span>
+
+                <span class="formItemClass">
+                    {{ form_row(form.owner)}}
+                </span>
+
+                <span class="formItemClass">
+                    {{ form_row(form.specificities)}}
+                </span>
+
+            {{ form_end(form)}}
+
+            <a href="{{ path('app_car') }}">back to list</a>
+        </div>  
+        {# </form> #}
+    </div>  
+</main> 
 {% endblock %}

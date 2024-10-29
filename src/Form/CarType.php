@@ -5,11 +5,10 @@ namespace App\Form;
 use App\Entity\Car;
 use App\Entity\Specificity;
 use App\Entity\User;
-
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,22 +17,24 @@ class CarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('brand', TextType::class,[
-                'label' => 'Marque',
+            ->add('brand', TypeTextType::class, [
+                'label' => 'Marque'
             ])
-            ->add('type_car', TextType::class, [
+            ->add('type_car', TypeTextType::class, [
                 'label' => 'Modèle'
             ])
             ->add('active', CheckboxType::class, [
-                'label' => 'Véhicule utilisé'
+                'label' => 'cochez si utilisé'
             ])
             ->add('owner', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'lastname',
+                'label' => 'propriétaire',
+                'choice_label' => function ($userIdentity) {return $userIdentity;},
             ])
             ->add('specificities', EntityType::class, [
                 'class' => Specificity::class,
-                'choice_label' => 'id',
+                'label' => 'particularités',
+                'choice_label' => 'name',
                 'multiple' => true,
             ])
         ;

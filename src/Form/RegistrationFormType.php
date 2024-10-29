@@ -52,6 +52,7 @@ class RegistrationFormType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Ville : ',
                 'placeholder' => 'Choisissez une ville dans la liste:',
+                'autocomplete' => true
                 ]
                 )
             ->add('driving_license', CheckboxType::class,[

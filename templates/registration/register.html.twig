@@ -47,8 +47,10 @@
                 {'attr': {'required': 'required'}}) }}
             </span>
             <span class="formItemClass">
-                {{ form_row(registrationForm.town, 
-                {'attr': {'required': 'required'}}) }}
+                <input id="searchTown" type="text" autocomplete="off"> Ville:
+                <div id="resultsSearchTown"></div>
+                {# {{ form_row(registrationForm.town, 
+                {'attr': {'required': 'required'}}) }} #}
             </span>
             <span class="formItemClass">
                 {{ form_row(registrationForm.driving_license, 
@@ -66,7 +68,8 @@
 
             {# <button type="submit" class="btn buttonClass">S'enregister</button> #}
             {{ form_end(registrationForm) }}
-</div>  
+        </div>  
         {# </form> #}
-    </div>    
+    </div>
+</main> 
 {% endblock %}
