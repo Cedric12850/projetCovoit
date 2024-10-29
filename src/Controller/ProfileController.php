@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\editform\RegistrationeditformType;
+use App\Form\RegistrationFormType;
 use App\Repository\CarRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -46,11 +46,11 @@ class ProfileController extends AbstractController
     ):Response
     {
         $user =$entityManager->getRepository(User::class)->find($id);
-        $editform = $this->createeditform(RegistrationeditformType::class, $user);
-        $editform->handleRequest($request);
-        if ($editform->isSubmitted()&& $editform->isValid())
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&& $form->isValid())
         {
-            $thumbnail = $editform->get('photo')->getData();
+            $thumbnail = $form->get('photo')->getData();
             if ($thumbnail) {
                 //Récuperation du nom d'origine de l'image
                 $originalFileName = pathinfo($thumbnail->getClientOriginalName(),PATHINFO_FILENAME);
@@ -69,11 +69,11 @@ class ProfileController extends AbstractController
                 $user->setPhoto($newFileName);
             }
 
-            $plainPassword = $editform->get('plainPassword')->getData();
+            $plainPassword = $form->get('plainPassword')->getData();
             // Encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
-            $user = $editform->getData();
+            $user = $form->getData();
             $entityManager->flush();
 
             return $this->redirectToRoute('app_profile');
@@ -81,7 +81,7 @@ class ProfileController extends AbstractController
 
         return 
     $this->render('profile/edit.html.twig', [
-        'editeditform' => $editform,
+        'editform' => $form,
         'user' => $user
     ]);
 

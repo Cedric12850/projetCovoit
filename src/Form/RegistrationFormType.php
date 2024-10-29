@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Town;
 use App\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -18,6 +19,8 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Routing\Attribute\Route;
+
+use function PHPSTORM_META\type;
 
 class RegistrationFormType extends AbstractType
 {
@@ -43,18 +46,17 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Adresse : '])
             ->add('zip_code', TextType::class,[
                 'label' => 'Code postal : '])
-            ->add('town', 
-            
-                // TownAutocompleteField::class
-                
-                EntityType::class,[
-                'class' => Town::class,
-                'choice_label' => 'name',
-                'label' => 'Ville : ',
-                'placeholder' => 'Choisissez une ville dans la liste:',
-                'autocomplete' => true
-                ]
-                )
+            // ->add('town', EntityType::class,[
+            //     'class' => Town::class, 
+            //     'choice_label' => 'name',
+            //     'label' => 'Ville : ',
+            //     'placeholder' => 'Choisissez une ville dans la liste:',
+            //     'autocomplete' => true,
+            // ])
+            ->add('town', TextType::class, [
+                'label' => 'Ville',
+                'attr' => ['id' => 'zipCodeTown'],
+            ])
             ->add('driving_license', CheckboxType::class,[
                 'label' => 'Permis de conduire : '])
             ->add('agreeTerms', CheckboxType::class, [

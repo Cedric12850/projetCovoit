@@ -16,16 +16,16 @@ class TownAutocompleteField extends AbstractType
     {
         $resolver->setDefaults([
             'class' => Town::class,
-            'placeholder' => 'Choisissez une ville dans la liste',
+            'placeholder' => 'Choisissez votre ville dans la liste',
             'choice_label' => 'name',
 
-            'query_builder' => function(TownRepository $townRepository) {
-                return $townRepository->createQueryBuilder('town');
-            },
+            
             // choose which fields to use in the search
             // if not passed, *all* fields are used
-            // 'searchable_fields' => ['name'],
-
+            'searchable_fields' => ['name'],
+            // 'query_builder' => function(TownRepository $townRepository) {
+            //                 return $townRepository->createQueryBuilder('name');
+            //             },
             // 'security' => 'ROLE_SOMETHING',
         ]);
     }

@@ -27,6 +27,21 @@ class RegistrationController extends AbstractController
     {
     }
 
+    #route pour l'autocomplétion
+    #[Route('/autocomplete/town', name: 'autocomplete_town')]
+public function townAutocomplete(Request $request, TownRepository $townRepository): JsonResponse
+{
+    $query = $request->query->get('query', '');
+
+    // Requête pour obtenir les villes correspondantes
+    $towns = $townRepository->findByQuery($query); // méthode `findByQuery` dans le repository
+
+    // Retourner les noms des villes au format JSON
+    $townNames = array_map(fn($town) => $town->getName(), $towns);
+    dump($townNames);
+    return new JsonResponse($townNames);
+}
+
     #[Route('/register', name: 'app_register')]
     public function register(
     Request $request, 
