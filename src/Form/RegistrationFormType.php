@@ -44,6 +44,9 @@ class RegistrationFormType extends AbstractType
             ->add('zip_code', TextType::class,[
                 'label' => 'Code postal : '])
             ->add('town', 
+            
+                // TownAutocompleteField::class
+                
                 EntityType::class,[
                 'class' => Town::class,
                 'choice_label' => 'name',
