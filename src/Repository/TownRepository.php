@@ -18,11 +18,11 @@ class TownRepository extends ServiceEntityRepository
         parent::__construct($registry, Town::class);
     }
     
-    public function findByQuery($query)
+    public function findByQuery($val):array
 {
     return $this->createQueryBuilder('t')
-        ->where('t.zipCode LIKE :query')
-        ->setParameter('query', $query . '%')
+        ->where('t.zip_code LIKE :val')
+        ->setParameter('val', $val)
         ->setMaxResults(10)
         ->getQuery()
         ->getResult();
