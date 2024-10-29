@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le véhicule{% endblock %}
+
+{% block body %}
+ <main class="registereditformMainClass">
+    <div class="registereditformWrapClass">
+        <h1 class="registereditformTitleClass">Modifier le véhicule véhicule</h1>
+
+        <div class="registereditformClass"> 
+            {{ form_errors(editform) }}
+            {{ form_start(editform) }}
+                <span class="editformItemClass">
+                    {{ form_row(editform.brand)}}
+                </span>
+
+                <span class="editformItemClass">
+                    {{ form_row(editform.type_car)}}
+                </span>
+                
+                <span class="editformItemClass">
+                    {{ form_row(editform.active)}}
+                </span>
+
+                <span class="editformItemClass">
+                    {{ form_row(editform.owner)}}
+                </span>
+
+                <span class="editformItemClass">
+                    {{ form_row(editform.specificities)}}
+                </span>
+
+            {{ form_end(editform)}}
+
+            <a href="{{ path('app_car') }}">back to list</a>
+        </div>  
+        {# </editform> #}
+    </div>  
+</main> 
+{% endblock %}

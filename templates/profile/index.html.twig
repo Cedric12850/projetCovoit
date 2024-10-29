@@ -4,6 +4,7 @@
 
 {% block body %}
 <main>
+
     <section class="container">
         <article class="row">
             {# bouton voir/modifier #}
@@ -33,12 +34,12 @@
                     <div class="profileCarContainerClass">
                         <h4>Véhicule(s):</h4>
                             <p>
-                            marque <br>
-                            modele <br>
+                            marque: {{carUser.brand}}<br>
+                            modele {{carUser.typeCar}}<br>
                             </p>
-                            {% if app.user %}
-                            <button>Modifier</button>
-                            {% endif %}
+                            {# {% if app.user %} #}
+                                <a href="/car/edit/{{carUser.id}}"><button>Modifier</button></a>
+                            {# {% endif %} #}
                     </div>
                 </div>
                 <div class="col-xl">

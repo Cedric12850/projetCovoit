@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Car;
 use App\Form\CarType;
+use App\Repository\CarRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,7 @@ class CarController extends AbstractController
         ]);
     }
 
+    # Route for add a car
     #[Route('/car/new', name: 'app_car_new')]
     public function new(
         Request $request, 
@@ -41,5 +43,32 @@ class CarController extends AbstractController
             'car' => $car,
             'form' => $form,
         ]);
+    }
+
+    #route for edit a car
+    #[Route('/car/edit/{id}', name: 'app_car_edit')]
+    public function edtitCar(
+        Request $request,
+        EntityManagerInterface $entityManagerInterface,
+        CarRepository $carRepository,
+        int $id,
+    ): Response
+    {
+        $car = $entityManagerInterface->getRepository(car::class)->find($id);
+        $form = $this->createForm(CarType::class, $car);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $user = $form->getData();
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('app_profile');
+        }
+
+        return $this-> render('car/edit.html.twig', [
+            'editform' => $form,
+            'car' => $car,
+        ]);
+
     }
 }

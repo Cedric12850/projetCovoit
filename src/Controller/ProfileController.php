@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
+use App\editform\RegistrationeditformType;
+use App\Repository\CarRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,13 +21,16 @@ class ProfileController extends AbstractController
     #[Route('/profile/{id}', name: 'app_profile')]
     public function showProfile(
         UserRepository $userRepository,
+        CarRepository $carRepository,
         int $id
         ): Response
     {
         $user = $userRepository->find($id);
-        dump($user);
+        $carUser = $carRepository->find($user);
+        dump($carUser);
         return $this->render('profile/index.html.twig', [
             'user' => $user,
+            'carUser' => $carUser,
         ]);
     }
 
@@ -42,11 +46,11 @@ class ProfileController extends AbstractController
     ):Response
     {
         $user =$entityManager->getRepository(User::class)->find($id);
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted()&& $form->isValid())
+        $editform = $this->createeditform(RegistrationeditformType::class, $user);
+        $editform->handleRequest($request);
+        if ($editform->isSubmitted()&& $editform->isValid())
         {
-            $thumbnail = $form->get('photo')->getData();
+            $thumbnail = $editform->get('photo')->getData();
             if ($thumbnail) {
                 //Récuperation du nom d'origine de l'image
                 $originalFileName = pathinfo($thumbnail->getClientOriginalName(),PATHINFO_FILENAME);
@@ -65,11 +69,11 @@ class ProfileController extends AbstractController
                 $user->setPhoto($newFileName);
             }
 
-            $plainPassword = $form->get('plainPassword')->getData();
+            $plainPassword = $editform->get('plainPassword')->getData();
             // Encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
-            $user = $form->getData();
+            $user = $editform->getData();
             $entityManager->flush();
 
             return $this->redirectToRoute('app_profile');
@@ -77,7 +81,7 @@ class ProfileController extends AbstractController
 
         return 
     $this->render('profile/edit.html.twig', [
-        'editform' => $form,
+        'editeditform' => $editform,
         'user' => $user
     ]);
 
