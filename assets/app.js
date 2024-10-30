@@ -11,32 +11,45 @@ console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    const input = document.getElementById('zipCodeTown');
-    const autocompleteResponseBox = document.getElementById('autocompleteResponse');
+    const zipCodeInput = document.querySelector('.js-zip-code');
+    const townSelect = document.getElementById('town-select');
 
-    input.addEventListener('input', function() {
-        const query = this.value;
+    if (zipCodeInput) {
+        zipCodeInput.addEventListener('input', function() {
+            const zipCode = this.value;
+            if (zipCode.length >= 1) {
+                fetch(`/search-towns?zip_code=${encodeURIComponent(zipCode)}`)
+                    .then(response => response.json())
+                    .then(towns => {
+                        updateTownSelect(towns);
+                    })
+                    .catch(error => console.error('Erreur:', error));
+            } else {
+                hideTownSelect();
+            }
+        });
+    }
 
-        if (query.length < 2) {
-            autocompleteResponseBox.innerHTML = 'Entrez les 2 premiers chiffres minimum';
-            return; // Ne pas faire de requête si moins de 2 caractères
+    function updateTownSelect(towns) {
+        townSelect.innerHTML = '<option value="">Sélectionnez une ville</option>';
+        if (towns.length > 0) {
+            towns.forEach(town => {
+                const option = document.createElement('option');
+                option.value = town.id;
+                option.textContent = town.name + ' (' + town.zip_code + ')';
+                townSelect.appendChild(option);
+            });
+            showTownSelect();
+        } else {
+            hideTownSelect();
         }
+    }
 
-        fetch(`/autocomplete/town?query=${encodeURIComponent(query)}`)
-            .then(response => response.json())
-            .then(data => {
-                autocompleteResponseBox.innerHTML = '';
-                data.forEach(town => {
-                    const div = document.createElement('div');
-                    div.textContent = town;
-                    div.classList.add('autocompleteResponse');
-                    div.addEventListener('click', () => {
-                        input.value = town; // Remplir l'input avec la ville sélectionnée
-                        autocompleteResponseBox.innerHTML = ''; // Vider les suggestions
-                    });
-                    autocompleteResponseBox.appendChild(div);
-                });
-            })
-            .catch(error => console.error('Erreur:', error));
-    });
+    function showTownSelect() {
+        townSelect.style.display = 'block';
+    }
+
+    function hideTownSelect() {
+        townSelect.style.display = 'none';
+    }
 });

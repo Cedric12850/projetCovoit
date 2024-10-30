@@ -43,14 +43,17 @@
                 {'attr': {'required': 'required'}}) }}
             </span>
             <span class="formItemClass">
-                {{ form_row(registrationForm.zip_code, 
-                {'attr': {'required': 'required'}}) }}
-            </span>
-            <span class="formItemClass">
-                <input type="text" id="zipCodeTown" placeholder="votre code postal:">
-                <div id="autocompleteResponse"></div>
-                {# {{ form_row(registrationForm.town, 
-                {'attr': {'required': 'required'}}) }} #}
+                {{ form_row(registrationForm.zip_code, {
+                    'attr': {
+                        'required': 'required',
+                        'class': 'js-zip-code'
+                    }
+                }) }}
+                <div class="mb-3">
+                    <select class="form-control" id="town-select" style="display: none;">
+                        <option value="">Sélectionnez une ville</option>
+                    </select>
+                </div>
             </span>
             <span class="formItemClass">
                 {{ form_row(registrationForm.driving_license, 

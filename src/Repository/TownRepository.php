@@ -23,7 +23,7 @@ class TownRepository extends ServiceEntityRepository
     return $this->createQueryBuilder('t')
         ->where('t.zip_code LIKE :val')
         ->setParameter('val', $val)
-        ->setMaxResults(10)
+        ->orderBy('t.name', 'ASC')
         ->getQuery()
         ->getResult();
 }

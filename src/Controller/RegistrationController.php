@@ -27,20 +27,35 @@ class RegistrationController extends AbstractController
     {
     }
 
-    #route pour l'autocomplétion
-    #[Route('/car/index', name: 'app_car')]
-public function townAutocomplete(Request $request, TownRepository $townRepository): JsonResponse
-{
-   
+    // #test route pour l'autocomplétion
+    // #[Route('/car/index', name: 'app_car')]
+    //     public function townAutocomplete(Request $request, TownRepository $townRepository): JsonResponse
+    //     {
+    //         // Requête pour obtenir les villes correspondantes
+    //         $towns = $townRepository->findByQuery('15%'); // méthode `findByQuery` dans le repository
 
-    // Requête pour obtenir les villes correspondantes
-    $towns = $townRepository->findByQuery('15%'); // méthode `findByQuery` dans le repository
+    //         // Retourner les noms des villes au format JSON
+    //         $townNames = array_map(fn($town) => $town->getName(), $towns);
+    //         dd($townNames);
+    //         return $this->redirectToRoute('app_car');
+    //     }
 
-    // Retourner les noms des villes au format JSON
-    $townNames = array_map(fn($town) => $town->getName(), $towns);
-    dd($townNames);
-    return $this->redirectToRoute('app_car');
-}
+
+    // Route pour la requête Ajax qui génère les ville par le zipcode
+    #[Route('/search-towns', name: 'search_towns')]
+    public function searchTowns(Request $request, TownRepository $townRepository): JsonResponse
+    {
+        $zipCode = $request->query->get('zip_code');
+        if (!$zipCode) {
+            return new JsonResponse(['error' => 'No zip code provided'], 400);
+        }
+
+        $zipCode .= '%';
+        $towns = $townRepository->findByQuery($zipCode);
+        $townNames = array_map(fn($town) => ['id' => $town->getId(), 'name' => $town->getName(), 'zip_code' => $town->getZipCode()], $towns);
+
+        return new JsonResponse($townNames);
+    }
 
     #[Route('/register', name: 'app_register')]
     public function register(
@@ -48,18 +63,28 @@ public function townAutocomplete(Request $request, TownRepository $townRepositor
     UserPasswordHasherInterface $userPasswordHasher, 
     EntityManagerInterface $entityManager, 
     SluggerInterface $slugify,
-    #[Autowire('%kernel.project_dir%/public/uploads/images')] string $uploadImageDir,
+    #[Autowire('%kernel.project_dir%/assets/uploads')] string $uploadImageDir,
     TownRepository $townRepository
     ): Response
     {
 
+        
         // Redirection si l'utilisateur est déjà authentifié
         if ($this->getUser()) {
             return $this->redirectToRoute('app_profile');
         }
 
+        // // Requête pour obtenir les villes correspondantes
+        //     $zipCode = $request->query->get('zip_code') . "%";
+        //     dump($zipCode);
+        //     $towns = $townRepository->findByQuery($zipCode); // méthode `findByQuery` dans le repository
+        // // Retourner les noms des villes au format JSON
+        //     $townNames = array_map(fn($town) => $town->getName(), $towns);
+        //     dump($towns);
+        
+
         $user = new User();
-        $towns = $townRepository->findAll();
+        // $towns = $townRepository->findAll();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
     
@@ -110,7 +135,7 @@ public function townAutocomplete(Request $request, TownRepository $townRepositor
     
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
-            'towns' => $towns
+            
         ]);
     }
     

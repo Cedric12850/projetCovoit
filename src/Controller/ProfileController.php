@@ -41,7 +41,7 @@ class ProfileController extends AbstractController
         EntityManagerInterface $entityManager,
         UserPasswordHasherInterface $userPasswordHasher,
         SluggerInterface $slugger,
-        #[Autowire('%kernel.project_dir%/public/uploads/images')] string $uploadDirectory,
+        #[Autowire('%kernel.project_dir%/assets/uploads')] string $uploadDirectory,
         int $id
     ):Response
     {
@@ -72,7 +72,7 @@ class ProfileController extends AbstractController
             $plainPassword = $form->get('plainPassword')->getData();
             // Encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
-
+            
             $user = $form->getData();
             $entityManager->flush();
 
