@@ -54,12 +54,16 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()&& $form->isValid())
         {
-             // Récupérer et définir la ville
+            
+             // Récupérer et définir la ville et le zipcode
         $townId = $form->get('town')->getData();
+        $zip_code = $form->get('zip_code')->getData();
         if ($townId) {
             $town = $townRepository->find($townId);
+            $zip_code = $townRepository->find($zip_code);
             if ($town) {
                 $user->setTown($town);
+                $user->setZipCode($town->getZipCode());
             }
         }
             $thumbnail = $form->get('photo')->getData();
