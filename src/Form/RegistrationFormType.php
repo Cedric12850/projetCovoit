@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -49,7 +50,11 @@ class RegistrationFormType extends AbstractType
             ->add('zip_code', TextType::class,[
                 'label' => 'Code postal : ',
                 'attr' => ['class' => 'js-zip-code',],
+                'mapped' => false,
                 ])
+            ->add('town', HiddenType::class, [
+                'mapped' => false,
+            ])
             // ->add('town', EntityType::class, [
             //     'class' => Town::class,
             //     'choice_label' => 'name',

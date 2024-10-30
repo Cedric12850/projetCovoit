@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
@@ -63,7 +64,7 @@ class RegistrationController extends AbstractController
     UserPasswordHasherInterface $userPasswordHasher, 
     EntityManagerInterface $entityManager, 
     SluggerInterface $slugify,
-    #[Autowire('%kernel.project_dir%/assets/uploads')] string $uploadImageDir,
+    #[Autowire('%kernel.project_dir%/assets/uploads')] string $uploadDirectory,
     TownRepository $townRepository
     ): Response
     {
@@ -74,23 +75,20 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_profile');
         }
 
-        // // Requête pour obtenir les villes correspondantes
-        //     $zipCode = $request->query->get('zip_code') . "%";
-        //     dump($zipCode);
-        //     $towns = $townRepository->findByQuery($zipCode); // méthode `findByQuery` dans le repository
-        // // Retourner les noms des villes au format JSON
-        //     $townNames = array_map(fn($town) => $town->getName(), $towns);
-        //     dump($towns);
-        
-
         $user = new User();
-        // $towns = $townRepository->findAll();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
     
-
+            // Récupérer et définir la ville
+        $townId = $form->get('town')->getData();
+        if ($townId) {
+            $town = $townRepository->find($townId);
+            if ($town) {
+                $user->setTown($town);
+            }
+        }
             /** @var UploadedFile $brochureFile */
             $image = $form->get('photo')->getData();
 
@@ -102,14 +100,14 @@ class RegistrationController extends AbstractController
 
                 try
                 {
-                    $image->move( $uploadImageDir, $newImageName, $newImageName );
+                    $image->move( $uploadDirectory, $newImageName );
                 }
-                catch (\Exception $e) 
+                catch (FileException $e) 
                 {
                     $this->addFlash('error', $e->getMessage());
                 }
-            
-    
+                $user->setPhoto($newImageName);
+            }
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
     
@@ -120,7 +118,7 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            }
+            
             // Send confirmation email
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())

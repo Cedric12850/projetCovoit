@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\CarRepository;
+use App\Repository\TownRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,6 +35,8 @@ class ProfileController extends AbstractController
         ]);
     }
 
+
+
     // Route fo update profile
     #[Route('/profile/edit/{id}', name: 'app_profile_edit')]
     public function editProfile(
@@ -42,7 +45,8 @@ class ProfileController extends AbstractController
         UserPasswordHasherInterface $userPasswordHasher,
         SluggerInterface $slugger,
         #[Autowire('%kernel.project_dir%/assets/uploads')] string $uploadDirectory,
-        int $id
+        int $id,
+        TownRepository $townRepository
     ):Response
     {
         $user =$entityManager->getRepository(User::class)->find($id);
@@ -50,6 +54,14 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()&& $form->isValid())
         {
+             // Récupérer et définir la ville
+        $townId = $form->get('town')->getData();
+        if ($townId) {
+            $town = $townRepository->find($townId);
+            if ($town) {
+                $user->setTown($town);
+            }
+        }
             $thumbnail = $form->get('photo')->getData();
             if ($thumbnail) {
                 //Récuperation du nom d'origine de l'image
