@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -43,16 +44,19 @@ class RegistrationFormType extends AbstractType
             ->add('address', TextType::class,[
                 'label' => 'Adresse : '])
             ->add('zip_code', TextType::class,[
-                'label' => 'Code postal : '])
-            ->add('town', EntityType::class,[
-                'class' => Town::class,
-                'choice_label' => 'name',
-                'label' => 'Ville : '])
+                'label' => 'Code postal : ',
+                'attr' => ['class' => 'js-zip-code',],
+                'mapped' => false,
+                ])
+            ->add('town', HiddenType::class, [
+                'mapped' => false,
+                ])
             ->add('driving_license', CheckboxType::class,[
                 'label' => 'Permis de conduire : ',
                 'help' => 'En cochant cette case vous déclarez sur l\'honneur que vous êtes en possession d\'un permis valide.',
                 'required' => false,
-                'data_class' => null ])  
+                'data_class' => null 
+                ])  
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'Accepter les CGU : ',

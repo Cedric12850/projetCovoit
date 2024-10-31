@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Car{% endblock %}
+
+{% block body %}
+ <main class="registerFormMainClass">
+    <div class="registerFormWrapClass">
+        <h1 class="registerFormTitleClass">Ajouter un véhicule</h1>
+
+        <div class="registerFormClass"> 
+            {{ form_errors(form) }}
+            {{ form_start(form) }}
+                <span class="formItemClass">
+                    {{ form_row(form.brand)}}
+                </span>
+
+                <span class="formItemClass">
+                    {{ form_row(form.type_car)}}
+                </span>
+                
+                <span class="formItemClass">
+                    {{ form_row(form.active)}}
+                </span>
+
+                <span class="formItemClass">
+                    {{ form_row(form.owner)}}
+                </span>
+
+                <span class="formItemClass">
+                    {{ form_row(form.specificities)}}
+                </span>
+
+            {{ form_end(form)}}
+
+            <a href="{{ path('app_car') }}">back to list</a>
+        </div>  
+        {# </form> #}
+    </div>  
+</main> 
+{% endblock %}

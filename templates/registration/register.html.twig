@@ -45,12 +45,18 @@
                 {'attr': {'required': 'required'}}) }}
             </span>
             <span class="registerFormItemClass">
-                {{ form_row(registrationForm.zip_code, 
-                {'attr': {'required': 'required'}}) }}
-            </span>
-            <span class="registerFormItemClass">
-                {{ form_row(registrationForm.town, 
-                {'attr': {'required': 'required'}}) }}
+                {{ form_row(registrationForm.zip_code, {
+                    'attr': {
+                        'required': 'required',
+                        'class': 'js-zip-code'
+                    }
+                }) }}
+                <div class="mb-3">
+                    <select class="form-control" id="town-select" style="display: none;">
+                        <option value="">Sélectionnez une ville</option>
+                    </select>
+                </div>
+                {{ form_widget(registrationForm.town) }}
             </span>
             <span class="registerFormItemClass registerFormLicenseClass">
                 {{ form_row(registrationForm.driving_license, 

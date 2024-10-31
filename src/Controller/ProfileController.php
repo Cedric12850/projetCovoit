@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\CarRepository;
+use App\Repository\TownRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,15 +22,19 @@ class ProfileController extends AbstractController
     #[Route('/profile/{id}', name: 'app_profile')]
     public function showProfile(
         UserRepository $userRepository,
+        CarRepository $carRepository,
         int $id
         ): Response
     {
         $user = $userRepository->find($id);
-        dump($user);
+        $carUser = $user->getCars();
         return $this->render('profile/index.html.twig', [
             'user' => $user,
+            'carUser' => $carUser,
         ]);
     }
+
+
 
     // Route fo update profile
     #[Route('/profile/edit/{id}', name: 'app_profile_edit')]
@@ -37,8 +43,9 @@ class ProfileController extends AbstractController
         EntityManagerInterface $entityManager,
         UserPasswordHasherInterface $userPasswordHasher,
         SluggerInterface $slugger,
-        #[Autowire('%kernel.project_dir%/public/uploads/images')] string $uploadDirectory,
-        int $id
+        #[Autowire('%kernel.project_dir%/assets/uploads')] string $uploadDirectory,
+        int $id,
+        TownRepository $townRepository
     ):Response
     {
         $user =$entityManager->getRepository(User::class)->find($id);
@@ -46,6 +53,18 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()&& $form->isValid())
         {
+            
+             // Récupérer et définir la ville et le zipcode
+        $townId = $form->get('town')->getData();
+        $zip_code = $form->get('zip_code')->getData();
+        if ($townId) {
+            $town = $townRepository->find($townId);
+            $zip_code = $townRepository->find($zip_code);
+            if ($town) {
+                $user->setTown($town);
+                $user->setZipCode($town->getZipCode());
+            }
+        }
             $thumbnail = $form->get('photo')->getData();
             if ($thumbnail) {
                 //Récuperation du nom d'origine de l'image
@@ -68,7 +87,7 @@ class ProfileController extends AbstractController
             $plainPassword = $form->get('plainPassword')->getData();
             // Encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
-
+            
             $user = $form->getData();
             $entityManager->flush();
 

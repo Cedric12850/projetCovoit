@@ -16,10 +16,12 @@ class CarUser
     #[ORM\Column]
     private ?bool $active = true;
 
+    // voiture = Relation carUsers => Car
     #[ORM\ManyToOne(inversedBy: 'carUsers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Car $car = null;
 
+    // conducteur = Relation car_drivers => User
     #[ORM\ManyToOne(inversedBy: 'car_drivers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $driver = null;

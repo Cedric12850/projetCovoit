@@ -123,6 +123,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function __toString(){
+        $lastname = $this->lastname;
+        $firstname = $this -> firstname;
+        $userIdentity= "$lastname $firstname" ;
+
+        return $userIdentity;
         return $this->pseudo;
     }
 
@@ -536,4 +541,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+
 }

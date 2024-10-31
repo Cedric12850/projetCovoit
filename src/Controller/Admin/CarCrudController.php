@@ -26,8 +26,10 @@ class CarCrudController extends AbstractCrudController
                 ->setLabel('Type'),
             BooleanField::new('active')
                 ->setLabel('Actif'),
-            AssociationField::new('specificities', 'Specificity')
-                ->setLabel('Spécificités'),
+            AssociationField::new('specificities')
+                ->setLabel('Spécificités')
+                ->setFormTypeOption('multiple', true)
+                ->setFormTypeOption('by_reference', false),
         ];
     }
 }
