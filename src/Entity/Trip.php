@@ -37,7 +37,8 @@ class Trip
     /**
      * @var Collection<int, Step>
      */
-    #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'trip')]
+    // Pour ajout du formulaire Step dans Trip 
+    #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'trip', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $steps;
 
     #[ORM\ManyToOne(inversedBy: 'trips')]
