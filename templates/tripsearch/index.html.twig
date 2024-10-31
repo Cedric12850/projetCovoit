@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche de Trajet{% endblock %}
+
+{% block body %}
+
+<main class="heightClass">
+
+    <div class="tripSearchIndexClass">
+
+            <h1 class="searchTiltePageClass">Recherche de Trajet</h1>
+
+        <div class="tripSearchIndexWrapClass">
+
+            {{ form_start(form) }}
+                {# {{ form_widget(form) }} #}
+
+
+            <div class="tripSearchFormIndexClass">
+                <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
+                    {{ form_row(form.town_start,   
+                    {'attr': {'required': 'required'}}) }}
+                </span>
+
+                <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
+                    {{ form_row(form.town_end,   
+                    {'attr': {'required': 'required'}}) }}
+                </span>
+
+                <span class="tripSearchFormItemClass">
+                    {{ form_row(form.date_start,   
+                    {'attr': {'required': 'required'}}) }}
+                </span>
+
+                <span class="tripSearchFormItemClass">
+                    {{ form_row(form.nb_passenger,   
+                    {'attr': {'required': 'required'}}) }}
+                </span>
+            </diV>
+                <button type="submit" class="buttonClass tripSearchFormbuttonClass">Rechercher</button>
+
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}

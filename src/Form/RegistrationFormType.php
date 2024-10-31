@@ -4,11 +4,9 @@ namespace App\Form;
 
 use App\Entity\Town;
 use App\Entity\User;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -17,13 +15,11 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\EqualTo;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Routing\Attribute\Route;
-
-
-use function PHPSTORM_META\type;
 
 class RegistrationFormType extends AbstractType
 {
@@ -54,24 +50,18 @@ class RegistrationFormType extends AbstractType
                 ])
             ->add('town', HiddenType::class, [
                 'mapped' => false,
-            ])
-            // ->add('town', EntityType::class, [
-            //     'class' => Town::class,
-            //     'choice_label' => 'name',
-            //     'label' => 'Ville : ',
-            //     'placeholder' => 'Sélectionnez une ville',
-            //     'required' => true,
-            //     'attr' => [
-            //         'class' => 'form-control',
-            //         'id' => 'town-select',
-            //         'style' => 'display: none;',
-            //     ],
-            //     ])
+                ])
             ->add('driving_license', CheckboxType::class,[
-                'label' => 'Permis de conduire : '])
+                'label' => 'Permis de conduire : ',
+                'help' => 'En cochant cette case vous déclarez sur l\'honneur que vous êtes en possession d\'un permis valide.',
+                'required' => false,
+                'data_class' => null 
+                ])  
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'Accepter les CGU : ',
+                'help' => 'En cochant cette case vous déclarez avoir pris connaissance et accepter les Conditions Générales d\'Utilisations visible à <a href="conditions_generales_utilisations">cette page</a>.',
+                'help_html' => true,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter les Conditons Générales d\'Utilsations.',
@@ -106,7 +96,7 @@ class RegistrationFormType extends AbstractType
                 
             ])
             
-            ->add ('enregistrer', SubmitType::class)
+/*             ->add ('enregistrer', SubmitType::class) */
         ;
     }
 
