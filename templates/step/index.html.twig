@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Step index{% endblock %}
+
+{% block body %}
+    <h1>Les étapes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Trajet : Conduct - Ville et heure Départ</th>
+                <th>Ville Etape</th>
+                <th>Place_step</th>
+                <th>Num_order</th>
+                <th>Price_passenger</th>
+                <th>Length_km</th>
+                <th>Duration</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for step in steps %}
+            <tr>
+                <td>{{ step.trip }}</td>
+                <td>{{ step.townStep }}</td>
+                <td>{{ step.placeStep }}</td>
+                <td>{{ step.numOrder }}</td>
+                <td>{{ step.pricePassenger }}</td>
+                <td>{{ step.lengthKm }}</td>
+                <td>{{ step.duration }}</td>
+                <td>
+                    <a href="{{ path('app_step_show', {'id': step.id}) }}">show</a>
+                    <a href="{{ path('app_step_edit', {'id': step.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_step_new') }}">Create new</a>
+{% endblock %}

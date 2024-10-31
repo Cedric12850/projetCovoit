@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Step{% endblock %}
+
+{% block body %}
+    <h1>Step</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Trajet</th>
+                <td>{{ step.trip }}</td>
+            </tr>
+            <tr>
+                <th>Town_step</th>
+                <td>{{ step.townStep }}</td>
+            </tr>
+            <tr>
+                <th>Place_step</th>
+                <td>{{ step.placeStep }}</td>
+            </tr>
+            <tr>
+                <th>Num_order</th>
+                <td>{{ step.numOrder }}</td>
+            </tr>
+            <tr>
+                <th>Price_passenger</th>
+                <td>{{ step.pricePassenger }}</td>
+            </tr>
+            <tr>
+                <th>Length_km</th>
+                <td>{{ step.lengthKm }}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{ step.duration }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_step_index') }}">back to list</a>
+
+    <a href="{{ path('app_step_edit', {'id': step.id}) }}">edit</a>
+
+    {{ include('step/_delete_form.html.twig') }}
+{% endblock %}

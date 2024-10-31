@@ -3,9 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Trip;
+use App\Form\StepSsFormType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -16,12 +18,10 @@ class TripCrudController extends AbstractCrudController
     {
         return Trip::class;
     }
-
     
     public function configureFields(string $pageName): iterable
     {
         return [
-            //TextField::new('date_start'),
             DateTimeField::new('date_start')
                 ->setFormat('yyyy-MM-dd HH:mm')
                 ->renderAsNativeWidget()
@@ -42,7 +42,14 @@ class TripCrudController extends AbstractCrudController
                 ->setLabel('Confort'),
             BooleanField::new('cancel')
                 ->setLabel('Annuler'),
+
+            // Ajouter la saisie d'une étape => la rendre obligatoire
+            CollectionField::new('steps')
+                ->setEntryType(StepSsFormType::class)
+                ->setLabel('Étapes')
+                ->allowAdd()
+                ->allowDelete()
+                ->setRequired(true),
         ];
     }
-
 }
