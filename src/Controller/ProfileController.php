@@ -28,7 +28,6 @@ class ProfileController extends AbstractController
     {
         $user = $userRepository->find($id);
         $carUser = $carRepository->find($user);
-        dump($carUser);
         return $this->render('profile/index.html.twig', [
             'user' => $user,
             'carUser' => $carUser,

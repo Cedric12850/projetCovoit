@@ -80,7 +80,6 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form);
         // Récupérer et définir la ville et le zipcode
         $townId = $form->get('town')->getData();
         $zip_code = $form->get('zip_code')->getData();
