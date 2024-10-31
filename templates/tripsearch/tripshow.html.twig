@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Le Covoiturage{% endblock %}
+
+{% block body %}
+
+
+<main>
+
+    <div class="tripShowResultPageClass">
+        <h1 class="tripShowResultTitlePageClass">Trajet</h1>
+        <div class="tripShowResultWrapClass"> 
+            <h2 class="tripShowResultTitleWrapClass">{{ tripshow.townStart }} / {{ townEnd }}</h2>
+            <div class="tripShowResultClass">
+                <div class="tripShowResultItemClass"><h4>Ville de départ : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.townStart }}</span></div>
+                <div class="tripShowResultItemClass"><h4>Ville d'arrivée : </h4><span class="tripShowResultItemSpanClass">{{ townEnd ? townEnd : 'Inconnu' }}</span></div>
+                <div class="tripShowResultItemClass"><h4>Date : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.dateStart|date('Y-m-d') }}</span></div>
+                <div class="tripShowResultItemClass"><h4>Nombre de passagers : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.nbPassenger }}</span></div>
+                
+                <div class="tripShowResultItemClass"><h4>Conducteur : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.driver }}</span></div>
+                <div class="tripShowResultItemClass"><h4>Adresse de départ : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.placeStart |default('Non renseigné') }}</span></div>
+                <div class="tripShowResultItemClass"><h4>Pas plus de 2 personnes à l'arrière : </h4><span class="tripShowResultItemSpanClass">{{ comfortable }}</span></div>
+                <div class="tripShowResultItemClass tripShowResultCartItemClass"><h4>Véhicule : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.car.brand }}</span>&nbsp; - &nbsp;<span class="tripShowResultItemSpanClass tripShowResultCarTypeItemClass">{{ tripshow.car.typeCar }}</span><h4>Propiétaire : </h4><span class="tripShowResultItemSpanClass"> {{ tripshow.car.owner }}</span></div>
+                <div class="tripShowResultItemClass"><h4>Fréquence : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.frequency |default('Non renseigné') }}</span></div>
+            </div>
+                
+        </div>
+    </div>
+
+</main>
+
+{% endblock %}

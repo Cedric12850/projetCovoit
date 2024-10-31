@@ -16,55 +16,15 @@
         {% endblock %}
     </head>
     <body>
-        <header>
-            <div>
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="/">Logo Covoit</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="/register">Inscription</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="/login">Connexion</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link " href="/profile/{'id'}" >Profil</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link " href="/admin" >Administration</a>
-                            </li>
-                        </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </header>
+
+        {{include("navbar.html.twig")}}
 
         {% block body %}
+
+      
         {% endblock %}
 
-        <footer class="footerClass">
-            <div class="footerMenuWrapClass">
-                <ul class="footerMenuClass">
-                    <li class="footerMenuItemClass">
-                        <a  href="#">Mentions Légales</a>
-                    </li>
-                    <li class="footerMenuItemClass">
-                        <a  href="#">Conditions Générales d'Utilisations</a>
-                    </li>
-                    <li class="footerMenuItemClass">
-                        <a  href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </footer>
+        {{include("footer.html.twig")}}
+
     </body>
 </html>

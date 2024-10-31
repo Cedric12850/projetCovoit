@@ -9,20 +9,24 @@ body {
 /*  bleu foncé : #093262 rgb(9, 50, 98)
 /*  mauve clair : #e4b7e5 rgb(228, 183, 229)
 /* mauve foncé : #b288c0 rgb(178, 136, 192)
+/* violet/mauve trés foncé : #7A00A3 rgb(122, 0, 163)
+/* Violet ultra foncé : (75, 0, 100)
 
 /* ------------------ Background ---------------- */
 body{
     background-image: url(images/bck.jpg);
     background-attachment: fixed;
-    background-position: center;
+    background-position: top center;
     background-repeat: no-repeat;
+    background-size: cover;
     margin: 0;
 
 }
 header{
-    background-color: rgba(255,255,255,.9); 
+    background-color: rgba(255,255,255,.3);
+    box-shadow:0 2px 18px -7px #000
 }
-main{
+.homeMainClass{
     padding: 2em;
     margin: 2em 4em;
     background-color: rgba(255,255,255,.7);
@@ -31,6 +35,17 @@ main{
 .bg-body-tertiary {
 	--bs-bg-opacity: .8;
     background-color: rgba(255,255,255,0)!important;
+}
+/* ----------- Display Header Main Footer -------- */
+html,
+body{
+    height: 100%;
+    margin: 0;
+}
+.heightClass{
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
 }
 /* ------------------ Commun item ---------------- */
 html {
@@ -49,13 +64,19 @@ html {
 a{
     text-decoration: none;
     transition: all .4s ease-in-out;
+    color: rgb(122, 0, 163);
+    text-shadow: 0 0 8px #fff;
 }
 a:hover,
 a:focus{
     text-decoration: none;
     transition: all .4s ease-in-out;
+    color: rgb(75, 0, 100);
 }
-
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;
+	margin-bottom:0;
+}
 
 /* ------------------ Button ------------------- */
 .buttonClass{
@@ -80,15 +101,21 @@ a:focus{
 }
 
 /* -------------------- Header -------------------- */
+.connectionWrapClass{
+    margin: 0 4em;
+}
+.linkLoginClass{
+    padding: .5em;
+}
+/* -------------------- Navbar -------------------- */
 .navbar{
     margin: 0 4em;
 }
 
-/* -------------------- Navbar -------------------- */
-
-
 /* --------------------- Home --------------------- */
-
+.nav-item a{
+    font-size:1.4rem
+}
 
 /* ------------------- Register ------------------- */
 .registerFormMainClass{
@@ -223,18 +250,127 @@ a:focus{
 }
 /* -------------------- Profil -------------------- */
 
-
-
+/* ---------------- Trip  Search ------------------ */
+.tripSearchIndexClass{
+    margin: 4em 4em;
+}
+.tripSearchIndexWrapClass{
+    padding: 1.5em;
+    background-color: rgba(255,255,255,.5);
+    border-radius: 5px;
+}
+.tripSearchIndexWrapClass form,
+.tripSearchFormIndexClass{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin-right: 1.5em;
+}
+.tripSearchFormIndexClass{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.searchTiltePageClass{
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2em;
+}
+.tripSearchFormItemClass input{
+    line-height: 2;
+}
+.tripSearchFormItemClass label{
+    font-size: 1.3rem;
+}
 /* ------------------ Result Search---------------- */
-
-
-
+.tripSearchResultPageClass{
+    margin: 2em 4em;
+    padding: 2em 0;
+}
+.tripSearchResultTitlePageClass{
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2em;
+}
+.tripSearchResultWrapClass{
+    width: 100%;
+    padding: 2em;
+    background-color: rgba(255,255,255,.7);
+    border-radius: 5px;
+}
+.tripSearchResultTitleWrapClass{
+    color: #777;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2em;   
+}
+.tripSearchResultItemClass{
+    border-bottom: 4px solid #aaa;
+}
+.tripSearchResultItemClass{
+    display: flex;
+    flex-direction: column;
+}
+/* ---------------  Result One Show --------------- */
+.tripShowResultPageClass{
+    margin: 2em 4em;
+    padding: 2em 0;
+}
+.tripShowResultTitlePageClass{
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2em;
+    text-shadow: 0 0 5px #555;
+}
+.tripShowResultWrapClass{
+    width: 100%;
+    padding: 2em;
+    background-color: rgba(255,255,255,.7);
+    border-radius: 5px;
+}
+.tripShowResultTitleWrapClass{
+    color: #777;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2em;   
+}
+.tripShowResultItemClass{
+    border-bottom: 1px solid #aaa;
+}
+.tripShowResultItemClass{
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2rem;
+    align-items: center;
+    padding: 1em .5em .4em .5em
+}
+.tripShowResultItemClass h4{
+    margin-right: 1em;
+}
+.tripShowResultCartItemClass{
+    display: flex;
+    align-items: center;
+    margin-right: .5em;
+}
+.tripShowResultCarTypeItemClass{
+    margin-right: 1.5em;
+}
+.tripShowResultItemSpanClass{
+    background:rgb(178, 136, 192)!important;
+    border-radius: 50px;
+    padding: .5em 1.5em;
+    color: #fff;  
+}
 /* -------------------- Footer -------------------- */
 .footerClass{
     padding: 2em;
-    margin: 2em 4em;
-    background-color: rgba(255,255,255,.7);
-    border-radius: 5px;
+    margin-top:2em;
+    background-color: rgba(255,255,255,.3);
+
 }
 .footerMenuClass{
     display: flex;
@@ -242,7 +378,7 @@ a:focus{
     justify-content: space-evenly;
 }
 .footerMenuItemClass{
-    
+    font-size: 1.5rem;
 }
 
 
@@ -293,7 +429,56 @@ a:focus{
     /* -------------------- Profil -------------------- */
 
 
+    /* ---------------- Trip  Search ------------------ */
+    .tripSearchIndexClass{
+        margin: 4em 4em;
+    }
+    .tripSearchIndexWrapClass{
+        padding: 1.5em;
+        background-color: rgba(255,255,255,.5);
+        border-radius: 5px;
+    }
+    .tripSearchIndexWrapClass form,
+    .tripSearchFormIndexClass{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        margin-right: 1.5em;
+    }
+    .searchTiltePageClass{
+        color: #fff;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 2em;
+    }
+    .tripSearchFormItemClass{
+        padding: .2em .3em;
+    }
+    .tripSearchFormItemClass  select,
+    .tripSearchFormItemClass input{
+        line-height: 2;
+    }
+    .tripSearchTownFormItemClass{
+        width: 100%;
+    }
+    .tripSearchFormItemClass label{
+        font-size: 1.3rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+    }
+    .tripSearchFormbuttonClass{
+        font-size: 1.2rem;
+        padding: 0em 1.5em;
+        width: auto;
+        margin-top: 2.6em;
+        margin-bottom: 1em;
+    }
     /* ------------------ Result Search---------------- */
+
+
 
 
 

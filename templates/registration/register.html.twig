@@ -6,7 +6,9 @@
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-<main class="registerFormMainClass">
+
+<main class="registerFormMainClass heightClass">
+
     <div class="registerFormWrapClass">
         <h1 class="registerFormTitleClass">Créer un compte</h1>
         
@@ -68,5 +70,7 @@
     {{ form_end(registrationForm, {'render_rest': true}) }}
         </div>  
     </div> 
-</main>   
+    
+</main>
+
 {% endblock %}

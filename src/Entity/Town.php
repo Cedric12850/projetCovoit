@@ -54,7 +54,7 @@ class Town
 
     public function __toString()
     {
-        return $this->name . " - " . $this->zip_code ;
+        return $this->name . " (" . $this->zip_code . ")" ;
     }
 
 

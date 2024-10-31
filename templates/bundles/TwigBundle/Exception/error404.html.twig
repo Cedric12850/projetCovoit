@@ -4,18 +4,21 @@
 
 {% block body %}
 
-<div class='container'>
-    <div class="errorMessageWrapClass text-bg-warning p-4">
-        <h1>Page non trouvée</h1>
-        <p>La page que vous cherchez n' a pas été trouvé.</p>
+<main class="heightClass">
+
+    <div class='container'>
+        <div class="errorMessageWrapClass text-bg-warning p-4">
+            <h1>Page non trouvée</h1>
+            <p>La page que vous cherchez n' a pas été trouvé.</p>
+        </div>
+
+        <div class="errorServerMessageWrapClass text-bg-light p-4">
+            <h2>Message d'erreur</h2>
+            <p>Code de l'erreur : {{ status_code }}</p>
+            <p>Message de l'erreur : {{ status_text }}</p>
+        <div>
     </div>
-
-    <div class="errorServerMessageWrapClass text-bg-light p-4">
-        <h2>Message d'erreur</h2>
-        <p>Code de l'erreur : {{ status_code }}</p>
-        <p>Message de l'erreur : {{ status_text }}</p>
-    <div>
-
-</div>
+    
+<main class="heightClass">
 
 {% endblock %}
