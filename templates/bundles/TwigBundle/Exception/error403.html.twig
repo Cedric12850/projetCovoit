@@ -4,18 +4,21 @@
 
 {% block body %}
 
-<div class="container">
-    <div class="errorMessageWrapClass text-bg-warning p-4">
-        <h1>Accès refusé</h1>
-        <p>Vous n'avez pas les droits pour accéder à cette page</p>
+<main class="heightClass">
+
+    <div class="container">
+        <div class="errorMessageWrapClass text-bg-warning p-4">
+            <h1>Accès refusé</h1>
+            <p>Vous n'avez pas les droits pour accéder à cette page</p>
+        </div>
+
+        <div class="errorServerMessageWrapClass text-bg-light p-4">
+            <h2>Message d'erreur</h2>
+            <p>Code de l'erreur : {{ status_code }}</p>
+            <p>Message de l'erreur : {{ status_text }}</p>
+        <div>
     </div>
-
-    <div class="errorServerMessageWrapClass text-bg-light p-4">
-        <h2>Message d'erreur</h2>
-        <p>Code de l'erreur : {{ status_code }}</p>
-        <p>Message de l'erreur : {{ status_text }}</p>
-    <div>
-
-</div>
+    
+<main class="heightClass">
 
 {% endblock %}

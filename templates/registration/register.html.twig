@@ -6,43 +6,45 @@
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-<main class="registerFormMainClass">
+
+<main class="registerFormMainClass heightClass">
+
     <div class="registerFormWrapClass">
         <h1 class="registerFormTitleClass">Créer un compte</h1>
         
-        {# <form action="" method="post" class="registerFormClass"> #}
         <div class="registerFormClass"> 
             {{ form_errors(registrationForm) }}
 
             {{ form_start(registrationForm) }}
-            <span class="formItemClass">
-                {{ form_row(registrationForm.photo) }}
+            <span class="registerFormItemClass">
+                {{ form_row(registrationForm.photo, 
+                {'attr': {'required': false}}) }}
             </span>
-            <span class="formItemClass">
+            <span class="registerFormItemClass">
                 {{ form_row(registrationForm.email,   
                 {'attr': {'required': 'required'}}) }}
             </span>
-            <span class="formItemClass">
+            <span class="registerFormItemClass">
                 {{ form_row(registrationForm.pseudo, 
                 {'attr': {'required': 'required'}}) }}
             </span>
-            <span class="formItemClass">
+            <span class="registerFormItemClass">
                 {{ form_row(registrationForm.firstname, 
                 {'attr': {'required': 'required'}}) }}
             </span>
-            <span class="formItemClass">
+            <span class="registerFormItemClass">
                 {{ form_row(registrationForm.lastname, 
                 {'attr': {'required': 'required'}}) }}
             </span>
-            <span class="formItemClass">
+            <span class="registerFormItemClass">
                 {{ form_row(registrationForm.phone, 
                 {'attr': {'required': 'required'}}) }}
             </span>
-            <span class="formItemClass">
+            <span class="registerFormItemClass">
                 {{ form_row(registrationForm.address, 
                 {'attr': {'required': 'required'}}) }}
             </span>
-            <span class="formItemClass">
+            <span class="registerFormItemClass">
                 {{ form_row(registrationForm.zip_code, {
                     'attr': {
                         'required': 'required',
@@ -56,23 +58,25 @@
                 </div>
                 {{ form_widget(registrationForm.town) }}
             </span>
-            <span class="formItemClass">
+            <span class="registerFormItemClass registerFormLicenseClass">
                 {{ form_row(registrationForm.driving_license, 
-                {'attr': {'required': 'required', }}) }}
+                {'attr': {'required': false}}) }}
             </span>
-            <span class="formItemClass">
+            <span class="registerFormItemClass">
                 {{ form_row(registrationForm.plainPassword, 
                 {'attr': {'required': 'required'}}) }}
             </span>
             
-            <span class="formItemClass">
+            <span class="registerFormItemClass registerFormAgreeClass">
                 {{ form_row(registrationForm.agreeTerms, 
                 {'attr': {'required': 'required'}}) }}
             </span>
 
-            {# <button type="submit" class="btn buttonClass">S'enregister</button> #}
-            {{ form_end(registrationForm) }}
-</div>  
-        {# </form> #}
-    </div>    
+    <button type="submit" class="btn buttonClass">S'enregistrer</button>
+    {{ form_end(registrationForm, {'render_rest': true}) }}
+        </div>  
+    </div> 
+    
+</main>
+
 {% endblock %}

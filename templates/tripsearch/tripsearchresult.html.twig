@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre recherche{% endblock %}
+
+{% block body %}
+
+<main class="heightClass">
+
+    <div class="tripSearchResultPageClass">
+        <h1 class="tripSearchResultTitlePageClass">Votre recherche</h1>
+        <div class="tripSearchResultWrapClass"> 
+            <h2 class="tripSearchResultTitleWrapClass">Résultats de la recherche</h2>
+            {% for resultat in resultats %}
+        <div class="tripSearchResultItemClass">
+            <div><h4>Ville de départ :</h4> {{ town_start }}</div>
+            <div><h4>Ville d'arrivée :</h4> {{ town_end }}</div>
+            <div><h4>Date :</h4> {{ date_start|date('Y-m-d') }}</div>
+            <div><h4>Nombre de passagers :</h4> {{ nb_passenger }}</div>
+            
+            <div><a href="{{ path('app_tripresult_show', { 'id': resultat.id }) }}">Voir le trajet</a></div>
+        </div>
+
+                
+            {% endfor %}
+
+        </div>
+    </div> 
+
+</main>
+
+{% endblock %}
