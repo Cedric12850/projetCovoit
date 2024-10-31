@@ -31,7 +31,7 @@ class Car
     /**
      * @var Collection<int, Specificity>
      */
-    #[ORM\ManyToMany(targetEntity: Specificity::class, mappedBy: 'car')]
+    #[ORM\ManyToMany(targetEntity: Specificity::class, inversedBy: 'specificities')]
     private Collection $specificities;
 
     /**

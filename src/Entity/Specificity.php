@@ -25,7 +25,7 @@ class Specificity
     /**
      * @var Collection<int, Car>
      */
-    #[ORM\ManyToMany(targetEntity: Car::class, inversedBy: 'specificities')]
+    #[ORM\ManyToMany(targetEntity: Car::class, mappedBy: 'car')]
     private Collection $car;
 
     public function __construct()

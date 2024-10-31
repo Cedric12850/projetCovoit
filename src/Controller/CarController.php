@@ -5,14 +5,18 @@ namespace App\Controller;
 use App\Entity\Car;
 use App\Form\CarType;
 use App\Repository\CarRepository;
+use App\Repository\SpecificityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class CarController extends AbstractController
 {
+
+    
     #[Route('/car', name: 'app_car')]
     public function index(): Response
     {
@@ -33,6 +37,12 @@ class CarController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $specar = $form->get('specificities')->getData();
+            foreach ($specar as $specificity) {
+                $car->addSpecificity($specificity);
+            }
+            
             $entityManager->persist($car);
             $entityManager->flush();
 

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Car;
 use App\Entity\Specificity;
 use App\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -34,9 +35,13 @@ class CarType extends AbstractType
             ])
             ->add('specificities', EntityType::class, [
                 'class' => Specificity::class,
-                'label' => 'particularités',
+                'label' => 'préférences de voyage',
                 'choice_label' => 'name',
                 'multiple' => true,
+                'expanded' => true,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('s')
+                    ->orderBy('s.name', 'ASC');}
             ])
             ->add ('enregistrer', SubmitType::class)
         ;
