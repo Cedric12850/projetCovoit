@@ -4,6 +4,8 @@
 
 {% block body %}
 
+<main class="heightClass">
+
     <section class="container">
         <article class="row">
             {# bouton voir/modifier #}
@@ -103,15 +105,15 @@
                         {{ form_row(editform.agreeTerms, 
                         {'attr': {'required': 'required'}}) }}
                     </span>
-                    
-                    <button type="submit" class="btn buttonClass">S'enregistrer</button>
+
                     
                     {{ form_end(editform) }}
                 </div>  
             </div>
-        </article>
-             
+        </article>  
         
     </section>
+
+</main>
 
 {% endblock %}

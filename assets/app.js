@@ -1,4 +1,3 @@
-
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -6,6 +5,9 @@
  * which should already be in your base.html.twig.
  */
 import './styles/app.css';
+
+/* import '@symfony/ux-autocomplete'; */
+
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 
@@ -41,3 +43,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 /* ------------- End of Autocomplete Js ---------------------------- */
+
+/* import { Autocomplete } from '@symfony/ux-autocomplete'; */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const autocompleteElements = document.querySelectorAll('.autocomplete');
+    autocompleteElements.forEach(element => {
+        new Autocomplete(element); // Simplement initialiser ici
+    });
+});

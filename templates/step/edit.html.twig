@@ -3,6 +3,9 @@
 {% block title %}Edit Step{% endblock %}
 
 {% block body %}
+
+<main class="heightClass">
+
     <h1>Edit Step</h1>
 
     {{ include('step/_form.html.twig', {'button_label': 'Update'}) }}
@@ -10,4 +13,7 @@
     <a href="{{ path('app_step_index') }}">back to list</a>
 
     {{ include('step/_delete_form.html.twig') }}
+
+</main>
+
 {% endblock %}

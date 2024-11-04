@@ -9,10 +9,10 @@
                 <a href='/login' class="linkLoginClass">Se connecter</a>
             {% endif %} 
             </div>
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <nav class="navbar navbar-expand-lg navbar navbar-dark">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href={{path("app_home")}}><img class="logoImageClass" alt="projetCovoit" src="./images/logo_myshare.png"></a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <a class="navbar-brand" href={{path("app_home")}}><img class="logoImageClass" src="{{ asset('styles/images/logo_auto_part.png') }}" alt="Logo Auto Part"></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNav">
@@ -27,7 +27,7 @@
                                 <a class="nav-link" href="/register">Inscription</a>
                                 </li>
                                 <li class="nav-item">
-                                <a class="nav-link" href="/login">Connexion</a>
+                                <a class="nav-link" href="/add_carpooling">Publier un trajet</a>
                                 </li>
                                 <li class="nav-item">
                                 <a class="nav-link " href="/profile/{'id'}" >Profil</a>

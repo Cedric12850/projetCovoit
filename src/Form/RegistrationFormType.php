@@ -44,7 +44,7 @@ class RegistrationFormType extends AbstractType
             ->add('address', TextType::class,[
                 'label' => 'Adresse : '])
             ->add('zip_code', TextType::class,[
-                'label' => 'Code postal : ',
+                'label' => 'Trouvez votre ville - Commencez à taper le code postal du département... : ',
                 'attr' => ['class' => 'js-zip-code',],
                 'mapped' => false,
                 ])

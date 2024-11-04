@@ -16,7 +16,7 @@ body {
 body{
     background-image: url(images/bck.jpg);
     background-attachment: fixed;
-    background-position: top center;
+    background-position:center;
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
@@ -29,7 +29,7 @@ header{
 .homeMainClass{
     padding: 2em;
     margin: 2em 4em;
-    background-color: rgba(255,255,255,.7);
+    background-color: rgba(255,255,255,8);
     border-radius: 5px;
 }
 .bg-body-tertiary {
@@ -63,19 +63,22 @@ html {
 }
 a{
     text-decoration: none;
-    transition: all .4s ease-in-out;
+    transition: all .3s ease-in-out;
     color: rgb(122, 0, 163);
     text-shadow: 0 0 8px #fff;
 }
 a:hover,
 a:focus{
     text-decoration: none;
-    transition: all .4s ease-in-out;
+    transition: all .3s ease-in-out;
     color: rgb(75, 0, 100);
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
 	margin-top: 0;
 	margin-bottom:0;
+}
+ul{
+    padding: 0;
 }
 
 /* ------------------ Button ------------------- */
@@ -90,14 +93,14 @@ a:focus{
     font-size: 2rem;
     font-weight: 800;
     border: 0;
-    transition: all .4s ease-in-out;
+    transition: all .3s ease-in-out;
     cursor: pointer;
 }
 .buttonClass:hover,
 .buttonClass:focus{
     color:#fff;
     background-color:rgb(142, 110, 153);
-    transition: all .4s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 /* -------------------- Header -------------------- */
@@ -108,8 +111,32 @@ a:focus{
     padding: .5em;
 }
 /* -------------------- Navbar -------------------- */
+.logoImageClass{
+    max-width: 150px;
+    min-width: 80px;
+}
 .navbar{
     margin: 0 4em;
+}
+a.nav-link {
+	color: #eee;
+    font-weight: 800;
+    text-shadow: 0 0 3px #777;
+    transition: all .3s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+a.active {
+	color: #fff!important;
+}
+a.nav-link:hover,
+a.nav-link:focus{
+	color: #fff!important;;
+    transition: all .3s ease-in-out;
+}
+.navbar-toggler{
+    border:2px solid #fff;
 }
 
 /* --------------------- Home --------------------- */
@@ -133,7 +160,7 @@ a:focus{
     color:#fff;
     padding: 1em;
     border-radius: 5px;
-    box-shadow: 5px 5px 10px #aaa;
+    box-shadow: 5px 5px 12px -2px #777;
 }
 .registerFormTitleClass{
     padding: .4em 0;
@@ -145,7 +172,7 @@ a:focus{
     background-color:rgb(178, 136, 192);
     color:#fff;
     border: 2px solid (178, 136, 192);
-    box-shadow: 5px 5px 10px #aaa;
+    box-shadow: 5px 5px 12px -2px #777;
 }
 .registerFormLicenseClass .form-check,
 .registerFormAgreeClass .form-check{
@@ -200,6 +227,11 @@ a:focus{
 .registerFormItemClass .mb-3{
 	margin-bottom: .5rem!important;
 }
+.registerZipCFormItemClass select{
+    font-size: 2rem;
+    line-height: 1.5;
+    border-radius: 8px;
+}
 /* --------------------- Login -------------------- */
 .loginFormMainClass{
     width:94%;
@@ -218,7 +250,7 @@ a:focus{
     color:#fff;
     padding: 1em;
     border-radius: 5px;
-    box-shadow: 5px 5px 10px #aaa;
+    box-shadow: 5px 5px 12px -2px #777;
 }
 
 .loginFormTitleClass{
@@ -231,7 +263,7 @@ a:focus{
     background-color:rgb(178, 136, 192);
     color:#fff;
     border: 2px solid (178, 136, 192);
-    box-shadow: 5px 5px 10px #aaa;
+    box-shadow: 5px 5px 12px -2px #777;
 }
 .loginFormClass input{
     font-size: 2rem;
@@ -256,7 +288,7 @@ a:focus{
 }
 .tripSearchIndexWrapClass{
     padding: 1.5em;
-    background-color: rgba(255,255,255,.5);
+    background-color: rgba(255,255,255,.8);
     border-radius: 5px;
 }
 .tripSearchIndexWrapClass form,
@@ -298,7 +330,7 @@ a:focus{
 .tripSearchResultWrapClass{
     width: 100%;
     padding: 2em;
-    background-color: rgba(255,255,255,.7);
+    background-color: rgba(255,255,255,.8);
     border-radius: 5px;
 }
 .tripSearchResultTitleWrapClass{
@@ -314,9 +346,28 @@ a:focus{
     display: flex;
     flex-direction: column;
 }
+
+/* - Autocopmplete -*/
+.suggestions {
+    border: 1px solid #ccc;
+    background: white;
+    position: absolute; /* Pour les suggestions positionnées correctement */
+    z-index: 1000; /* Pour qu'elles apparaissent au-dessus d'autres éléments */
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0; /* Indiquer un survol */
+}
+
+
 /* ---------------  Result One Show --------------- */
 .tripShowResultPageClass{
-    margin: 2em 4em;
+    margin:  1.3em 1em;;
     padding: 2em 0;
 }
 .tripShowResultTitlePageClass{
@@ -329,8 +380,9 @@ a:focus{
 .tripShowResultWrapClass{
     width: 100%;
     padding: 2em;
-    background-color: rgba(255,255,255,.7);
+    background-color: rgba(255,255,255,.8);
     border-radius: 5px;
+    box-shadow: 5px 5px 12px -2px #777;
 }
 .tripShowResultTitleWrapClass{
     color: #777;
@@ -343,44 +395,76 @@ a:focus{
 }
 .tripShowResultItemClass{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     font-size: 1.2rem;
     align-items: center;
-    padding: 1em .5em .4em .5em
+    justify-content: space-between;
+    padding: 1em 0 .8em 0;
 }
 .tripShowResultItemClass h4{
-    margin-right: 1em;
+    margin-right: 0;
+    margin-bottom: .5em;
+    width: 100%;
+}
+h4.tripShowResultItemh4Class{
+    width: 100%;
 }
 .tripShowResultCartItemClass{
     display: flex;
     align-items: center;
-    margin-right: .5em;
-}
-.tripShowResultCarTypeItemClass{
     margin-right: 1.5em;
 }
+
 .tripShowResultItemSpanClass{
-    background:rgb(178, 136, 192)!important;
+    background:rgb(178, 136, 192);
     border-radius: 50px;
     padding: .5em 1.5em;
-    color: #fff;  
+    color: #fff; 
+    width: 100%;
+    text-align: center;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tripShowResultCarItemClass,
+.tripShowResultOwnerItemClass{
+    background:rgb(178, 136, 192);
+    border-radius: 50px;
+    padding: .5em 1.5em;
+    color: #fff; 
+    text-align: center;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+.tripShowResultItemOwnerLabelClass{
+    padding: 1em 0 0 0;
 }
 /* -------------------- Footer -------------------- */
 .footerClass{
     padding: 2em;
     margin-top:2em;
-    background-color: rgba(255,255,255,.3);
+    background-color: rgba(255,255,255,.7);
 
 }
 .footerMenuClass{
     display: flex;
     list-style: none;
     justify-content: space-evenly;
+    flex-direction: column;
 }
 .footerMenuItemClass{
-    font-size: 1.5rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
+.footerMenuItemClass a{
+    font-size: 1.1rem;
+}
 
 /* ------------------------------------------------ */
 /* -------------------- Responsive ---------------- */
@@ -435,7 +519,7 @@ a:focus{
     }
     .tripSearchIndexWrapClass{
         padding: 1.5em;
-        background-color: rgba(255,255,255,.5);
+        background-color: rgba(255,255,255,.8);
         border-radius: 5px;
     }
     .tripSearchIndexWrapClass form,
@@ -477,10 +561,54 @@ a:focus{
         margin-bottom: 1em;
     }
     /* ------------------ Result Search---------------- */
+    /* ---------------  Result One Show --------------- */
+    .tripShowResultPageClass{
+        margin: 2em 4em;
+    }
+    .tripShowResultItemClass{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .tripShowResultItemClass h4{
+        margin-right: 1em;
+    }
+    h4.tripShowResultItemh4Class{
+        width: unset;
+    }
+    .tripShowResultCartItemClass{
+        display: flex;
+        align-items: center;
+        margin-right: 1.5em;
+    }
 
-
-
+    .tripShowResultItemSpanClass{
+        width: 70%;
+        text-align: center;
+    }
+    .tripShowResultCarItemClass,
+    .tripShowResultOwnerItemClass{
+    }
+    .tripShowResultCarItemClass{
+        margin-right: 3em;
+    }
+    .tripShowResultItemOwnerLabelClass {
+        padding:0;
+    }
+    .tripShowResultItemClass h4 {
+        margin-bottom: 0;
+    }
 
 
     /* -------------------- Footer -------------------- */
+    .footerMenuClass {
+        flex-direction: row;
+    }
+    .footerMenuItemClass{
+        text-align: left;
+    }
+    .footerMenuItemClass a{
+        font-size: 1.4rem;
+    }
 }

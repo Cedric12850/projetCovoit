@@ -264,7 +264,7 @@
             "ref": "07d9602b7231ba355f484305d6cea58310c01741"
         },
         "files": [
-            "./config/routes/ux_autocomplete.yaml"
+            "config/routes/ux_autocomplete.yaml"
         ]
     },
     "symfony/validator": {
