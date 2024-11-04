@@ -217,20 +217,6 @@
             "./config/routes/security.yaml"
         ]
     },
-    "symfony/stimulus-bundle": {
-        "version": "2.20",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "2.13",
-            "ref": "6acd9ff4f7fd5626d2962109bd4ebab351d43c43"
-        },
-        "files": [
-            "./assets/bootstrap.js",
-            "./assets/controllers.json",
-            "./assets/controllers/hello_controller.js"
-        ]
-    },
     "symfony/translation": {
         "version": "6.4",
         "recipe": {
@@ -280,9 +266,6 @@
         "files": [
             "./config/routes/ux_autocomplete.yaml"
         ]
-    },
-    "symfony/ux-turbo": {
-        "version": "v2.20.0"
     },
     "symfony/validator": {
         "version": "6.4",
