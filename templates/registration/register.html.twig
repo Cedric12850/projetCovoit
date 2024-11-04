@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un compte{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+<main class="registerFormMainClass heightClass">
+
+    <div class="registerFormWrapClass">
+        <h1 class="registerFormTitleClass">Créer un compte</h1>
+        
+        <div class="registerFormClass"> 
+            {{ form_errors(registrationForm) }}
+
+            {{ form_start(registrationForm) }}
+            <span class="registerFormItemClass">
+                {{ form_row(registrationForm.photo, 
+                {'attr': {'required': false}}) }}
+            </span>
+            <span class="registerFormItemClass">
+                {{ form_row(registrationForm.email,   
+                {'attr': {'required': 'required'}}) }}
+            </span>
+            <span class="registerFormItemClass">
+                {{ form_row(registrationForm.pseudo, 
+                {'attr': {'required': 'required'}}) }}
+            </span>
+            <span class="registerFormItemClass">
+                {{ form_row(registrationForm.firstname, 
+                {'attr': {'required': 'required'}}) }}
+            </span>
+            <span class="registerFormItemClass">
+                {{ form_row(registrationForm.lastname, 
+                {'attr': {'required': 'required'}}) }}
+            </span>
+            <span class="registerFormItemClass">
+                {{ form_row(registrationForm.phone, 
+                {'attr': {'required': 'required'}}) }}
+            </span>
+            <span class="registerFormItemClass">
+                {{ form_row(registrationForm.address, 
+                {'attr': {'required': 'required'}}) }}
+            </span>
+            <span class="registerFormItemClass registerZipCFormItemClass">
+                {{ form_row(registrationForm.zip_code, {
+                    'attr': {
+                        'required': 'required',
+                        'class': 'js-zip-code'
+                    }
+                }) }}
+                <div class="mb-3">
+                    <select class="form-control" id="town-select" style="display: none;">
+                        <option value="">Sélectionnez une ville</option>
+                    </select>
+                </div>
+                {{ form_widget(registrationForm.town) }}
+            </span>
+            <span class="registerFormItemClass registerFormLicenseClass">
+                {{ form_row(registrationForm.driving_license, 
+                {'attr': {'required': false}}) }}
+            </span>
+            <span class="registerFormItemClass">
+                {{ form_row(registrationForm.plainPassword, 
+                {'attr': {'required': 'required'}}) }}
+            </span>
+            
+            <span class="registerFormItemClass registerFormAgreeClass">
+                {{ form_row(registrationForm.agreeTerms, 
+                {'attr': {'required': 'required'}}) }}
+            </span>
+
+    <button type="submit" class="btn buttonClass">S'enregistrer</button>
+    {{ form_end(registrationForm, {'render_rest': true}) }}
+        </div>  
+    </div> 
+    
+</main>
+
+{% endblock %}

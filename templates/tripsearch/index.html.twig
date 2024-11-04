@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche de Trajet{% endblock %}
+
+{% block body %}
+
+<main class="heightClass">
+
+    <div class="tripSearchIndexClass">
+
+        <h1 class="searchTiltePageClass">Recherche de Trajet</h1>
+
+        <div class="tripSearchIndexWrapClass">
+
+            {{ form_start(form) }}
+
+            <div class="tripSearchFormIndexClass">
+                <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
+                    {{ form_row(form.town_start, {
+                        'attr': {
+                            'class': 'autocomplete',
+                            'data-autocomplete-url': path('api_towns')
+                        }
+                    }) }}
+                </span>
+
+                <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
+                    {{ form_row(form.town_end, {
+                        'attr': {
+                            'class': 'autocomplete',
+                            'data-autocomplete-url': path('api_towns')
+                        }
+                    }) }}
+                </span>
+
+                <span class="tripSearchFormItemClass">
+                    {{ form_row(form.date_start, {
+                        'attr': {'required': 'required'}
+                    }) }}
+                </span>
+
+                <span class="tripSearchFormItemClass">
+                    {{ form_row(form.nb_passenger, {
+                        'attr': {'required': 'required'}
+                    }) }}
+                </span>
+            </div>
+            
+            <button type="submit" class="buttonClass tripSearchFormbuttonClass">Rechercher</button>
+
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+{# document.addEventListener('DOMContentLoaded', function() {
+    const autocompleteElements = document.querySelectorAll('.autocomplete');
+
+    autocompleteElements.forEach(element => {
+        const url = element.getAttribute('data-autocomplete-url');
+
+        element.addEventListener('input', function() {
+            const query = this.value;
+            if (query.length < 2) {
+                return; // Attendre 2 caractères pour éviter des requêtes inutiles
+            }
+
+            fetch(`${url}?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Vider les suggestions précédentes
+                    const existingSuggestions = element.parentNode.querySelector('.suggestions');
+                    if (existingSuggestions) {
+                        existingSuggestions.remove();
+                    }
+
+                    if (data.length > 0) {
+                        const suggestions = document.createElement('div');
+                        suggestions.classList.add('suggestions');
+
+                        data.forEach(item => {
+                            const suggestionItem = document.createElement('div');
+                            suggestionItem.textContent = item.name;
+                            suggestionItem.classList.add('suggestion-item');
+                            
+                            // Remplir le champ avec le nom de la ville
+                            suggestionItem.onclick = () => {
+                                element.value = item.name; // Mettre à jour le champ
+                                suggestions.innerHTML = ''; // Vider les suggestions
+                            };
+
+                            suggestions.appendChild(suggestionItem);
+                        });
+
+                        // Ajouter les suggestions sous le champ
+                        element.parentNode.appendChild(suggestions);
+                    }
+                });
+        });
+    });
+}); #}
+</script>
+
+
+
+
+
+{% endblock %}

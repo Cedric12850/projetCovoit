@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil {{user.pseudo}}{% endblock %}
+
+{% block body %}
+
+<main>
+
+    <section class="container">
+        <article class="">
+            {# bouton voir/modifier #}
+            {# {% if app.user %} #}
+            <div>
+            <button>voir</button>
+            <a href="/profile/edit/{{user.id}}"><button>modifier</button></a>
+            </div>
+            {# {% endif %} #}
+            
+            {# left column for screen>1200px #}
+            <div class="" >
+                <img src="{{ asset("/uploads/" ~ user.photo) }}" class="imgProfileClass img-fluid img-thumbnail" alt="{{user.photo}}">
+                <p>note: </p>
+            </div>
+
+            {# rigth column for screen>1200px#}
+            <div class="" >
+                {# part name town #}
+                <div class="">
+                    <h2>{{user.pseudo}}</h2>
+                    <p>ville de {{user.town.name}} ({{user.town.zipcode}})</p>
+                </div>
+
+                {# part pref numberOfTrip #}
+                <div class="">
+                    <div class="profileCarContainerClass">
+                        <h4>Véhicule(s):</h4>
+                            {% for car in carUser %}
+                                <p>
+                                    marque: {{car.brand}}<br>
+                                    modèle: {{car.typeCar}}<br>
+                                </p>
+                             {% endfor %}
+                            {# {% if app.user %}
+                                <a href="/car/edit/{{carUser.id}}"><button>Modifier</button></a>
+                            {% endif %}#}
+                    </div>
+                </div>
+                <div class="">
+                    <div class="userpref">
+                        <h4>Préférences:</h4>
+                    </div> 
+                    <div class="numberOfTrip">
+                        <p>nombre de trajet: <br>
+                        quelques exemples:
+                        </p>
+                    </div>
+                </div>
+
+            </div>   
+        </article>
+    </section>
+
+</main>
+
+{% endblock %}

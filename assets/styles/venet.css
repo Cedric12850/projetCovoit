@@ -1,0 +1,44 @@
+#homeChiffres {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+  
+.cercle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 8px solid rgb(178, 136, 192)!important;
+    font-size: 1.5rem;
+    font-weight: bold;
+ }
+ table, th, tr, td{
+    border: solid 1px rgb(9, 50, 98);
+ }
+
+ #homeRechResa{
+    color :rgb(9, 50, 98);
+    background-color:#ddd;
+    margin : 5px ;
+    width: 90%;
+    border-radius: 0 10% 10% 0 ;
+ }
+ #homeMessage{
+    visibility: hidden;
+ }
+
+
+ @media screen and  (min-width : 930px){
+    
+    #homeMessage{
+
+        width: 60%;
+    }
+    #homeMessage{
+        visibility: visible;
+        
+     }
+ }

@@ -1,0 +1,614 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+/*    Font :   font-family: "Nunito Sans", sans-serif;   */
+
+/* ------------------- Font -------------------- */
+body {
+    font-family: "Nunito Sans", sans-serif;
+}
+/* -- Color --- */
+/*  bleu foncé : #093262 rgb(9, 50, 98)
+/*  mauve clair : #e4b7e5 rgb(228, 183, 229)
+/* mauve foncé : #b288c0 rgb(178, 136, 192)
+/* violet/mauve trés foncé : #7A00A3 rgb(122, 0, 163)
+/* Violet ultra foncé : (75, 0, 100)
+
+/* ------------------ Background ---------------- */
+body{
+    background-image: url(images/bck.jpg);
+    background-attachment: fixed;
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+
+}
+header{
+    background-color: rgba(255,255,255,.3);
+    box-shadow:0 2px 18px -7px #000
+}
+.homeMainClass{
+    padding: 2em;
+    margin: 2em 4em;
+    background-color: rgba(255,255,255,8);
+    border-radius: 5px;
+}
+.bg-body-tertiary {
+	--bs-bg-opacity: .8;
+    background-color: rgba(255,255,255,0)!important;
+}
+/* ----------- Display Header Main Footer -------- */
+html,
+body{
+    height: 100%;
+    margin: 0;
+}
+.heightClass{
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+}
+/* ------------------ Commun item ---------------- */
+html {
+    box-sizing: border-box;
+}
+
+*, *:after, *:before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+  
+*::first-letter {
+    text-transform: capitalize;
+}
+a{
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    color: rgb(122, 0, 163);
+    text-shadow: 0 0 8px #fff;
+}
+a:hover,
+a:focus{
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    color: rgb(75, 0, 100);
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;
+	margin-bottom:0;
+}
+ul{
+    padding: 0;
+}
+
+/* ------------------ Button ------------------- */
+.buttonClass{
+    color:#ddd;
+    background-color:rgb(178, 136, 192);
+    width: 100%;
+    border-radius: 5px;
+    padding: .6em 1em;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    font-size: 2rem;
+    font-weight: 800;
+    border: 0;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+.buttonClass:hover,
+.buttonClass:focus{
+    color:#fff;
+    background-color:rgb(142, 110, 153);
+    transition: all .3s ease-in-out;
+}
+
+/* -------------------- Header -------------------- */
+.connectionWrapClass{
+    margin: 0 4em;
+}
+.linkLoginClass{
+    padding: .5em;
+}
+/* -------------------- Navbar -------------------- */
+.logoImageClass{
+    max-width: 150px;
+    min-width: 80px;
+}
+.navbar{
+    margin: 0 4em;
+}
+a.nav-link {
+	color: #eee;
+    font-weight: 800;
+    text-shadow: 0 0 3px #777;
+    transition: all .3s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+a.active {
+	color: #fff!important;
+}
+a.nav-link:hover,
+a.nav-link:focus{
+	color: #fff!important;;
+    transition: all .3s ease-in-out;
+}
+.navbar-toggler{
+    border:2px solid #fff;
+}
+
+/* --------------------- Home --------------------- */
+.nav-item a{
+    font-size:1.4rem
+}
+
+/* ------------------- Register ------------------- */
+.registerFormMainClass{
+    width:94%;
+    margin: auto;
+    background-color: unset;
+}
+.registerFormWrapClass{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+}
+.registerFormClass{
+    background-color: rgb(9, 50, 98);
+    color:#fff;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 5px 5px 12px -2px #777;
+}
+.registerFormTitleClass{
+    padding: .4em 0;
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    border-radius: 50px;
+    background-color:rgb(178, 136, 192);
+    color:#fff;
+    border: 2px solid (178, 136, 192);
+    box-shadow: 5px 5px 12px -2px #777;
+}
+.registerFormLicenseClass .form-check,
+.registerFormAgreeClass .form-check{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-left: 0;
+}
+.registerFormItemClass{
+    padding: .2em .4em;
+    display: block;
+}
+.registerFormItemClass input{
+    font-size: 2rem;
+    line-height: 1.5;
+    border-radius: 8px;
+}
+.registerFormItemClass label{
+    padding: .25em 0;
+    min-width: 50%;
+    font-size: 1.3rem;
+}
+#registration_form_driving_license,
+#registration_form_agreeTerms,
+#registration_form_photo{
+    cursor: pointer;
+}
+.form-check-input{
+    margin-right: 40%;
+}
+.form-check-label{
+    width: 100%;
+    align-items: end;
+    display: flex;
+}
+#registration_form_agreeTerms_help,
+#registration_form_driving_license_help{
+    color: #fff;
+    text-align: justify;
+}
+#registration_form_agreeTerms_help a{
+    color: #d3a601;
+}
+#registration_form_agreeTerms_help a:hover,
+#registration_form_agreeTerms_help a:focus{
+    color: #ffe06f;
+}
+.form-check-input{
+    width: 25px;
+    height:25px;
+    z-index: 100;
+}
+.registerFormItemClass .mb-3{
+	margin-bottom: .5rem!important;
+}
+.registerZipCFormItemClass select{
+    font-size: 2rem;
+    line-height: 1.5;
+    border-radius: 8px;
+}
+/* --------------------- Login -------------------- */
+.loginFormMainClass{
+    width:94%;
+    margin: auto;
+    background-color: unset;
+}
+.loginFormWrapClass{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+}
+.loginFormClass{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(9, 50, 98);
+    color:#fff;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 5px 5px 12px -2px #777;
+}
+
+.loginFormTitleClass{
+    padding: .4em 0;
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    border-radius: 50px;
+    background-color:rgb(178, 136, 192);
+    color:#fff;
+    border: 2px solid (178, 136, 192);
+    box-shadow: 5px 5px 12px -2px #777;
+}
+.loginFormClass input{
+    font-size: 2rem;
+    line-height: 1.5;
+    border-radius: 8px;
+    margin-bottom: .5em;
+}
+.loginFormClass label{
+    padding: .25em 0;
+    min-width: 50%;
+    font-size: 1.3rem;
+    margin-bottom: .5rem;
+}
+#_remember_me{
+    margin-right: .5em;
+}
+/* -------------------- Profil -------------------- */
+
+/* ---------------- Trip  Search ------------------ */
+.tripSearchIndexClass{
+    margin: 4em 4em;
+}
+.tripSearchIndexWrapClass{
+    padding: 1.5em;
+    background-color: rgba(255,255,255,.8);
+    border-radius: 5px;
+}
+.tripSearchIndexWrapClass form,
+.tripSearchFormIndexClass{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin-right: 1.5em;
+}
+.tripSearchFormIndexClass{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.searchTiltePageClass{
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2em;
+}
+.tripSearchFormItemClass input{
+    line-height: 2;
+}
+.tripSearchFormItemClass label{
+    font-size: 1.3rem;
+}
+/* ------------------ Result Search---------------- */
+.tripSearchResultPageClass{
+    margin: 2em 4em;
+    padding: 2em 0;
+}
+.tripSearchResultTitlePageClass{
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2em;
+}
+.tripSearchResultWrapClass{
+    width: 100%;
+    padding: 2em;
+    background-color: rgba(255,255,255,.8);
+    border-radius: 5px;
+}
+.tripSearchResultTitleWrapClass{
+    color: #777;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2em;   
+}
+.tripSearchResultItemClass{
+    border-bottom: 4px solid #aaa;
+}
+.tripSearchResultItemClass{
+    display: flex;
+    flex-direction: column;
+}
+
+/* - Autocopmplete -*/
+.suggestions {
+    border: 1px solid #ccc;
+    background: white;
+    position: absolute; /* Pour les suggestions positionnées correctement */
+    z-index: 1000; /* Pour qu'elles apparaissent au-dessus d'autres éléments */
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0; /* Indiquer un survol */
+}
+
+
+/* ---------------  Result One Show --------------- */
+.tripShowResultPageClass{
+    margin:  1.3em 1em;;
+    padding: 2em 0;
+}
+.tripShowResultTitlePageClass{
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2em;
+    text-shadow: 0 0 5px #555;
+}
+.tripShowResultWrapClass{
+    width: 100%;
+    padding: 2em;
+    background-color: rgba(255,255,255,.8);
+    border-radius: 5px;
+    box-shadow: 5px 5px 12px -2px #777;
+}
+.tripShowResultTitleWrapClass{
+    color: #777;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2em;   
+}
+.tripShowResultItemClass{
+    border-bottom: 1px solid #aaa;
+}
+.tripShowResultItemClass{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 0 .8em 0;
+}
+.tripShowResultItemClass h4{
+    margin-right: 0;
+    margin-bottom: .5em;
+    width: 100%;
+}
+h4.tripShowResultItemh4Class{
+    width: 100%;
+}
+.tripShowResultCartItemClass{
+    display: flex;
+    align-items: center;
+    margin-right: 1.5em;
+}
+
+.tripShowResultItemSpanClass{
+    background:rgb(178, 136, 192);
+    border-radius: 50px;
+    padding: .5em 1.5em;
+    color: #fff; 
+    width: 100%;
+    text-align: center;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tripShowResultCarItemClass,
+.tripShowResultOwnerItemClass{
+    background:rgb(178, 136, 192);
+    border-radius: 50px;
+    padding: .5em 1.5em;
+    color: #fff; 
+    text-align: center;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+.tripShowResultItemOwnerLabelClass{
+    padding: 1em 0 0 0;
+}
+/* -------------------- Footer -------------------- */
+.footerClass{
+    padding: 2em;
+    margin-top:2em;
+    background-color: rgba(255,255,255,.7);
+
+}
+.footerMenuClass{
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.footerMenuItemClass{
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.footerMenuItemClass a{
+    font-size: 1.1rem;
+}
+
+/* ------------------------------------------------ */
+/* -------------------- Responsive ---------------- */
+
+
+@media screen and  (min-width : 930px){
+    /* ------------------- Commun item ---------------- */
+    /* ---------------------- Button ------------------ */
+    .buttonClass{
+        font-size: 1.6rem;
+    }
+
+
+    /* -------------------- Header -------------------- */
+
+
+    /* -------------------- Navbar -------------------- */
+
+
+    /* --------------------- Home --------------------- */
+
+
+    /* ------------------- Register ------------------- */
+    .registerFormMainClass{
+        width:480px;
+    }
+    .registerFormTitleClass{
+        font-size: 2rem;
+    }
+    .formItemClass input{
+        font-size: 1.2rem;
+    }
+    .formItemClass label{
+        min-width: 40%;
+        font-size: 1.2rem;
+    }
+    .formItemClass input{
+        line-height: 1.5;
+        border-radius: 8px;
+    }
+    /* --------------------- Login -------------------- */
+    .loginFormMainClass{
+        width:480px;
+    }
+
+    /* -------------------- Profil -------------------- */
+
+
+    /* ---------------- Trip  Search ------------------ */
+    .tripSearchIndexClass{
+        margin: 4em 4em;
+    }
+    .tripSearchIndexWrapClass{
+        padding: 1.5em;
+        background-color: rgba(255,255,255,.8);
+        border-radius: 5px;
+    }
+    .tripSearchIndexWrapClass form,
+    .tripSearchFormIndexClass{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        margin-right: 1.5em;
+    }
+    .searchTiltePageClass{
+        color: #fff;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 2em;
+    }
+    .tripSearchFormItemClass{
+        padding: .2em .3em;
+    }
+    .tripSearchFormItemClass  select,
+    .tripSearchFormItemClass input{
+        line-height: 2;
+    }
+    .tripSearchTownFormItemClass{
+        width: 100%;
+    }
+    .tripSearchFormItemClass label{
+        font-size: 1.3rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+    }
+    .tripSearchFormbuttonClass{
+        font-size: 1.2rem;
+        padding: 0em 1.5em;
+        width: auto;
+        margin-top: 2.6em;
+        margin-bottom: 1em;
+    }
+    /* ------------------ Result Search---------------- */
+    /* ---------------  Result One Show --------------- */
+    .tripShowResultPageClass{
+        margin: 2em 4em;
+    }
+    .tripShowResultItemClass{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .tripShowResultItemClass h4{
+        margin-right: 1em;
+    }
+    h4.tripShowResultItemh4Class{
+        width: unset;
+    }
+    .tripShowResultCartItemClass{
+        display: flex;
+        align-items: center;
+        margin-right: 1.5em;
+    }
+
+    .tripShowResultItemSpanClass{
+        width: 70%;
+        text-align: center;
+    }
+    .tripShowResultCarItemClass,
+    .tripShowResultOwnerItemClass{
+    }
+    .tripShowResultCarItemClass{
+        margin-right: 3em;
+    }
+    .tripShowResultItemOwnerLabelClass {
+        padding:0;
+    }
+    .tripShowResultItemClass h4 {
+        margin-bottom: 0;
+    }
+
+
+    /* -------------------- Footer -------------------- */
+    .footerMenuClass {
+        flex-direction: row;
+    }
+    .footerMenuItemClass{
+        text-align: left;
+    }
+    .footerMenuItemClass a{
+        font-size: 1.4rem;
+    }
+}

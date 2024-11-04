@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil {{user.pseudo}} {% endblock %}
+
+{% block body %}
+
+<main class="heightClass">
+
+    <section class="container">
+        <article class="row">
+            {# bouton voir/modifier #}
+            {# {% if app.user %} #}
+            <div>
+                <button>voir</button>
+                <a href="/profile/{{user.id}}"><button>annuler</button></a>
+            </div>
+            {# {% endif %} #}
+            
+            {# left column #}
+            <div class="col" >
+                <img src="{{ asset("uploads/" ~ user.photo) }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
+                <p>note: </p>
+            </div>
+
+            {# rigth column#}
+            <div class="col" >
+                {# part name town #}
+                <div>
+                    <h2>{{user.pseudo}}</h2>
+                    <p>ville de {{user.town.name}} ({{user.town.zipcode}})</p>
+                </div>
+
+                {# part pref numberOfTrip #}
+                <div>
+                    <div class="userpref">
+                        <h4>Préférences:</h4>
+                    </div>
+                    <div class="numberOfTrip">
+                        <p>nombre de trajet: <br>
+                        quelques exemples:
+                        </p>
+                    </div>
+                </div>
+            </div> 
+        </article>
+
+        {# article contenant le formulaire de modification #}
+        <article class="registerFormMainClass">
+            <div class="registerFormWrapClass">              
+                <div class="registerFormClass"> 
+                    {{ form_errors(editform) }}
+
+                    {{ form_start(editform) }}
+                    <span class="formItemClass">
+                        {{ form_row(editform.photo) }}
+                    </span>
+                    <span class="formItemClass">
+                        {{ form_row(editform.email,   
+                        {'attr': {'required': 'required'}}) }}
+                    </span>
+                    <span class="formItemClass">
+                        {{ form_row(editform.pseudo, 
+                        {'attr': {'required': 'required'}}) }}
+                    </span>
+                    <span class="formItemClass">
+                        {{ form_row(editform.firstname, 
+                        {'attr': {'required': 'required'}}) }}
+                    </span>
+                    <span class="formItemClass">
+                        {{ form_row(editform.lastname, 
+                        {'attr': {'required': 'required'}}) }}
+                    </span>
+                    <span class="formItemClass">
+                        {{ form_row(editform.phone, 
+                        {'attr': {'required': 'required'}}) }}
+                    </span>
+                    <span class="formItemClass">
+                        {{ form_row(editform.address, 
+                        {'attr': {'required': 'required'}}) }}
+                    </span>
+                    <span class="formItemClass">
+                        {{ form_row(editform.zip_code, {
+                            'attr': {
+                                'required': 'required',
+                                'class': 'js-zip-code'
+                            }
+                        }) }}
+                        <div class="mb-3">
+                            <select class="form-control" id="town-select" style="display: none;">
+                                <option value="">Sélectionnez une ville</option>
+                            </select>
+                        </div>
+                        {{ form_widget(editform.town) }}
+                    </span>
+                    <span class="formItemClass">
+                        {{ form_row(editform.driving_license, 
+                        {'attr': {'required': 'required', }}) }}
+                    </span>
+                    <span class="formItemClass">
+                        {{ form_row(editform.plainPassword, 
+                        {'attr': {'required': 'required'}}) }} 
+                    </span>
+                    
+                    <span class="formItemClass">
+                        {{ form_row(editform.agreeTerms, 
+                        {'attr': {'required': 'required'}}) }}
+                    </span>
+
+                    
+                    {{ form_end(editform) }}
+                </div>  
+            </div>
+        </article>  
+        
+    </section>
+
+</main>
+
+{% endblock %}
