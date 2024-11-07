@@ -2,30 +2,41 @@
 
 namespace App\Form;
 
+use App\Entity\Town;
 use App\Form\TownAutocompleteField;
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Autocomplete\Form\AsEntityAutocompleteField;
 
+/* #[AsEntityAutocompleteField()] */
 class TripSearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('town_start', TownAutocompleteField::class, [
-                'attr' => [
-                'data-autocomplete-url' => $options['autocomplete_url'],
-                ],
+            ->add('town_start', EntityType::class, [
+                'class'=>Town::class,
+                /* 'choice_label'=>'name', */
                 'placeholder' => 'Choisissez votre ville de départ',
+                'label' => 'Ville de départ',
+                /* 'autocomplete' => true */
             ])
-            ->add('town_end', TownAutocompleteField::class, [
-                'attr' => [
-                'data-autocomplete-url' => $options['autocomplete_url'],
-                ],
+            ->add('town_end', EntityType::class, [
+                'class'=>Town::class,
+                /* 'choice_label'=>'name', */
+                'placeholder' => 'Choisissez votre ville d\'arrivée',
+                'label' => 'Ville d\'arrivée',
+                /* 'autocomplete' => true */
+            ])
+/*             ->add('town_end', TownAutocompleteField::class, [
                 'placeholder' => 'Choisissez votre ville de départ',
-            ])
+                'label' => 'Ville d\'arrivée',
+            ]) */
             ->add('date_start', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'Date de départ',
@@ -52,7 +63,7 @@ class TripSearchType extends AbstractType
         $resolver->setDefaults([
             // Si vous avez une classe de données spécifique, définissez-la ici
             // 'data_class' => YourDataClass::class,
-            'autocomplete_url' => null,
+            'autocomplete' => true,
         ]);
     }
 }

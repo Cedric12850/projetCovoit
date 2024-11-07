@@ -31,7 +31,7 @@ class TripSearchController extends AbstractController
 
         // Créer le formulaire avec l'option autocomplete_url
         $form = $this->createForm(TripSearchType::class, null, [
-            'autocomplete_url' => $autocompleteUrl,
+           /*  'autocomplete_url' => $autocompleteUrl, */
         ]);
 
         $form->handleRequest($request);
@@ -56,9 +56,8 @@ class TripSearchController extends AbstractController
                 ->setParameter('nbPassenger', $nbPassenger)
                 ->getQuery()
                 ->getResult();
-
+                
             return $this->render('tripsearch/tripsearchresult.html.twig', [
-                'results' => $results,
                 'town_start' => $townStart,
                 'town_end' => $townEnd,
                 'date_start' => $dateStart,
@@ -76,7 +75,7 @@ class TripSearchController extends AbstractController
 
 
     #[Route('/tripsearch/tripresultshow/{id}', name: 'app_tripresult_show')]
-    public function tripResultShow(int $id): Response    
+    public function tripResultShow(int $id, EntityManagerInterface $emi): Response    
     {
         $tripShow = $this->entityManager->getRepository(Trip::class)->find($id);
         /* dd($tripShow); */
@@ -102,10 +101,22 @@ class TripSearchController extends AbstractController
         }
         /* dd($townEnd); */
 
+        $sql = "SELECT GROUP_CONCAT(T.name ORDER BY S.num_order SEPARATOR ', ') AS 'etapes', count(*) AS nb_etapes
+                FROM step S
+                JOIN town T ON S.town_step_id = T.id
+                WHERE S.trip_id = $id";
+        $stmt = $emi->getConnection()->prepare($sql);
+        $result = $stmt->executeQuery();
+        $steps = $result->fetchAssociative();
+         /* dd($steps); */ 
+
+
+
         return $this->render('tripsearch/tripshow.html.twig', [
             'tripshow' => $tripShow,
             'townEnd' => $townEnd, // Passe la ville d'arrivée à la vue
-            'comfortable' => $comfortable
+            'comfortable' => $comfortable, 
+            'steps' => $steps
         ]);
 
     }
@@ -120,7 +131,7 @@ class TripSearchController extends AbstractController
             ->createQueryBuilder('t')
             ->where('t.name LIKE :searchTerm')
             ->setParameter('searchTerm', '%' . $searchTerm . '%')
-            ->setMaxResults(10)
+            ->setMaxResults(20)
             ->getQuery()
             ->getResult();
 
