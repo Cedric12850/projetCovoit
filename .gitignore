@@ -33,3 +33,6 @@ yarn-error.log
 ###> fichier image ###
 /assets/uploads/
 ###< fichier image ###
+
+###< fichiers annexes ###
+/.loginmail

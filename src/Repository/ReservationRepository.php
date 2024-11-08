@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Repository;
 
 use App\Entity\Reservation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
-use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
 
 /**
  * @extends ServiceEntityRepository<Reservation>
@@ -17,7 +14,6 @@ class ReservationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Reservation::class);
     }
-
 
     /**
      * Trouve le nombre total de voyages et de réservations avec leurs places respectives.
@@ -66,11 +62,6 @@ class ReservationRepository extends ServiceEntityRepository
         return $data;
     }
 
-
-    // public function findNbTripResaByDates($dateDeb,
-    //         $dateFin,
-    //         $emi): array
-    // {
     public function findNbTripResaByDates($dateDeb,
                                           $dateFin,
                                           $accept,
@@ -107,30 +98,4 @@ class ReservationRepository extends ServiceEntityRepository
         $data = $result->fetchAssociative();
         return $data;
     }
-    
-
-    //    /**
-    //     * @return Reservation[] Returns an array of Reservation objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('r.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Reservation
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

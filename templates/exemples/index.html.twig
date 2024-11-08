@@ -1,0 +1,222 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}exemples{% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h1> Exemples d'affichage des données </h1>
+
+         <section class="container-fluid">
+            <h2>Les valeurs Avant</h2>
+            <table class ="col-12">
+                <thead class ="col-12">
+                    <tr class="ligEnTete">
+                        <td class="col-2"> Nb Années</td>
+                        <td class="col-2"> Nb Users</td>
+                        <td class="col-2"> Nb Trajets</td>
+                        <td class="col-2"> Nb Places </td>
+                        <td class="col-2"> Nb Résas acceptées</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class ="col-12">
+                        <td> {{nbAnAvant}} </td>
+                        <td> {{nbUserAvant}} </td>
+                        <td> {{nbTripAvant}}</td>
+                        <td> {{nbPlaceAvant}}</td>
+                        <td> {{nbResaAvant}} </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h2 class="h2Exemple">Quelques chiffres</h2>
+            <table class ="col-12">
+                <thead class ="col-12">
+                    <tr >
+                    <tr >
+                        <td class="col-4"> </td>
+                        <td class="col-2">Tot</td>
+                        <td class="col-2">Actifs</td>
+                        <td class="col-2"> </td>
+                        <td class="col-1">En cours (Trip)</td>
+                        <td class="col-1">Annulés (Trip)</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class ="col-12">
+                        <td>User</td>
+                        <td> {{nbUsers}}</td>
+                        <td> {{nbActiveUsers}}</td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr class ="col-12">
+                        <td>Trip </td>
+                        <td> {{nbCreesTrips}}</td>
+                        <td> </td>
+                        <td> </td>
+                        <td> {{nbTripCours}} </td>
+                        <td> </td>
+                    </tr>
+                    <tr class ="col-12">
+                        <td>  - Trip du conducteur {{idUser}}</td>
+                        <td> {{ nbAllTripByUser }} </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> {{nbTripCoursByUser}} </td>
+                        <td> </td>
+                    </tr>
+                    
+                    <tr class ="col-12">
+                        <td>  - Trip periode : </td>
+                        <td> dateref = {{dateRef}} </td>
+                        <td> - nb J/M/A : {{nbJMY}} - Signe : {{signe1}}  </td>
+                        <td> dateCalc  = {{dateCalc}}  </td>
+                        <td> {{nbTripsPeriode}} </td>
+                        <td> </td>
+                    </tr>
+                    
+                    <tr class ="col-12">
+                        <td>  - Trip conduct {{idUser}}  periode : </td>
+                        <td> dateref = {{dateRef2}} </td>
+                        <td> - nb J/M/A : {{nbJMY}} - Signe : {{signe2}}  </td>
+                        <td> dateCalc2  = {{dateCalc2}} </td>
+                        <td> {{nbTripsPeriodeConduct}} </td>
+                        <td> </td>
+                    </tr>
+
+                    <tr class ="col-12">
+                        <td> Resas All <br>
+                            Resas En cours</td>
+                        <td> nb trips : {{ nbTripTot }}  <br> {{nbTripEnCours}} </td>
+                        <td>  nb Places :  {{ nbPlacesTripTot }}  <br> {{nbPlacesTripEnCours}}  </td>
+                        <td> nb Resas : {{ nbResaTot }}   <br> {{nbResaEnCours}} </td>
+                        <td> nb Places : {{ nbPlacesTot }}   <br> {{nbPlacesEnCours}}  </td>
+                        <td> Acceptées : {{  nbPlacesTotAccept }}   <br> {{nbPlacesAcceptEnCours}}   </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+        <h2 class="h2Exemple"> Une voiture et son(ses) conducteur(s)</h2>
+            <div>
+                <span> Voiture  :  {{ drivers[0].car}}  ==>> conducteurs  : </span>
+                {% for data in drivers %}    
+                    <span> {{ data.driver.pseudo}} - </span> 
+                {% endfor %}
+            </div>
+        </section>
+
+         <section>
+            <h2 class="h2Exemple">Tous les trajets  </h2>            
+            <p><b>$tripRep->findAll() </b>=> Attention Ordre des étapes incorrecte si étape intermédiaire ajoutée à postériori </p>          
+            <table class ="col-12">
+                <thead class ="col-12">
+                    <tr>
+                        <td class="col-1"> Id</td>
+                        <td class="col-2"> Départ</td>
+                        <td class="col-1"> Date </td>
+                        <td class="col-1"> nb places</td>
+                        <td class="col-2"> Conduct </td>
+                        <td class="col-1"> Voiture </td>
+                        <td class="col-6"> Etapes</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trip in allTrips %}
+                        <tr class ="col-12">
+                            <td> {{ trip.id }}  </td>
+                            <td> {{ trip.townStart.name }}  </td>
+                            <td> {{ trip.dateStart|date('d/m/y') }} </td>
+                            <td> {{ trip.nbPassenger }} </td>
+                            <td> {{ trip.driver.pseudo }}  </td>
+                            <td> {{ trip.car.brand }}    </td>
+                            <td>  
+                            {% for step in trip.steps %}
+                                 <small>{{step.townStep.name}} </small> - 
+                            {% endfor %}
+                            
+                               </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+
+        <section>
+            <br>
+            <p> Avec méthode <b>findAllTripsEtSteps()</b> ajoutée dans TripReposotory</p>          
+            <table class ="col-12">
+                <thead class ="col-12">
+                    <tr>
+                        <td class="col-1"> Id</td>
+                        <td class="col-2"> Départ</td>
+                        <td class="col-1"> Date </td>
+                        <td class="col-1"> nb places</td>
+                        <td class="col-2"> Conduct </td>
+                        <td class="col-1"> Voiture </td>
+                        <td class="col-6"> Nb : Etapes</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trip in allTripsRepo %}
+                        <tr class ="col-12">
+                            <td> {{ trip.id }}  </td>
+                            <td> {{ trip.depart }}  </td>
+                            <td>  </td>
+                            <td> {{ trip.nb_passenger }} </td>
+                            <td> {{ trip.pseudo }} </td>
+                            <td> {{ trip.brand }} </td>
+                            <td> {{ trip.NbSteps }}  :<small> {{ trip.etapes }}</small> </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+
+        
+
+        <section>
+            <h2 class="h2Exemple"> Recherche des trajets en cours entre {{ ville1 }} et  {{ ville2 }} </h2>
+            <div>
+                <span>  {{ totalTrips}} trajets en cours  : </span>
+                            
+                {% for date, count in tripsByDate|slice(0, 10) %}
+                    <span>{{ date|date('d/m/Y') }} : {{ count }} - </span>
+                {% endfor %}
+                {% if tripsByDate|length > 10 %}
+                    <span>...</span>
+                {% endif %}
+                                
+                <table class ="col-12">
+                    <thead class ="col-12">
+                        <tr>
+                            <td class="col-2"> Id Trip </td>
+                            <td class="col-2"> Date </td>
+                            <td class="col-2"> Num_Order départ</td>
+                            <td class="col-2" >Num_Order arrivée</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in detailTrips %}    
+                            <tr class ="col-12">
+                                <td> {{data.id}}</td>
+                                <td> {{data.dateStart}} </td>
+                                <td> {{data.etapeDep}}  </td>
+                                <td> {{data.etapeArr}} </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+
+
+{% endblock %}
