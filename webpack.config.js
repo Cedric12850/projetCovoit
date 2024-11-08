@@ -1,4 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
+/* const { enableStimulusBridge } = require('@symfony/stimulus-bridge'); */
+
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -68,6 +70,7 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+    /* enableStimulusBridge(Encore.getWebpackConfig()); */
 ;
 
 module.exports = Encore.getWebpackConfig();

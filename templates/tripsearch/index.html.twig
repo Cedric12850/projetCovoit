@@ -18,14 +18,29 @@
 
             <div class="tripSearchFormIndexClass">
                 <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
-                    {{ form_row(form.town_start,   
-                    {'attr': {'required': 'required'}}) }}
+                    {{ form_row(form.town_start, {
+                        'attr': {
+                            'class': 'town_autocomplete',
+                        }
+                    }) }}
                 </span>
 
                 <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
-                    {{ form_row(form.town_end,   
-                    {'attr': {'required': 'required'}}) }}
+                    {{ form_row(form.town_end, {
+                        'attr': {
+                            'class': 'town_autocomplete',
+                        }
+                    }) }}
                 </span>
+
+{#                <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
+                    {{ form_row(form.town_end, {
+                        'attr': {
+                            'class': 'autocomplete',
+                            'data-autocomplete-url': path('api_towns')
+                        }
+                    }) }}
+                </span> #}
 
                 <span class="tripSearchFormItemClass">
                     {{ form_row(form.date_start,   

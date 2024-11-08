@@ -22,13 +22,16 @@ class TripSearchController extends AbstractController
     }
 
     #[Route('/tripsearch', name: 'app_trip_search')]
-    public function index(
-        Request $request,
-/*         TripRepository $tripRepository,
-        StepRepository $stepRepository */
-    ): Response
+    public function index(Request $request): Response
     {
-        $form = $this->createForm(type: TripSearchType::class);
+        // Générer l'URL pour l'autocomplétion
+        $autocompleteUrl = $this->generateUrl('api_towns');
+
+        // Créer le formulaire avec l'option autocomplete_url
+        $form = $this->createForm(TripSearchType::class, null, [
+           /*  'autocomplete_url' => $autocompleteUrl, */
+        ]);
+
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -58,7 +61,6 @@ class TripSearchController extends AbstractController
                 ->getResult();
                 /* dd($results); */
             return $this->render('tripsearch/tripsearchresult.html.twig', [
-                'results' => $results,
                 'town_start' => $townStart,
                 'town_end' => $townEnd,
                 'date_start' => $dateStart,
@@ -76,7 +78,7 @@ class TripSearchController extends AbstractController
 
 
     #[Route('/tripsearch/tripresultshow/{id}', name: 'app_tripresult_show')]
-    public function tripResultShow(int $id): Response    
+    public function tripResultShow(int $id, EntityManagerInterface $emi): Response    
     {
         $tripShow = $this->entityManager->getRepository(Trip::class)->find($id);
         /* dd($tripShow); */
@@ -102,11 +104,57 @@ class TripSearchController extends AbstractController
         }
         /* dd($townEnd); */
 
+        $sql = "SELECT GROUP_CONCAT(T.name ORDER BY S.num_order SEPARATOR ', ') AS 'etapes', count(*) AS nb_etapes
+                FROM step S
+                JOIN town T ON S.town_step_id = T.id
+                WHERE S.trip_id = $id";
+        $stmt = $emi->getConnection()->prepare($sql);
+        $result = $stmt->executeQuery();
+        $steps = $result->fetchAssociative();
+         /* dd($steps); */ 
+
+
+
         return $this->render('tripsearch/tripshow.html.twig', [
             'tripshow' => $tripShow,
             'townEnd' => $townEnd, // Passe la ville d'arrivée à la vue
-            'comfortable' => $comfortable
+            'comfortable' => $comfortable, 
+            'steps' => $steps
         ]);
 
     }
+
+
+    #[Route('/api/towns', name: 'api_towns')]
+    public function getTowns(Request $request): JsonResponse
+    {
+        $searchTerm = $request->query->get('q');
+    
+        $towns = $this->entityManager->getRepository(Town::class)
+            ->createQueryBuilder('t')
+            ->where('t.name LIKE :searchTerm')
+            ->setParameter('searchTerm', '%' . $searchTerm . '%')
+            ->setMaxResults(20)
+            ->getQuery()
+            ->getResult();
+
+            if (empty($towns)) {
+                return new JsonResponse(['error' => 'Aucune ville trouvée.'], 404);
+            }
+
+    
+        $result = [];
+        foreach ($towns as $town) {
+            $result[] = [
+                'id' => $town->getId(),
+                'name' => $town->getName(),
+/*                 'zip_code' => $town->getZipCode(), // Si vous avez ce champ
+                'department' => $town->getDepartment(), // Si vous avez ce champ */
+            ];
+        }
+    
+        return new JsonResponse($result);
+    }
+
+
 }

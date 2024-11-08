@@ -369,18 +369,27 @@ a.nav-link:focus{
 }
 .tripSearchResultItemClass{
     border-bottom: 4px solid #aaa;
-}
-.tripSearchResultItemClass{
     display: flex;
     flex-direction: column;
 }
-
+.tripSearchResultPathClass{
+    display: flex;
+    align-items: baseline;
+}
+.tripSearchResultPathClass h4,
+.tripSearchResultPathClass p{
+    font-size: 1.4rem;
+}
+.tripSearchResultItemDateClass{
+    display: flex;
+    align-items: baseline;
+}
 /* - Autocopmplete -*/
-.suggestions {
+/* .suggestions {
     border: 1px solid #ccc;
     background: white;
-    position: absolute; /* Pour les suggestions positionnées correctement */
-    z-index: 1000; /* Pour qu'elles apparaissent au-dessus d'autres éléments */
+    position: absolute; 
+    z-index: 1000; 
 }
 
 .suggestion-item {
@@ -389,8 +398,8 @@ a.nav-link:focus{
 }
 
 .suggestion-item:hover {
-    background-color: #f0f0f0; /* Indiquer un survol */
-}
+    background-color: #f0f0f0; 
+} */
 
 
 /* ---------------  Result One Show --------------- */
@@ -589,6 +598,23 @@ h4.tripShowResultItemh4Class{
         margin-bottom: 1em;
     }
     /* ------------------ Result Search---------------- */
+    .tripSearchResultItemClass {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        padding: .5em 0;
+    }
+    .tripSearchResultItemDateClass p,
+    .tripSearchResultItemNbPasClass p{
+        font-size: 1.4rem;
+        font-weight: 800;
+    }
+    .tripSearchResultItemNbPasClass{
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+    }
     /* ---------------  Result One Show --------------- */
     .tripShowResultPageClass{
         margin: 2em 4em;
