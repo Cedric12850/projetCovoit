@@ -3,130 +3,59 @@
 {% block title %}covoit{% endblock %}
 
 {% block body %}
-
-    <section class="container-fluid">
-        <table class ="col-12">
-            <thead class ="col-12">
-                <tr>
-                    <td class="col-2"> </td>
-                    <td class="col-2">Tot</td>
-                    <td class="col-2">Actifs</td>
-                    <td class="col-2"> </td>
-                    <td class="col-2">En cours</td>
-                    <td class="col-2">Annulés</td>
-            </tr>
-            </thead>
-            <tbody>
-                <tr class ="col-12">
-                    <td>User</td>
-                    <td> {{nbUsers}}</td>
-                    <td> {{nbActiveUsers}}</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr class ="col-12">
-                    <td>Trip </td>
-                    <td> {{nbCreesTrips}}</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> {{nbTripCours}} </td>
-                    <td> </td>
-                </tr>
-                <tr class ="col-12">
-                    <td>  - Trip du conducteur {{idUser}}</td>
-                    <td> {{ nbAllTripByUser }} </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> {{nbTripCoursByUser}} </td>
-                    <td> </td>
-                </tr>
-                
-                <tr class ="col-12">
-                    <td>  - Trip periode : </td>
-                    <td> dateref = {{dateRef}} </td>
-                    <td> - nb J/M/A : {{nbJMY}} </td>
-                    <td> - Signe : {{signe1}} </td>
-                    <td> {{nbTripsPeriode}} </td>
-                    <td> </td>
-                </tr>
-                
-                <tr class ="col-12">
-                    <td>  - Trip conduct {{idUser}}  periode : </td>
-                    <td> dateref = {{dateRef2}} </td>
-                    <td> - nb J/M/A : {{nbJMY}}  </td>
-                    <td> - Signe : {{signe2}} </td>
-                    <td> {{nbTripsPeriodeConduct}} </td>
-                    <td> </td>
-                </tr>
-
-                <tr class ="col-12">
-                    <td> Resas All <br>
-                         Resas En cours</td>
-                    <td> nb trips : {{ nbTripTot }}  <br> {{nbTripEnCours}} </td>
-                    <td>  nb Places :  {{ nbPlacesTripTot }}  <br> {{nbPlacesTripEnCours}}  </td>
-                    <td> nb Resas : {{ nbResaTot }}   <br> {{nbResaEnCours}} </td>
-                    <td> nb Places : {{ nbPlacesTot }}   <br> {{nbPlacesEnCours}}  </td>
-                    <td> Acceptées : {{  nbPlacesTotAccept }}   <br> {{nbPlacesAcceptEnCours}}   </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="mt-3 mb-3">
-            <span> Voiture  :  {{ drivers[0].car}}  ==>> conducteurs  : </span>
-            {% for data in drivers %}    
-                <span> {{ data.driver.pseudo}} - </span> 
-            {% endfor %}
-        </div>
-    </section>
-
-
     <main class="container">
-
         <h1> Partager autrement</h1>
 
-        <section id = "homeChifMess"  class="row" >
-        
-            <div id= "homeChiffres" class="col-12 col-md-9">
-                <p class="row" >
-                    <span class="cercle">  {{nbActiveUsers}} </span>
-                    <span> Utilisateurs</span>
-                </p>
-                <p class="row" >
-                    <span class="cercle">  {{nbTripCours}} </span>
-                    <span> Trajets dispo</span>
-                </p>
+        <section id = "homeChifMess" class="d-flex justify-content-between align-items-center">
+            <div id= "homeChiffres" >
+                <div class="row" >
+                    <span class="cercle textCercle">  {{nbActiveUsers}} </span>
+                    <span class ="textCercle"> Utilisateurs </span>
+                </div>
+                <div class="row" >
+                    <span class="cercle textCercle">  {{nbDispoTrips}} </span>
+                    <span class ="textCercle"> Trajets </span>
+                </div>
+                <div class="row" >
+                    <span class="cercle textCercle">  {{nbDispoTrips}} </span>
+                    <span class ="textCercle"> Autres </span>
+                </div>
             </div>
         
-            <div id= "homeMessage" class="col-md-3">
-                <span > Ensemble depuis plus de {{nbAnnees}} ans </span>
-                <span >  </span>
+            <div class= "homeMessage d-none d-lg-block" >
+                <p > Ensemble depuis plus de <b> {{nbAnnees}} </b> ans </p>
             </div>
-        
         </section>
-
-
 
         <section id="homeRechResa">
+            <h2 class="texteCenter">  {{nbTripCours}} trajets disponibles</h2>
+            <h4>  Recherchez le votre :</h4>
+            {# <form action="#">
+                <input type="number" name="Départ" id="villeDep" placeHolder ="Num ville de départ" >
+                <input type="number" name="Arrivée" id="villeArr"  placeHolder ="Num ville d'arrivée" >
+                <button type ="submit"> Rechercher</button>
+            </form> #}
 
-            <h2>  {{nbTripCours}} trajets disponibles</h2>
-            <h4>  Y a t'il le votre ?</h4>
-            <form action="">
-
-
-
-        
+            <form id="searchForm" action="" method="post">
+                <input type="number" name="depart" id="villeDep" placeholder="Num ville de départ" required>
+                <input type="number" name="arrivee" id="villeArr" placeholder="Num ville d'arrivée" required>
+                <button type="submit">Rechercher</button>
             </form>
-                {# <h2>  {{nbTripRech}} trajets disponibles</h2> #}
+
+
+            <div id="resultRech">
+                {# // Contruction de la div dans le js #}
+            </div>  
+
+
+
         </section>
-
-
 
 
         <section id="homeCarousel">
-        
+            <h2>  Vous avez la parole </h2>
+            <div> Carousel </div>
         </section>
-
     </main>
 
 {% endblock %}

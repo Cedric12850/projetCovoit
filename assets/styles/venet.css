@@ -1,19 +1,23 @@
 #homeChiffres {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem;
+}
+.textCercle{
+    font-size: 2rem;
+    font-weight: bold;
 }
   
 .cercle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 100px;
     border-radius: 50%;
-    border: 8px solid rgb(178, 136, 192)!important;
-    font-size: 1.5rem;
+    border: 12px solid rgb(178, 136, 192);
+    font-size: 3rem;
     font-weight: bold;
+    width: 170px;
+    height: 170px;
  }
  table, th, tr, td{
     border: solid 1px rgb(9, 50, 98);
@@ -26,19 +30,26 @@
     width: 90%;
     border-radius: 0 10% 10% 0 ;
  }
- #homeMessage{
-    visibility: hidden;
+
+ thead{
+    background-color:  rgb(9, 50, 98);
+    color: #fff;
  }
+
+.h2Exemple{
+    margin-top: 15px;
+}
+.texteCenter{
+    text-align: center;
+}
 
 
  @media screen and  (min-width : 930px){
-    
-    #homeMessage{
-
-        width: 60%;
+    #homeChiffres{
+        width: 70%;
     }
-    #homeMessage{
-        visibility: visible;
-        
+    .homeMessage{
+        width: 20%;
+        font-size: 2em;
      }
  }
