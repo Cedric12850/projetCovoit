@@ -5,9 +5,6 @@ namespace App\Form;
 use App\Entity\Town;
 use App\Repository\TownRepository;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\UX\Autocomplete\Form\AsEntityAutocompleteField;
 use Symfony\UX\Autocomplete\Form\BaseEntityAutocompleteType;
@@ -21,10 +18,15 @@ class TownAutocompleteField extends AbstractType
             'class' => Town::class,
             'placeholder' => 'Choisissez votre ville dans la liste',
             'choice_label' => 'name',
+
+            
+            // choose which fields to use in the search
+            // if not passed, *all* fields are used
             'searchable_fields' => ['name'],
-            'query_builder' => function(TownRepository $townRepository) {
-                return $townRepository->createQueryBuilder('t');
-            },
+            // 'query_builder' => function(TownRepository $townRepository) {
+            //                 return $townRepository->createQueryBuilder('name');
+            //             },
+            // 'security' => 'ROLE_SOMETHING',
         ]);
     }
 

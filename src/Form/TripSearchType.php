@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Form;
 
 use App\Entity\Town;
@@ -67,4 +68,3 @@ class TripSearchType extends AbstractType
         ]);
     }
 }
-

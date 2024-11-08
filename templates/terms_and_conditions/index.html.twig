@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TermsAndConditionsController!{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-4">
+        <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
+            <nav class="nav nav-pills flex-column">
+                <a class="nav-link" href="#item-1">Editeur du site</a>
+                <a class="nav-link" href="#item-2">Hébergement du site</a>
+                <a class="nav-link" href="#item-3">Propriété intellectuel</a>
+                <a class="nav-link" href="#item-4">Responsabilité</a>
+                <a class="nav-link" href="#item-5">Collecte et traitement des données personnelles</a>
+                <a class="nav-link" href="#item-6">Cookies</a>
+                <a class="nav-link" href="#item-7">Droit applicable et juridiction</a>
+            </nav>
+        </nav>
+    </div>
+
+    <div class="col-8">
+        
+        <h1>Mentions légales</h1>
+        <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
+            <div id="item-1">
+                <h2>1. Éditeur du site</h2>
+                    <ul>
+                        <li>Nom du site : Freindly Trip</li>
+                        <li>URL du site : http://127.0.0.1:8000/</li>
+                        <li>Éditeur : NNC Covoiturage</li>
+                        <li>Adresse : AFPA Rodez</li>
+                        <li>Téléphone : [Numéro de téléphone]</li>
+                        <li>Email : contact@friendlyTrip.com</li>
+                        <li>SIRET : [Numéro SIRET]</li>
+                        <li>Directeur de publication : Nadine Nicolas Cédric</li>
+                    </ul>
+            </div>
+            <div id="item-2">   
+                <h2>2. Hébergement du site</h2>
+                    <ul>
+                        <li>Hébergeur : [Nom de l’hébergeur]</li>
+                        <li>Adresse : [Adresse de l’hébergeur]</li>
+                        <li>Téléphone : [Numéro de téléphone de l’hébergeur]</li>
+                        <li>Email : [Adresse email de contact de l’hébergeur]</li>
+                    </ul>
+            </div>
+            <div id="item-3">
+                <h2>3. Propriété intellectuelle</h2>
+
+                    <p>Le contenu (textes, logos, images, éléments graphiques, vidéos, etc.) du site <span>Friendly Trip</span> est protégé par le droit d'auteur et reste la propriété exclusive de l'éditeur, sauf mention contraire. Toute reproduction ou représentation totale ou partielle de ce site, par quelque procédé que ce soit, sans autorisation expresse de l’éditeur, est interdite.</p>
+            </div>
+            <div id="item-4">
+                <h2>4. Responsabilité</h2>    
+
+                    <p>L'éditeur met tout en œuvre pour fournir des informations exactes et à jour sur le site <span>Friendly Trip</span>. Toutefois, l’éditeur ne saurait être tenu responsable des erreurs, omissions ou d’un manque de disponibilité des informations. L'utilisateur est le seul responsable de l'usage des informations présentes sur le site.
+
+                    En outre, <span>Friendly Trip</span> permet aux utilisateurs de se mettre en relation pour partager des trajets de covoiturage. En tant qu'intermédiaire, <span>Friendly Trip</span> n’est pas responsable des incidents, retards ou accidents qui pourraient survenir lors des trajets convenus entre les utilisateurs.</p>
+            </div>
+            <div id="item-5">
+                <h2>5. Collecte et traitement des données personnelles</h2>    
+
+                    <p>Conformément au Règlement Général sur la Protection des Données (RGPD), le site <span>Friendly Trip</span> s’engage à protéger les données personnelles de ses utilisateurs. Les informations collectées sont nécessaires pour permettre l’utilisation des services proposés par le site. Les utilisateurs disposent d'un droit d'accès, de rectification et de suppression de leurs données personnelles. Pour toute demande, contactez-nous à [Adresse email de contact].</p>
+            </div>
+            <div id="item-6">
+                <h2>6. Cookies</h2>    
+
+                    <p>Le site utilise des cookies pour améliorer l’expérience utilisateur et collecter des données de statistiques. L’utilisateur peut refuser l’utilisation de cookies en configurant son navigateur. Pour en savoir plus sur notre politique de gestion des cookies, consultez notre [Politique de Cookies] <span>contact@friendlyTrip.com</span>.</p>
+            </div>
+            <div id="item-7">
+                <h2>7. Droit applicable et juridiction</h2>
+
+                    <p>Les présentes mentions légales sont régies par le droit français. En cas de litige, les tribunaux français seront compétents, sous réserve d’une attribution de compétence spécifique découlant d’un texte de loi ou réglementaire particulier.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

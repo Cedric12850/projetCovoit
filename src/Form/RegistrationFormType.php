@@ -30,6 +30,7 @@ class RegistrationFormType extends AbstractType
             ->add('photo', FileType::class, [
                 'label' => 'Photo : ',
                 'required' => false,
+                'mapped' => false,      // for edit profile 
                 'data_class' => null ])           
             ->add('email',TextType::class,[
                 'label' => 'Adresse courriel : '])
@@ -44,9 +45,10 @@ class RegistrationFormType extends AbstractType
             ->add('address', TextType::class,[
                 'label' => 'Adresse : '])
             ->add('zip_code', TextType::class,[
-                'label' => 'Trouvez votre ville - Commencez à taper le code postal du département... : ',
+                'label' => 'Code postal : ',
                 'attr' => ['class' => 'js-zip-code',],
                 'mapped' => false,
+                'required' => false,
                 ])
             ->add('town', HiddenType::class, [
                 'mapped' => false,
@@ -67,15 +69,16 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Vous devez accepter les Conditons Générales d\'Utilsations.',
                     ]),
                 ],
-            ])
-            ->add('plainPassword', RepeatedType::class, [
+            ]);
+            
+            $builder->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe doivent être identiques',
                 'mapped' => false,
-                'required'=> true,
+                'required'=> !$options['is_edit'], // Obligatoire uniquement si ce n'est pas une édition
                 'first_options' => ['label'=> 'Mot de passe',
                     'attr' => ['autocomplete' => 'new-password'],
-                    'constraints' => [
+                    'constraints' => !$options['is_edit'] ?  [
                     new NotBlank([
                         'message' => 'Entrez votre mot de passe : ',
                     ]),
@@ -85,7 +88,7 @@ class RegistrationFormType extends AbstractType
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
-                ],
+                ]: [],
                 ],
                 'second_options' => [
                     'label'=> 'Répétez votre mot de passe',
@@ -104,6 +107,7 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'is_edit' => false, // Ajoutez l'option 'is_edit' par défaut à false
         ]);
     }
 }

@@ -40,6 +40,8 @@ class HomeController extends AbstractController
             'nbCreesTrips' => $nbTripAvant + $nbCreesTrips,
             'nbDispoTrips' => $nbTripAvant + $nbTripCours,
             'nbTripCours' => $nbTripCours,
+
+            'user' => $user,
         ]);
     }
 

@@ -1,3 +1,4 @@
+
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -8,6 +9,57 @@ import './styles/app.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 
+/* ------------- Recherche trajets dans Home ---------------------------- */
+document.addEventListener('DOMContentLoaded', function() {
+var form = document.getElementById('searchForm');
+var resultDiv = document.getElementById('resultRech');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var villeDep = document.getElementById('villeDep').value;
+    var villeArr = document.getElementById('villeArr').value;
+
+    fetch('/search', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: 'villeDep=' + encodeURIComponent(villeDep) + '&villeArr=' + encodeURIComponent(villeArr)
+    })
+    .then(function(response) {
+        if (!response.ok) {
+            throw new Error('Erreur réseau');
+        }
+        return response.json();
+    })
+    .then(function(trips) {
+        var html = '<p>Résultat de la recherche : </p>';
+        html += '<span>' + trips.totalTrips + ' trajets sont disponibles : </span>';
+        var count = 0;
+        var nbAffiche =  10;
+        var nbDates = Object.keys(trips.tripsByDate).length;
+        var tripsTab = Object.entries(trips.tripsByDate);
+        var dernier = nbAffiche<nbDates? nbAffiche : nbDates;
+        tripsTab.map((trip) => {
+            if (count < nbAffiche) {
+                count++;
+                var formattedDate = new Date(trip[0]).toLocaleDateString('fr-FR');
+                html += '<span>' + formattedDate + ' : ' + trip[1];
+                html += count < dernier? ', </span>' : ' </span>';
+            }   
+        })
+        if (nbAffiche < nbDates ) {
+            html += '<span>...</span>';
+        }
+        resultDiv.innerHTML = html;
+    })
+    .catch(function(error) {
+        console.error('Erreur:', error);
+        resultDiv.innerHTML = '<p>Une erreur est survenue lors de la recherche.</p>';
+    });
+});
+});
 /* ------------- Recherche trajets dans Home ---------------------------- */
 var form = document.getElementById('searchForm');
 var resultDiv = document.getElementById('resultRech');
@@ -92,13 +144,4 @@ form.addEventListener('submit', function(e) {
 })();
 /* ------------- End of Autocomplete Js ---------------------------- */
 
-/* ---------------- Search Trip Town  Autocomplete Js -------------- */
 
-(function() {
-    document.addEventListener('DOMContentLoaded', function()
-    {
-        cons
-
-
-    });
-})();

@@ -3,42 +3,38 @@
 {% block title %}Modifier le véhicule{% endblock %}
 
 {% block body %}
+ <main class="registerFormMainClass heightClass">
+    <div class="registerFormWrapClass">
+        <h1 class="registerFormTitleClass">Modifier le véhicule véhicule</h1>
 
- <main class="registereditformMainClass heightClass">
-
-    <div class="registereditformWrapClass">
-        <h1 class="registereditformTitleClass">Modifier le véhicule véhicule</h1>
-
-        <div class="registereditformClass"> 
+        <div class="registerFormClass"> 
             {{ form_errors(editform) }}
             {{ form_start(editform) }}
-                <span class="editformItemClass">
+                <span class="registerFormItemClass">
                     {{ form_row(editform.brand)}}
                 </span>
 
-                <span class="editformItemClass">
+                <span class="registerFormItemClass">
                     {{ form_row(editform.type_car)}}
                 </span>
                 
-                <span class="editformItemClass">
+                <span class="registerFormItemClass registerFormLicenseClass">
                     {{ form_row(editform.active)}}
                 </span>
 
-                <span class="editformItemClass">
+                <span class="registerFormItemClass">
                     {{ form_row(editform.owner)}}
                 </span>
 
-                <span class="editformItemClass">
+                <span class="registerFormItemClass registerFormLicenseClass">
                     {{ form_row(editform.specificities)}}
                 </span>
-
+                <button type="submit" class="btn buttonClass">enregistrer</button>
             {{ form_end(editform)}}
 
             <a href="{{ path('app_car') }}">back to list</a>
         </div>  
-        {# </editform> #}
-    </div> 
-
-</main>
-
+        
+    </div>  
+</main> 
 {% endblock %}

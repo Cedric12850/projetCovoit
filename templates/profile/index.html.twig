@@ -3,63 +3,76 @@
 {% block title %}Profil {{user.pseudo}}{% endblock %}
 
 {% block body %}
-
 <main>
 
-    <section class="container">
+    <section class="container text-center">
         <article class="">
             {# bouton voir/modifier #}
             {# {% if app.user %} #}
             <div>
-            <button>voir</button>
-            <a href="/profile/edit/{{user.id}}"><button>modifier</button></a>
+                {% if app.user and app.user.id == user.id %}
+                    <button class="buttonClass profilButtonClass">voir</button>
+                    <a href="/profile/edit/{{user.id}}"><button class="buttonClass profilButtonClass">modifier</button></a>
+                {% elseif app.user %}
+                    <a href="/profile/{{app.user.id}}"><button class="buttonClass profilButtonClass col-2">retour</button></a>
+                {% else %}
+                    <a href="/"><button class="buttonClass profilButtonClass col-2">accueil</button></a>
+                {% endif %}
+
             </div>
             {# {% endif %} #}
             
-            {# left column for screen>1200px #}
-            <div class="" >
-                <img src="{{ asset("/uploads/" ~ user.photo) }}" class="imgProfileClass img-fluid img-thumbnail" alt="{{user.photo}}">
-                <p>note: </p>
-            </div>
+            {# photo & name/town #}
+            <div class="row">
+                <div class="col-5 mt-2" >
+                    <img src="{{ asset("uploads/" ~ user.photo) }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
+                    <p>note: 4/5</p>
+                </div>
 
-            {# rigth column for screen>1200px#}
-            <div class="" >
-                {# part name town #}
-                <div class="">
-                    <h2>{{user.pseudo}}</h2>
-                    <p>ville de {{user.town.name}} ({{user.town.zipcode}})</p>
+                <div class=" profileIndexMarginClass col-5" >
+                    {# part name town #}
+                    <div>
+                        <h2>{{user.pseudo}}</h2>
+                        <p>ville de {{user.town.name}} ({{user.town.zipcode}})</p>
+                        {% if app.user and app.user.id == user.id %}
+                            <a href="/reset-password">Modifier le mot de passe</a>
+                        {% endif %}
+                    </div>
                 </div>
 
                 {# part pref numberOfTrip #}
-                <div class="">
-                    <div class="profileCarContainerClass">
-                        <h4>Véhicule(s):</h4>
-                            {% for car in carUser %}
-                                <p>
-                                    marque: {{car.brand}}<br>
-                                    modèle: {{car.typeCar}}<br>
-                                </p>
-                             {% endfor %}
-                            {# {% if app.user %}
-                                <a href="/car/edit/{{carUser.id}}"><button>Modifier</button></a>
-                            {% endif %}#}
+                <div class="row">
+                    <div class="profileIndexWrapClass profileIndexMarginClass col-5">
+                        <h4>Véhicules</h4>
+                        {% if app.user and app.user.id == user.id %}
+                            <a href="/car/new">Ajouter un véhicule</a>
+                        {% endif %}
+                        {% for car in carUser %}
+                            <p>
+                                marque: {{car.brand}}<br>
+                                modèle: {{car.typeCar}}<br>
+                            </p>
+                        {% endfor %}
+                    </div>
+                    <div class="profileIndexWrapClass profileIndexMarginClass col-5 ">
+                        <h4>Préférences:</h4>
+                        {% for car in carUser %}
+                           <ul>
+                           {% for spe in car.specificities %}
+                                <li>{{ spe.name }}</li>
+                           {% endfor %}
+                           </ul>
+                        {% endfor %}
                     </div>
                 </div>
-                <div class="">
-                    <div class="userpref">
-                        <h4>Préférences:</h4>
-                    </div> 
-                    <div class="numberOfTrip">
+                    <div class="profileIndexWrapClass profileIndexMarginClass col-10 ">
                         <p>nombre de trajet: <br>
                         quelques exemples:
                         </p>
                     </div>
-                </div>
-
-            </div>   
+                
+            </div> 
         </article>
     </section>
-
 </main>
-
 {% endblock %}

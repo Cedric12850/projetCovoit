@@ -26,16 +26,16 @@ class CarType extends AbstractType
                 'label' => 'Modèle'
             ])
             ->add('active', CheckboxType::class, [
-                'label' => 'cochez si utilisé'
+                'label' => 'Cochez si utilisé: '
             ])
             ->add('owner', EntityType::class, [
                 'class' => User::class,
-                'label' => 'propriétaire',
+                'label' => 'propriétaire: ',
                 'choice_label' => function ($userIdentity) {return $userIdentity;},
             ])
             ->add('specificities', EntityType::class, [
                 'class' => Specificity::class,
-                'label' => 'préférences de voyage',
+                'label' => 'préférences de voyage: ',
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
@@ -43,7 +43,7 @@ class CarType extends AbstractType
                     return $er->createQueryBuilder('s')
                     ->orderBy('s.name', 'ASC');}
             ])
-            ->add ('enregistrer', SubmitType::class)
+            // ->add ('enregistrer', SubmitType::class)
         ;
     }
 

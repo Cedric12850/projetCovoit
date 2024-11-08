@@ -2,14 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Town;
 use App\Entity\Trip;
 use App\Form\TripSearchType;
 use App\Repository\StepRepository;
 use App\Repository\TripRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -37,14 +35,19 @@ class TripSearchController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $data = $form->getData();
+            /* dd($data); */
             $townStart = $data['town_start'];
             $townEnd = $data['town_end'];
             $dateStart = $data['date_start'];
+            /* $dateStart = $data['date_start']; */
             $nbPassenger = $data['nb_passenger'];
 
             $repository = $this->entityManager->getRepository(Trip::class);
             $results = $repository->createQueryBuilder('trip')
+                /* ->join('trip.town_start_id', 'townStart') */
+                /* ->select('trip.*')  */
                 ->join('trip.steps', 'step')
                 ->where('trip.town_start = :townStart')
                 ->andWhere('step.town_step = :townEnd')
@@ -63,15 +66,15 @@ class TripSearchController extends AbstractController
                 'date_start' => $dateStart,
                 'nb_passenger' => $nbPassenger,
                 'resultats' => $results,
+                
             ]);
         }
+
 
         return $this->render('tripsearch/index.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-
-
 
 
     #[Route('/tripsearch/tripresultshow/{id}', name: 'app_tripresult_show')]

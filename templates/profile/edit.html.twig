@@ -4,44 +4,55 @@
 
 {% block body %}
 
-<main class="heightClass">
-
     <section class="container">
         <article class="row">
             {# bouton voir/modifier #}
-            {# {% if app.user %} #}
-            <div>
-                <button>voir</button>
-                <a href="/profile/{{user.id}}"><button>annuler</button></a>
+            <div class="col">
+                <button class="buttonClass profilButtonClass col-2">voir</button>
+                <a href="/profile/{{user.id}}"><button class="buttonClass profilButtonClass col-2">annuler</button></a>
             </div>
-            {# {% endif %} #}
-            
-            {# left column #}
-            <div class="col" >
-                <img src="{{ asset("uploads/" ~ user.photo) }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
-                <p>note: </p>
-            </div>
-
-            {# rigth column#}
-            <div class="col" >
-                {# part name town #}
-                <div>
-                    <h2>{{user.pseudo}}</h2>
-                    <p>ville de {{user.town.name}} ({{user.town.zipcode}})</p>
-                </div>
-
-                {# part pref numberOfTrip #}
-                <div>
-                    <div class="userpref">
-                        <h4>Préférences:</h4>
+            {# photo & name/town #}
+            <div class="row">
+                <div class="row col-xl-6">
+                    <div class="col-6 col  mt-2" >
+                        <img src="{{ asset("uploads/" ~ user.photo) }}" class="img-fluid img-thumbnail" alt="{{user.photo}}">
+                        <p>note: 4/5</p>
                     </div>
-                    <div class="numberOfTrip">
-                        <p>nombre de trajet: <br>
-                        quelques exemples:
+
+                    <div class="profileIndexMarginClass col-5" >
+                        {# part name town #}
+                        <div>
+                            <h2>{{user.pseudo}}</h2>
+                            <span>ville de </span>
+                            <h3>{{user.town.name}} ({{user.town.zipcode}})</h3>
+                            <a href="/reset-password">Modifier le mot de passe</a>
+                        </div>
+                </div>
+            </div>
+
+            {# part pref numberOfTrip #}
+            <div class="row col-xl-6">
+                <div class="profileIndexWrapClass profileIndexMarginClass col-5">
+                    <h4>Véhicules</h4>
+                    <a href="/car/new">Ajouter un véhicule</a>
+                    {% for car in carUser %}
+                        <p>
+                            marque: {{car.brand}}<br>
+                            modèle: {{car.typeCar}}<br>
                         </p>
-                    </div>
+                    {% endfor %}
                 </div>
-            </div> 
+                <div class="profileIndexWrapClass profileIndexMarginClass col-5 ">
+                    <h4>Préférences:</h4>
+                    {% for car in carUser %}
+                    <ul>
+                    {% for spe in car.specificities %}
+                            <li>{{ spe.name }}</li>
+                    {% endfor %}
+                    </ul>
+                    {% endfor %}
+                </div>
+            </div>
         </article>
 
         {# article contenant le formulaire de modification #}
@@ -81,7 +92,6 @@
                     <span class="formItemClass">
                         {{ form_row(editform.zip_code, {
                             'attr': {
-                                'required': 'required',
                                 'class': 'js-zip-code'
                             }
                         }) }}
@@ -96,24 +106,25 @@
                         {{ form_row(editform.driving_license, 
                         {'attr': {'required': 'required', }}) }}
                     </span>
-                    <span class="formItemClass">
+
+                    {# <span class="formItemClass">
                         {{ form_row(editform.plainPassword, 
-                        {'attr': {'required': 'required'}}) }} 
-                    </span>
+                        ) }} 
+                    </span> #}
                     
                     <span class="formItemClass">
                         {{ form_row(editform.agreeTerms, 
                         {'attr': {'required': 'required'}}) }}
                     </span>
 
-                    
-                    {{ form_end(editform) }}
+                    <button type="submit" class="btn buttonClass">S'enregistrer</button>
+                    {{form_row(editform._token)}} {# permet de personnalisé le formulaire en arrêtant l'affichage des champs ici le password#}
+                    {{ form_end(editform, {'render_rest':false}) }}
                 </div>  
             </div>
-        </article>  
+        </article>
+             
         
     </section>
-
-</main>
 
 {% endblock %}
