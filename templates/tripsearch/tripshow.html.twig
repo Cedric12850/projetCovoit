@@ -20,7 +20,8 @@
                 <div class="tripShowResultItemClass"><h4>Conducteur : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.driver }}</span></div>
                 <div class="tripShowResultItemClass"><h4>Adresse de départ : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.placeStart |default('Non renseigné') }}</span></div>
                 <div class="tripShowResultItemClass"><h4>Pas plus de 2 personnes à l'arrière : </h4><span class="tripShowResultItemSpanClass">{{ comfortable }}</span></div>
-                <div class="tripShowResultItemClass tripShowResultCartItemClass"><h4>Véhicule : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.car.brand }}</span>&nbsp; - &nbsp;<span class="tripShowResultItemSpanClass tripShowResultCarTypeItemClass">{{ tripshow.car.typeCar }}</span><h4>Propiétaire : </h4><span class="tripShowResultItemSpanClass"> {{ tripshow.car.owner }}</span></div>
+                <div class="tripShowResultItemClass tripShowResultCartItemClass"><h4>Véhicule : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.car.brand }}&nbsp; - &nbsp;{{ tripshow.car.typeCar }}</span></div>
+                <div class="tripShowResultItemClass"><h4>Propiétaire : </h4><span class="tripShowResultItemSpanClass"> {{ tripshow.car.owner }}</span></div>
                 <div class="tripShowResultItemClass"><h4>Fréquence : </h4><span class="tripShowResultItemSpanClass">{{ tripshow.frequency |default('Non renseigné') }}</span></div>
                 <div class="tripShowResultItemClass"><h4>Nombre d'étapes : </h4><span class="tripShowResultItemSpanClass">{{ steps.nb_etapes |default('Non renseigné') }}</span></div>
                 <div class="tripShowResultItemClass"><h4>Liste des villes : </h4><span class="tripShowResultItemSpanClass">{{ steps.etapes |default('Non renseigné') }}</span></div>

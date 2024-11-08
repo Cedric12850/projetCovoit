@@ -280,6 +280,9 @@ a.nav-link:focus{
 #_remember_me{
     margin-right: .5em;
 }
+.loginFormClass a{
+
+}
 /* -------------------- Profil -------------------- */
 .profilButtonClass{
     font-size: 1.2rem;
@@ -449,7 +452,6 @@ h4.tripShowResultItemh4Class{
 .tripShowResultCartItemClass{
     display: flex;
     align-items: center;
-    margin-right: 1.5em;
 }
 
 .tripShowResultItemSpanClass{
@@ -634,7 +636,6 @@ h4.tripShowResultItemh4Class{
     .tripShowResultCartItemClass{
         display: flex;
         align-items: center;
-        margin-right: 1.5em;
     }
 
     .tripShowResultItemSpanClass{
