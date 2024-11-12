@@ -8,7 +8,7 @@
         <article class="row">
             {# bouton voir/modifier #}
             <div class="col">
-                <button class="buttonClass profilButtonClass col-2">voir</button>
+                {# <button class="buttonClass profilButtonClass col-2">voir</button> #}
                 <a href="/profile/{{user.id}}"><button class="buttonClass profilButtonClass col-2">annuler</button></a>
             </div>
             {# photo & name/town #}
@@ -73,7 +73,7 @@
                         {{ form_row(editform.pseudo, 
                         {'attr': {'required': 'required'}}) }}
                     </span>
-                    <span class="formItemClass">
+                    <span class="formItemClass">                                
                         {{ form_row(editform.firstname, 
                         {'attr': {'required': 'required'}}) }}
                     </span>
