@@ -13,7 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\UX\Autocomplete\Form\AsEntityAutocompleteField;
-use App\Entity\Town;
 
 /* #[AsEntityAutocompleteField()] */
 class TripSearchType extends AbstractType
