@@ -25,6 +25,7 @@ class HomeController extends AbstractController
         $nbAnAvant= 8 ;
         $nbUserAvant = 45470;
         $nbTripAvant = 3540;
+        $nbResaAvant = 5000;
 
         $nbUsers = $usrRep->count();
         $nbActiveUsers =  $usrRep->count(['active' =>True]);
@@ -35,6 +36,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'nbAnnees' => $nbAnAvant,
             'nbUsers' => $nbUserAvant + $nbUsers,
+            'nbResa' => $nbResaAvant,
             'nbActiveUsers' => $nbUserAvant + $nbActiveUsers,
 
             'nbCreesTrips' => $nbTripAvant + $nbCreesTrips,
