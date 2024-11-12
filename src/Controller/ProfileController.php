@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\CarRepository;
 use App\Repository\TownRepository;
+use App\Repository\TripRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,14 +24,16 @@ class ProfileController extends AbstractController
     #[Route('/profile/{id}', name: 'app_profile')]
     public function showProfile(
         UserRepository $userRepository,
-        CarRepository $carRepository,
+        TripRepository $tripRepository,
         int $id
         ): Response
     {
         $user = $userRepository->find($id);
+        $tripUser = $tripRepository->findAllTripsByUserId($id);
         $carUser = $user->getCars();
         return $this->render('profile/index.html.twig', [
             'user' => $user,
+            'tripUser'=> $tripUser,
             'carUser' => $carUser,
         ]);
     }
@@ -103,7 +106,7 @@ class ProfileController extends AbstractController
                 $user = $form->getData();
                 $entityManager->flush();
 
-                return $this->redirectToRoute('app_profile');
+                return $this->redirectToRoute('app_profile'.$id);
             }
         }
         

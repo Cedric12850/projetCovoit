@@ -36,10 +36,12 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/exemples, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/profile/edit, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/car, roles: ROLE_USER }
         - { path: ^/step, roles: ROLE_USER }
+        
 
 when@test:
     security:
