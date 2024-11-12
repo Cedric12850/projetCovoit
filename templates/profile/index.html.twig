@@ -11,7 +11,7 @@
             {# {% if app.user %} #}
             <div>
                 {% if app.user and app.user.id == user.id %}
-                    <button class="buttonClass profilButtonClass">voir</button>
+                    {# <button class="buttonClass profilButtonClass">voir</button> #}
                     <a href="/profile/edit/{{user.id}}"><button class="buttonClass profilButtonClass">modifier</button></a>
                 {% elseif app.user %}
                     <a href="/profile/{{app.user.id}}"><button class="buttonClass profilButtonClass col-2">retour</button></a>

@@ -106,7 +106,7 @@ class ProfileController extends AbstractController
                 $user = $form->getData();
                 $entityManager->flush();
 
-                return $this->redirectToRoute('app_profile'.$id);
+                return $this->redirectToRoute('app_profile',['id' => $id]);
             }
         }
         
