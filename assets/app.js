@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
             hiddenTownInput.value = this.value;
         });
     });
-})();
+    
 /* ------------- End of Autocomplete Js ---------------------------- */
 
 /* import { Autocomplete } from '@symfony/ux-autocomplete'; */

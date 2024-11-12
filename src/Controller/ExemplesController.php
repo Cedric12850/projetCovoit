@@ -109,16 +109,16 @@ class ExemplesController extends AbstractController
         $stmt = $emi->getConnection()->prepare($sql);
         $result = $stmt->executeQuery();
         $data = $result->fetchAssociative();
-
-        $car=$data['car_id'];
+        
+        $car=$data['car_id']; //Nécessite un conducteur sur un véhicule
         $drivers = $cuRep->findActiveDriversByIdCar($car);
 
         // tous les trajets 
         $allTrips = $tripRep->findAll();
         $allTripsRepo = $tripRep->findAllTripsEtSteps($emi);
 
-        $ville1 = $townRep->findOneBy(['id' => 2]) ;
-        $ville2 = $townRep->findOneBy(['id' => 1]) ;
+        $ville1 = $townRep->findOneBy(['id' => 1415]) ;
+        $ville2 = $townRep->findOneBy(['id' => 1414]) ;
         $detail = true;
         $detailTrips=[];
         $dispos=$tripRep->findDispoTrajet($ville1->getId(),$ville2->getId(),"","","",$detail, $emi);
