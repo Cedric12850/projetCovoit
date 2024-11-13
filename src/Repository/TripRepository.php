@@ -194,7 +194,7 @@ class TripRepository extends ServiceEntityRepository
         $idDepart = $villeDepart;
         $idArrivee=  $villeArrivee;
         $debut = $dateDebut == ""? new \DateTime() : new \DateTime($dateDebut) ;
-        $fin = $dateFin == ""? new \DateTime() : new \DateTime($dateFin) ;
+        $fin = $dateFin == ""? new \DateTime($dateDebut) : new \DateTime($dateFin) ;
         $debut = $debut->format('Y-m-d');
         $fin = $fin->format('Y-m-d');
         // Sélection des Trip qui ont la ville de départ
@@ -208,20 +208,19 @@ class TripRepository extends ServiceEntityRepository
             $sql = $sql . " AND T.date_start <= '" . $fin ."'" ;
         }
         if  ($nbPlace <> ""){
-            $sql = $sql . " AND place_start >= " . $nbPlace;
+            $sql = $sql . " AND nb_passenger >= " . $nbPlace;
         }
         // Dans la table Step :
         $sql = $sql . " UNION SELECT T.id , S.num_order , T.date_start 
                         FROM step S 
                         INNER JOIN trip T ON T.id = S.trip_id   
                         INNER JOIN user U ON U.id = T.driver_id
-                        WHERE  T.date_start >= '" . $debut . "' AND S.town_step_id = " . $idDepart .
-                        " AND U.active ";
+                        WHERE  T.date_start >= '" . $debut . "' AND U.active AND S.town_step_id = " . $idDepart;
         if (!$dateDebut == "") {
             $sql = $sql . " AND T.date_start <= '" . $fin ."'" ;
         }
         if  ($nbPlace <> ""){
-            $sql = $sql . " AND place_start >= " . $nbPlace;
+            $sql = $sql . " AND nb_passenger >= " . $nbPlace;
         }
         dump($sql);
 
@@ -234,15 +233,16 @@ class TripRepository extends ServiceEntityRepository
                 FROM step S
                 INNER JOIN trip T ON S.trip_id = T.id  
                 INNER JOIN user U ON U.id = T.driver_id
-                WHERE S.town_step_id = " . $idArrivee  .  " AND T.date_start >= '" .$debut .
-                "'AND U.active" ;
+                WHERE S.town_step_id = " . $idArrivee  .  " AND T.date_start >= '" .$debut . "'" ;
         if (!$dateDebut == "") {
             $sql = $sql . " AND T.date_start <= '" . $fin ."'" ;
         }
         if  ($nbPlace <> ""){
-            $sql = $sql . " AND place_start >= " . $nbPlace;
+            $sql = $sql . " AND nb_passenger >= " . $nbPlace;
         }
-        $sql = $sql ." ORDER BY T.date_start ASC " ;
+        $sql = $sql ." AND U.active ORDER BY T.date_start ASC " ;
+
+        dump($sql);
 
         $stmt = $emi->getConnection()->prepare($sql);
         $result = $stmt->executeQuery();
