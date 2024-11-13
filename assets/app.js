@@ -113,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
             hiddenTownInput.value = this.value;
         });
     });
+})();
     
 /* ------------- End of Autocomplete Js ---------------------------- */
 
@@ -198,14 +199,6 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 
 
-
-
-
-
-
-
-
-
     document.addEventListener('DOMContentLoaded', function () {
         // Sélectionner les champs d'autocomplétion pour les villes
         const townStartInput = document.querySelector('.town_autocomplete[name="trip_search[town_start]"]');
@@ -278,6 +271,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 })();
-
-
-
