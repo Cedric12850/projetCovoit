@@ -3,8 +3,11 @@
 {% block title %}covoit{% endblock %}
 
 {% block body %}
-    <main class="container">
-        <h1> Partager autrement</h1>
+<main class="heightClass">
+
+    <div class="homeClass">
+
+        <h1 class="searchTilteHomeClass"> Partager autrement, Voyager infiniment!</h1>
 
         <section id = "homeChifMess" class="d-flex justify-content-between align-items-center">
             <div id= "homeChiffres" >
@@ -17,8 +20,8 @@
                     <span class ="textCercle"> Trajets </span>
                 </div>
                 <div class="row" >
-                    <span class="cercle textCercle">  {{nbDispoTrips}} </span>
-                    <span class ="textCercle"> Autres </span>
+                    <span class="cercle textCercle">  {{nbResaAvant}} </span>
+                    <span class ="textCercle"> Réservation  </span>
                 </div>
             </div>
         
@@ -28,7 +31,7 @@
         </section>
 
         <section id="homeRechResa">
-            <h2 class="texteCenter">  {{nbTripCours}} trajets disponibles</h2>
+            <h2 class="texteCenter availableTripHomeClass">  {{nbTripCours}} trajets disponibles</h2>
             <h4>  Recherchez le votre :</h4>
             {# <form action="#">
                 <input type="number" name="Départ" id="villeDep" placeHolder ="Num ville de départ" >
@@ -36,11 +39,41 @@
                 <button type ="submit"> Rechercher</button>
             </form> #}
 
-            <form id="searchForm" action="" method="post">
-                <input type="number" name="depart" id="villeDep" placeholder="Num ville de départ" required>
-                <input type="number" name="arrivee" id="villeArr" placeholder="Num ville d'arrivée" required>
-                <button type="submit">Rechercher</button>
-            </form>
+            {{ form_start(form,
+            {
+                'attr':{
+                    'id': 'searchForm',
+                    'class': 'searchHomeForm'
+                },
+                'method': 'post'  
+            }
+            ) }}
+{#                 <input type="number" name="depart" id="villeDep" placeholder="Num ville de départ" required>
+                <input type="number" name="arrivee" id="villeArr" placeholder="Num ville d'arrivée" required> #}
+
+                <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
+                    {{ form_row(form.town_start, {
+                        'attr': {
+                            'class': 'town_autocomplete',
+                        }
+                    }) }}
+                    {{ form_row(form.town_start_id) }}<!-- Champ caché pour l'ID de la ville de départ -->
+                </span>
+
+                <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
+                    {{ form_row(form.town_end, {
+                        'attr': {
+                            'class': 'town_autocomplete',
+                        }
+                    }) }}
+                    {{ form_row(form.town_end_id) }}<!-- Champ caché pour l'ID de la ville d'arrivée -->
+                </span>
+
+                <button type="submit" class="buttonClass tripSearchFormbuttonClass tripHomeSearchFormbuttonClass">Rechercher</button>
+
+            {{ form_row(form._token) }}
+
+            {{ form_end(form,{'render_rest':false}) }}
 
 
             <div id="resultRech">
@@ -52,10 +85,16 @@
         </section>
 
 
-        <section id="homeCarousel">
-            <h2>  Vous avez la parole </h2>
-            <div> Carousel </div>
+        <section id="homeCarousel" class="homeSectionCarouselClass">
+            <h2 class="homeCarouselTitelClass">  Vous avez la parole </h2>
+            <div class="homeCarouselWrapClass">
+                <div class="homeCarouselClass"> Carousel 
+                </div>
+            </div>
         </section>
-    </main>
+
+    </div>
+
+</main>
 
 {% endblock %}

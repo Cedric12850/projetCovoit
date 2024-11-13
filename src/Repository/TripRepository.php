@@ -205,7 +205,7 @@ class TripRepository extends ServiceEntityRepository
                 WHERE T.date_start >= '" . $debut . "' AND T.town_start_id = " . $idDepart .
                       " AND U.active " ;
         if (!$dateDebut == "") {
-            $sql = $sql . "' AND T.date_start <= '" . $fin ;
+            $sql = $sql . " AND T.date_start <= '" . $fin ."'" ;
         }
         if  ($nbPlace <> ""){
             $sql = $sql . " AND place_start >= " . $nbPlace;
@@ -218,12 +218,12 @@ class TripRepository extends ServiceEntityRepository
                         WHERE  T.date_start >= '" . $debut . "' AND S.town_step_id = " . $idDepart .
                         " AND U.active ";
         if (!$dateDebut == "") {
-            $sql = $sql . "' AND T.date_start <= '" . $fin ;
+            $sql = $sql . " AND T.date_start <= '" . $fin ."'" ;
         }
         if  ($nbPlace <> ""){
             $sql = $sql . " AND place_start >= " . $nbPlace;
         }
-        //dd($sql);
+        dump($sql);
 
         $stmt = $emi->getConnection()->prepare($sql);
         $result = $stmt->executeQuery();
@@ -237,7 +237,7 @@ class TripRepository extends ServiceEntityRepository
                 WHERE S.town_step_id = " . $idArrivee  .  " AND T.date_start >= '" .$debut .
                 "'AND U.active" ;
         if (!$dateDebut == "") {
-            $sql = $sql . "' AND T.date_start <= '" . $fin ;
+            $sql = $sql . " AND T.date_start <= '" . $fin ."'" ;
         }
         if  ($nbPlace <> ""){
             $sql = $sql . " AND place_start >= " . $nbPlace;
@@ -300,7 +300,7 @@ class TripRepository extends ServiceEntityRepository
                 // ksort($tripsByDate);
             }
         }
-
+        dump($result);
         if ($detail){
             $result = [
                 'totalTrips' => $totalTrips,

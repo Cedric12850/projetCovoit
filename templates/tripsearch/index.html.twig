@@ -12,9 +12,14 @@
 
         <div class="tripSearchIndexWrapClass">
 
-            {{ form_start(form) }}
-                {# {{ form_widget(form) }} #}
-
+            {{ form_start(form,
+            {
+                'attr':{
+                    'id': 'tripSearchForm'
+                },
+                'method': 'post'  
+            }
+            ) }}
 
             <div class="tripSearchFormIndexClass">
                 <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
@@ -23,6 +28,7 @@
                             'class': 'town_autocomplete',
                         }
                     }) }}
+                    {{ form_row(form.town_start_id) }}<!-- Champ caché pour l'ID de la ville de départ -->
                 </span>
 
                 <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
@@ -31,16 +37,8 @@
                             'class': 'town_autocomplete',
                         }
                     }) }}
+                    {{ form_row(form.town_end_id) }}<!-- Champ caché pour l'ID de la ville d'arrivée -->
                 </span>
-
-{#                <span class="tripSearchFormItemClass tripSearchTownFormItemClass">
-                    {{ form_row(form.town_end, {
-                        'attr': {
-                            'class': 'autocomplete',
-                            'data-autocomplete-url': path('api_towns')
-                        }
-                    }) }}
-                </span> #}
 
                 <span class="tripSearchFormItemClass">
                     {{ form_row(form.date_start,   

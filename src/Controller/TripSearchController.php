@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Town;
 use App\Entity\Trip;
 use App\Form\TripSearchType;
 use App\Repository\StepRepository;
 use App\Repository\TripRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -22,14 +24,15 @@ class TripSearchController extends AbstractController
     }
 
     #[Route('/tripsearch', name: 'app_trip_search')]
-    public function index(Request $request): Response
+    public function index(Request $request,
+    TripRepository $tripRepository,
+    EntityManagerInterface $emi
+    ): Response
     {
         // Générer l'URL pour l'autocomplétion
         $autocompleteUrl = $this->generateUrl('api_towns');
 
-        // Créer le formulaire avec l'option autocomplete_url
         $form = $this->createForm(TripSearchType::class, null, [
-           /*  'autocomplete_url' => $autocompleteUrl, */
         ]);
 
         $form->handleRequest($request);
@@ -39,27 +42,33 @@ class TripSearchController extends AbstractController
             $data = $form->getData();
             /* dd($data); */
             $townStart = $data['town_start'];
+            $townStartId = $data['town_start_id'];
+            /* dump($townStartId); */
+            
             $townEnd = $data['town_end'];
+            $townEndId = $data['town_end_id'];
+            /* dd($townEndId); */
+
             $dateStart = $data['date_start'];
-            /* $dateStart = $data['date_start']; */
             $nbPassenger = $data['nb_passenger'];
 
-            $repository = $this->entityManager->getRepository(Trip::class);
-            $results = $repository->createQueryBuilder('trip')
-                /* ->join('trip.town_start_id', 'townStart') */
-                /* ->select('trip.*')  */
-                ->join('trip.steps', 'step')
+/*             $repository = $this->entityManager->getRepository(Trip::class);
+            $results = $repository->createQueryBuilder('trip'); */
+
+/*                 ->join('trip.steps', 'step')
                 ->where('trip.town_start = :townStart')
                 ->andWhere('step.town_step = :townEnd')
                 ->andWhere('trip.date_start = :dateStart')
                 ->andWhere('trip.nb_passenger >= :nbPassenger')
-                ->setParameter('townStart', $townStart)
-                ->setParameter('townEnd', $townEnd)
+                ->setParameter('townStart', $townStartId)
+                ->setParameter('townEnd', $townEndId)
                 ->setParameter('dateStart', $dateStart)
                 ->setParameter('nbPassenger', $nbPassenger)
                 ->getQuery()
-                ->getResult();
-                
+                ->getResult(); */
+            
+            $results = $tripRepository->findDispoTrajet($townStartId, $townEndId, '2024-12-26', "", $nbPassenger, true, $emi);
+            dump($results);
             return $this->render('tripsearch/tripsearchresult.html.twig', [
                 'town_start' => $townStart,
                 'town_end' => $townEnd,
@@ -89,7 +98,7 @@ class TripSearchController extends AbstractController
         // Récupérer toutes les étapes du trajet
         $steps = $tripShow->getSteps();
         /* dd($steps); */
-        // Suppose que la dernière étape contient l'information que tu cherches
+
         $townEnd = null;
         if ($steps->count() > 0) {
             $lastStep = $steps->last(); // Récupère la dernière étape
@@ -148,8 +157,6 @@ class TripSearchController extends AbstractController
             $result[] = [
                 'id' => $town->getId(),
                 'name' => $town->getName(),
-/*                 'zip_code' => $town->getZipCode(), // Si vous avez ce champ
-                'department' => $town->getDepartment(), // Si vous avez ce champ */
             ];
         }
     
