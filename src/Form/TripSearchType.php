@@ -3,16 +3,15 @@
 
 namespace App\Form;
 
-use App\Entity\Town;
-use App\Form\TownAutocompleteField;
-use Doctrine\ORM\Mapping\Entity;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\UX\Autocomplete\Form\AsEntityAutocompleteField;
+
 
 /* #[AsEntityAutocompleteField()] */
 class TripSearchType extends AbstractType
@@ -20,24 +19,27 @@ class TripSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('town_start', EntityType::class, [
-                'class'=>Town::class,
-                /* 'choice_label'=>'name', */
-                'placeholder' => 'Choisissez votre ville de départ',
-                'label' => 'Ville de départ',
-                /* 'autocomplete' => true */
+        
+            ->add('town_start', TextType::class, [
+            'label' => 'Ville de départ',
+            'attr' => [
+                'class' => 'town_autocomplete',
+                'placeholder' => 'Choisissez votre ville de départ'
+            ],
+            'required' => true
             ])
-            ->add('town_end', EntityType::class, [
-                'class'=>Town::class,
-                /* 'choice_label'=>'name', */
-                'placeholder' => 'Choisissez votre ville d\'arrivée',
-                'label' => 'Ville d\'arrivée',
-                /* 'autocomplete' => true */
+            ->add('town_start_id', HiddenType::class) // Champ caché pour l'ID de la ville de départ
+
+            ->add('town_end', TextType::class, [
+            'label' => 'Ville d\'arrivée',
+            'attr' => [
+                'class' => 'town_autocomplete', // Classe pour le JS d'autocomplétion
+                'placeholder' => 'Choisissez votre ville d\'arrivée'
+            ],
+            'required' => true
             ])
-/*             ->add('town_end', TownAutocompleteField::class, [
-                'placeholder' => 'Choisissez votre ville de départ',
-                'label' => 'Ville d\'arrivée',
-            ]) */
+            ->add('town_end_id', HiddenType::class) // Champ caché pour l'ID de la ville d'arrivée
+
             ->add('date_start', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'Date de départ',
@@ -62,9 +64,6 @@ class TripSearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Si vous avez une classe de données spécifique, définissez-la ici
-            // 'data_class' => YourDataClass::class,
-            'autocomplete' => true,
         ]);
     }
 }

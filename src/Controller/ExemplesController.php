@@ -117,8 +117,8 @@ class ExemplesController extends AbstractController
         $allTrips = $tripRep->findAll();
         $allTripsRepo = $tripRep->findAllTripsEtSteps($emi);
 
-        $ville1 = $townRep->findOneBy(['id' => 1415]) ;
-        $ville2 = $townRep->findOneBy(['id' => 1414]) ;
+        $ville1 = $townRep->findOneBy(['id' => 1]) ;
+        $ville2 = $townRep->findOneBy(['id' => 2]) ;
         $detail = true;
         $detailTrips=[];
         $dispos=$tripRep->findDispoTrajet($ville1->getId(),$ville2->getId(),"","","",$detail, $emi);

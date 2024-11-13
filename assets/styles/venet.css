@@ -1,36 +1,80 @@
 #homeChiffres {
     display: flex;
-    justify-content: center;
-    gap: 3rem;
+    justify-content: space-between;
 }
 .textCercle{
     font-size: 2rem;
     font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 8px #000;
 }
   
 .cercle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 12px solid rgb(178, 136, 192);
-    font-size: 3rem;
+    border-radius: 100%;
+    border-top: 20px solid rgb(178, 136, 192);
+    border-right: 20px solid rgb(178, 136, 192);
+    border-bottom: 20px solid rgb(122, 0, 163);
+    border-left: 20px solid rgb(122, 0, 163);
+    font-size: 2.3rem;
     font-weight: bold;
     width: 170px;
     height: 170px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
  }
+ .cercle::before {
+    content: '';
+    position: absolute;
+    top: 11px;
+    left: 6px;
+    width: 9px;
+    height: 9px;
+    background-color: rgb(122, 0, 163);
+    border-top: 14px solid rgb(122, 0, 163);
+    border-left: 14px solid rgb(122, 0, 163);
+    transform: translate(-9%, -50%) rotate(-179deg);
+}
+.cercle::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    right: 2px;
+    width: 9px;
+    height: 9px;
+    background-color: rgb(178, 136, 192);
+    border-top: 14px solid rgb(178, 136, 192);
+    border-left: 14px solid rgb(178, 136, 192);
+    transform: translate(-9%, -50%) rotate(-179deg);
+}
+.homeMessage p{
+    color: #fff;
+    text-shadow: 0 0 5px #555;
+    font-size: 2.4rem;
+ }
+
+
+
  table, th, tr, td{
     border: solid 1px rgb(9, 50, 98);
  }
 
  #homeRechResa{
-    color :rgb(9, 50, 98);
-    background-color:#ddd;
-    margin : 5px ;
-    width: 90%;
-    border-radius: 0 10% 10% 0 ;
+    background-color: rgba(255,255,255,.7);
+    margin-top: 2.5em;
+    border-radius: 5px;
+    padding: 2em;
+    width: 100%;
+    box-shadow: 5px 5px 12px -2px #777;
  }
-
+#homeRechResa h4{
+    padding-left: .55rem;
+    color: rgb(122, 0, 163);
+    font-weight: 800;
+    margin-top: 1.5em;
+}
  thead{
     background-color:  rgb(9, 50, 98);
     color: #fff;
@@ -42,14 +86,68 @@
 .texteCenter{
     text-align: center;
 }
-
-
- @media screen and  (min-width : 930px){
+@media screen and  (min-width : 930px){
     #homeChiffres{
-        width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15px;
     }
     .homeMessage{
-        width: 20%;
-        font-size: 2em;
-     }
+        width: 30%;
+         position: relative;
+    }
  }
+ @media screen and  (min-width : 930px) and (max-width: 1000px ){
+    .homeMessage{
+        margin-left: -0em;
+        left: 0;
+    }
+ }
+     @media screen and  (min-width : 1001px) and (max-width: 1100px ){
+    .homeMessage{
+        margin-left: -.5em;
+        left: -.5em;
+    }
+}
+@media screen and  (min-width : 1101px) and (max-width: 1200px ){
+    .homeMessage{
+        margin-left: -1em;
+        left: -.5em;
+    }
+}
+@media screen and  (min-width : 1201px) and (max-width: 1300px ){
+    .homeMessage{
+        margin-left: -1.5em;
+        left: -1em;
+    }
+}
+@media screen and  (min-width : 1301px) and (max-width: 1400px ){
+    .homeMessage{
+        margin-left: -2.5em;
+        left: -1em;
+    }
+}
+@media screen and  (min-width : 1401px) and (max-width: 1500px ){
+    .homeMessage{
+        margin-left: -3em;
+        left: -1em;
+    }
+}
+@media screen and  (min-width : 1501px) and (max-width: 1600px ){
+    .homeMessage{
+        margin-left: -4em;
+        left: -4.5em;
+    }
+}
+@media screen and  (min-width : 1501px) and (max-width: 1601px ){
+    .homeMessage{
+        margin-left: -5em;
+        left: -4.5em;
+    }
+}
+@media screen and  (min-width : 1701px){
+    .homeMessage{
+        margin-left: -6em;
+        left: -9em;
+    }
+}

@@ -143,7 +143,56 @@ a.nav-link:focus{
 .nav-item a{
     font-size:1.4rem
 }
-
+.homeClass .tripHomeSearchFormbuttonClass{
+    width: 100%;
+    padding: .2em 1em;
+    display: block;
+    margin-top: 1.2em;
+}
+.homeClass{
+    margin: 4em 4em;
+}
+.searchTilteHomeClass{
+    color: #fff;
+    font-size: 2.8rem;
+    margin-left: 15px;
+    text-shadow: 0 0 8px #444;
+    margin-bottom: 1em;
+    font-weight: 800;
+    text-align: center;
+    font-variant-caps: small-caps;
+}
+#homeChiffres .row{
+    width: 33.33%;
+}
+.searchHomeForm{
+    display: flex;
+    flex-direction: column;
+}
+.homeSectionCarouselClass{
+    margin-top: 2em;
+}
+.homeCarouselWrapClass{
+    background-color: rgba(255,255,255,.7);
+    margin-top: 2.5em;
+    border-radius: 5px;
+    padding: 2em;
+    width: 100%;
+    box-shadow: 5px 5px 12px -2px #777;
+}
+.homeCarouselTitelClass{
+    color: #fff;
+    font-size: 2.3rem;
+    margin-left: 15px;
+    text-shadow: 0 0 8px #444;
+    margin-bottom: 1em;
+    font-weight: 800;
+    text-align: left;
+    font-variant-caps: small-caps;  
+}
+.availableTripHomeClas{
+    color: #777;
+}
 /* ------------------- Register ------------------- */
 .registerFormMainClass{
     width:94%;
@@ -280,6 +329,17 @@ a.nav-link:focus{
 #_remember_me{
     margin-right: .5em;
 }
+.loginFormClass a{
+
+}
+.loginPasswordClass a{
+    text-shadow: 0 0 0 #fff;
+    color: #e4b7e5;
+}
+.loginPasswordClass a:hover,
+.loginPasswordClass a:focus{
+    color: #eee;
+}
 /* -------------------- Profil -------------------- */
 .profilButtonClass{
     font-size: 1.2rem;
@@ -343,6 +403,27 @@ a.nav-link:focus{
 }
 .tripSearchFormItemClass label{
     font-size: 1.3rem;
+}
+.autocomplete-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    width: auto;
+    max-height: 600px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.autocomplete-list li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+    background-color: #f0f0f0;
 }
 /* ------------------ Result Search---------------- */
 .tripSearchResultPageClass{
@@ -449,7 +530,6 @@ h4.tripShowResultItemh4Class{
 .tripShowResultCartItemClass{
     display: flex;
     align-items: center;
-    margin-right: 1.5em;
 }
 
 .tripShowResultItemSpanClass{
@@ -522,7 +602,20 @@ h4.tripShowResultItemh4Class{
 
 
     /* --------------------- Home --------------------- */
-
+    .homeClass .tripHomeSearchFormbuttonClass{
+        margin-top: 2.58em;
+        margin-left: 1em;
+        width: auto;
+        padding: 0 2em;
+    }
+    .searchHomeForm{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .homeSectionCarouselClass{
+        margin-top: 4em;
+    }
 
     /* ------------------- Register ------------------- */
     .registerFormMainClass{
@@ -589,6 +682,7 @@ h4.tripShowResultItemh4Class{
         overflow: hidden;
         text-overflow: ellipsis;
         display: inline-block;
+        padding: 0 .2em;
     }
     .tripSearchFormbuttonClass{
         font-size: 1.2rem;
@@ -634,7 +728,6 @@ h4.tripShowResultItemh4Class{
     .tripShowResultCartItemClass{
         display: flex;
         align-items: center;
-        margin-right: 1.5em;
     }
 
     .tripShowResultItemSpanClass{
@@ -665,4 +758,71 @@ h4.tripShowResultItemh4Class{
     .footerMenuItemClass a{
         font-size: 1.4rem;
     }
+}
+
+@media screen and  (max-width : 798px){
+    /* ------------------- Commun item ---------------- */
+    /* ---------------------- Button ------------------ */
+ 
+
+    /* -------------------- Header -------------------- */
+
+
+    /* -------------------- Navbar -------------------- */
+    .connectionWrapClass {
+        margin: 0 1em !important;
+    }
+    .navbar {
+        margin: 0 1em;
+    }
+    .searchTilteHomeClass {
+        color: #fff;
+        font-size: 1.8rem;
+        margin-left: 0;
+    }
+    /* --------------------- Home --------------------- */
+    .homeClass {
+        margin: 1em 2em;
+      }
+    .cercle {
+        font-size: 2rem;
+        font-weight: bold;
+        width: 100px;
+        height: 100px;
+    }
+    .textCercle {
+        font-size: 1.2rem;
+    }
+    #homeChiffres {
+        margin-left: 15px;
+    }
+    #homeRechResa h4 {
+        padding-left: 0;
+    }
+    .cercle::before {
+        top: 2px;
+        left: -4px;
+    }
+    .cercle::after {
+        bottom: -13px;
+        right: -6px;
+    }
+    /* ------------------- Register ------------------- */
+
+    /* --------------------- Login -------------------- */
+
+
+    /* -------------------- Profil -------------------- */
+
+
+    /* ---------------- Trip  Search ------------------ */
+
+    /* ------------------ Result Search---------------- */
+
+    /* ---------------  Result One Show --------------- */
+
+
+
+    /* -------------------- Footer -------------------- */
+
 }
