@@ -67,15 +67,16 @@ class TripSearchController extends AbstractController
                 ->getQuery()
                 ->getResult(); */
             
-            $results = $tripRepository->findDispoTrajet($townStartId, $townEndId, '2024-12-26', "", $nbPassenger, true, $emi);
-            dump($results);
+            $dispos = $tripRepository->findDispoTrajet($townStartId, $townEndId, '2024-12-26', "", $nbPassenger, true, $emi);
+            dump($dispos);
+            $results = $dispos['detailTrips'];
+            /* dump($results); */
             return $this->render('tripsearch/tripsearchresult.html.twig', [
                 'town_start' => $townStart,
                 'town_end' => $townEnd,
                 'date_start' => $dateStart,
                 'nb_passenger' => $nbPassenger,
                 'resultats' => $results,
-                
             ]);
         }
 

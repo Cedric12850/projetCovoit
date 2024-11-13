@@ -17,7 +17,7 @@
             <div class="tripSearchResultItemDateClass"><h4>Date :</h4><p>&nbsp; {{ date_start|date('Y-m-d') }}</p></div>
             <div class="tripSearchResultItemNbPasClass"><h4>Nombre de passagers :</h4><p>&nbsp; {{ nb_passenger }}</p></div>
            {%  dump(resultat) %}
-            {# <div><a href="{{ path('app_tripresult_show', { 'id': resultat.id }) }}">Voir le trajet</a></div> #}
+            <div><a href="{{ path('app_tripresult_show', { 'id': resultat.id }) }}">Voir le trajet</a></div>
         </div>
 
                 
