@@ -26,8 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return;  // Ne pas envoyer la requête si les villes ne sont pas sélectionnées
         }
 
-        console.log('Ville de départ ID:', villeDep);
-        console.log('Ville d\'arrivée ID:', villeArr);
 
         // Envoi de la requête AJAX
         fetch('/search', {

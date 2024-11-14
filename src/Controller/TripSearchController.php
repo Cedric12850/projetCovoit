@@ -43,7 +43,7 @@ class TripSearchController extends AbstractController
             /* dd($data); */
             $townStart = $data['town_start'];
             $townStartId = $data['town_start_id'];
-            /* dump($townStartId); */
+            dump($townStartId);
             
             $townEnd = $data['town_end'];
             $townEndId = $data['town_end_id'];
@@ -67,7 +67,7 @@ class TripSearchController extends AbstractController
                 ->getQuery()
                 ->getResult(); */
             
-            $dispos = $tripRepository->findDispoTrajet($townStartId, $townEndId, '2024-12-26', "", $nbPassenger, true, $emi);
+            $dispos = $tripRepository->findDispoTrajet($townStartId, $townEndId, $dateStart->format('y-m-d'), "", $nbPassenger, true, $emi);
             dump($dispos);
             $results = $dispos['detailTrips'];
             /* dump($results); */
@@ -139,7 +139,6 @@ class TripSearchController extends AbstractController
     public function getTowns(Request $request): JsonResponse
     {
         $searchTerm = $request->query->get('q');
-    
         $towns = $this->entityManager->getRepository(Town::class)
             ->createQueryBuilder('t')
             ->where('t.name LIKE :searchTerm')
@@ -147,12 +146,9 @@ class TripSearchController extends AbstractController
             ->setMaxResults(20)
             ->getQuery()
             ->getResult();
-
             if (empty($towns)) {
                 return new JsonResponse(['error' => 'Aucune ville trouvée.'], 404);
             }
-
-    
         $result = [];
         foreach ($towns as $town) {
             $result[] = [
@@ -160,7 +156,7 @@ class TripSearchController extends AbstractController
                 'name' => $town->getName(),
             ];
         }
-    
+  
         return new JsonResponse($result);
     }
 

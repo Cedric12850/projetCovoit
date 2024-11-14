@@ -181,10 +181,6 @@ class TripRepository extends ServiceEntityRepository
                     ->getSingleScalarResult();
     }
 
-
-    // public function findDispoTrajet($villeDepart, $villeArrivee,$detail, $emi): array
-    // Ajout des paramètres $dateDebut, $dateFin, $nbPlace pour correspondre aux besoins du formulaire de recherche de Nicolas
-    
     public function findDispoTrajet($villeDepart, $villeArrivee, $dateDebut, $dateFin, $nbPlace, $detail, $emi): array
     {
     // Ex de différents appels possibles :
@@ -222,7 +218,6 @@ class TripRepository extends ServiceEntityRepository
         if  ($nbPlace <> ""){
             $sql = $sql . " AND nb_passenger >= " . $nbPlace;
         }
-        dump($sql);
 
         $stmt = $emi->getConnection()->prepare($sql);
         $result = $stmt->executeQuery();
@@ -241,8 +236,6 @@ class TripRepository extends ServiceEntityRepository
             $sql = $sql . " AND nb_passenger >= " . $nbPlace;
         }
         $sql = $sql ." AND U.active ORDER BY T.date_start ASC " ;
-
-        dump($sql);
 
         $stmt = $emi->getConnection()->prepare($sql);
         $result = $stmt->executeQuery();
@@ -300,7 +293,6 @@ class TripRepository extends ServiceEntityRepository
                 // ksort($tripsByDate);
             }
         }
-        dump($result);
         if ($detail){
             $result = [
                 'totalTrips' => $totalTrips,
